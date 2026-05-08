@@ -33,9 +33,9 @@ const currentYear = new Date().getFullYear();
 				</a>
 				<div class="hidden space-x-8 md:flex items-center">
 					<a href="/dispositifs" class="text-sm font-semibold text-slate-600 hover:text-brand-blue">Appareils</a>
+					<a href="/blog" class="text-sm font-semibold text-slate-600 hover:text-brand-blue">Blog</a>
 					<a href="/guides" class="text-sm font-semibold text-slate-600 hover:text-brand-blue">Guides</a>
 					<a href="#pricing" class="text-sm font-semibold text-slate-600 hover:text-brand-blue">Tarifs</a>
-					<a href="#faq" class="text-sm font-semibold text-slate-600 hover:text-brand-blue">FAQ</a>
 					<a href="https://wa.link/9ezhx6" class="rounded-full bg-brand-blue px-5 py-2 text-sm font-bold text-white transition hover:scale-105 active:scale-95">Commander</a>
 				</div>
 
@@ -57,9 +57,10 @@ const currentYear = new Date().getFullYear();
 			<div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 shadow-xl">
 				<div class="space-y-1 px-4 pb-6 pt-4">
 					<a href="/dispositifs" class="block rounded-md px-3 py-4 text-base font-bold text-slate-700 hover:bg-slate-50 hover:text-brand-blue border-b border-slate-50">Appareils</a>
+					<a href="/blog" class="block rounded-md px-3 py-4 text-base font-bold text-slate-700 hover:bg-slate-50 hover:text-brand-blue border-b border-slate-50">Blog</a>
 					<a href="/guides" class="block rounded-md px-3 py-4 text-base font-bold text-slate-700 hover:bg-slate-50 hover:text-brand-blue border-b border-slate-50">Guides</a>
+					<a href="/glossaire" class="block rounded-md px-3 py-4 text-base font-bold text-slate-700 hover:bg-slate-50 hover:text-brand-blue border-b border-slate-50">Glossaire</a>
 					<a href="#pricing" class="block rounded-md px-3 py-4 text-base font-bold text-slate-700 hover:bg-slate-50 hover:text-brand-blue border-b border-slate-50">Tarifs</a>
-					<a href="#faq" class="block rounded-md px-3 py-4 text-base font-bold text-slate-700 hover:bg-slate-50 hover:text-brand-blue border-b border-slate-50">FAQ</a>
 					<div class="mt-6">
 						<a href="https://wa.link/9ezhx6" class="block w-full rounded-xl bg-brand-blue px-5 py-4 text-center text-lg font-bold text-white shadow-lg">
 							Commander Maintenant
@@ -118,6 +119,11 @@ const currentYear = new Date().getFullYear();
 							<li><a href="/locations/marseille" class="hover:text-brand-blue">IPTV Marseille</a></li>
 							<li><a href="/locations/toulouse" class="hover:text-brand-blue">IPTV Toulouse</a></li>
 							<li><a href="/locations/nice" class="hover:text-brand-blue">IPTV Nice</a></li>
+							<li><a href="/locations/nantes" class="hover:text-brand-blue">IPTV Nantes</a></li>
+							<li><a href="/locations/strasbourg" class="hover:text-brand-blue">IPTV Strasbourg</a></li>
+							<li><a href="/locations/montpellier" class="hover:text-brand-blue">IPTV Montpellier</a></li>
+							<li><a href="/locations/bordeaux" class="hover:text-brand-blue">IPTV Bordeaux</a></li>
+							<li><a href="/locations/lille" class="hover:text-brand-blue">IPTV Lille</a></li>
 						</ul>
 					</div>
 					<div>
@@ -129,17 +135,18 @@ const currentYear = new Date().getFullYear();
 						</ul>
 					</div>
 					<div>
-						<h4 class="text-sm font-bold uppercase tracking-wider text-slate-900">Guides</h4>
+						<h4 class="text-sm font-bold uppercase tracking-wider text-slate-900">Ressources</h4>
 						<ul class="mt-4 space-y-2 text-sm text-slate-600">
-							<li><a href="/guides/installation-smart-tv" class="hover:text-brand-blue">Installation Smart TV</a></li>
-							<li><a href="/guides/meilleures-apps-android" class="hover:text-brand-blue">Meilleures Apps Android</a></li>
-							<li><a href="/guides/eviter-freezes-iptv" class="hover:text-brand-blue">Éviter les freezes</a></li>
+							<li><a href="/blog" class="hover:text-brand-blue">Blog & Actu</a></li>
+							<li><a href="/glossaire" class="hover:text-brand-blue">Glossaire IPTV</a></li>
+							<li><a href="/guides/installation-smart-tv" class="hover:text-brand-blue">Tutos Installation</a></li>
 						</ul>
 					</div>
 					<div>
 						<h4 class="text-sm font-bold uppercase tracking-wider text-slate-900">Support</h4>
 						<ul class="mt-4 space-y-2 text-sm text-slate-600">
-							<li><a href="/dispositifs" class="hover:text-brand-blue">Appareils & Apps</a></li>
+							<li><a href="/blog" class="hover:text-brand-blue font-bold text-brand-blue">Notre Blog</a></li>
+							<li><a href="/dispositifs" class="hover:text-brand-blue">Dispositifs</a></li>
 							<li><a href="https://wa.link/9ezhx6" class="hover:text-brand-blue">WhatsApp Support</a></li>
 							<li><a href="https://t.me/Iplivesat" class="hover:text-brand-blue">Telegram Group</a></li>
 							<li><a href="/privacy" class="hover:text-brand-blue">Confidentialité</a></li>
@@ -156,5 +163,49 @@ const currentYear = new Date().getFullYear();
 
 		<ChannelsPopup />
 		<WhatsAppButton />
+
+		<!-- Exit Intent Popup -->
+		<div id="exit-intent-popup" class="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+			<div class="bg-white p-10 rounded-[40px] max-w-lg w-full relative text-center shadow-2xl border border-slate-200 m-4">
+				<button id="close-exit-popup" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 transition">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+				</button>
+				<div class="w-24 h-24 bg-brand-red/10 rounded-full flex items-center justify-center mx-auto mb-8">
+					<span class="text-5xl">🔥</span>
+				</div>
+				<h2 class="text-3xl font-extrabold text-slate-900 mb-4">Attendez ! Une offre spéciale vous attend</h2>
+				<p class="text-slate-600 mb-8 text-lg">Ne partez pas sans votre **Réduction de 15%** sur votre premier abonnement 12 mois.</p>
+				<div class="flex flex-col gap-3">
+					<a href="https://wa.link/9ezhx6" class="bg-brand-red text-white py-5 rounded-2xl font-bold text-xl hover:scale-105 transition-transform shadow-lg shadow-brand-red/30">
+						Récupérer mon code (WhatsApp)
+					</a>
+					<button id="close-exit-popup-alt" class="text-sm text-slate-400 hover:text-slate-600 underline">Continuer vers le site</button>
+				</div>
+			</div>
+		</div>
+
+		<script is:inline>
+			// Exit Intent Logic
+			let showPopup = true;
+			document.addEventListener("mouseleave", (e) => {
+				if (e.clientY < 0 && showPopup) {
+					const popup = document.getElementById('exit-intent-popup');
+					if (popup) {
+						popup.classList.remove('opacity-0', 'pointer-events-none');
+						showPopup = false; // Only show once per session
+					}
+				}
+			});
+
+			const closePopup = () => {
+				const popup = document.getElementById('exit-intent-popup');
+				if (popup) {
+					popup.classList.add('opacity-0', 'pointer-events-none');
+				}
+			};
+
+			document.getElementById('close-exit-popup')?.addEventListener('click', closePopup);
+			document.getElementById('close-exit-popup-alt')?.addEventListener('click', closePopup);
+		</script>
 	</body>
 </html>

@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const posts = [
+    {
+        slug: 'pourquoi-choisir-iptv-abonnement-premium',
+        title: 'Pourquoi choisir un IPTV abonnement premium en 2026 ?',
+        date: '2026-05-01',
+        excerpt: 'Découvrez les avantages d\'un service premium pour votre divertissement quotidien : stabilité, qualité 4K et support réactif.'
+    },
+    {
+        slug: 'installation-iptv-abonnement-smart-tv',
+        title: 'Comment installer votre IPTV abonnement sur Smart TV LG et Samsung',
+        date: '2026-05-02',
+        excerpt: 'Guide étape par étape pour configurer votre service sur les téléviseurs intelligents les plus populaires.'
+    },
+    {
+        slug: 'meilleures-apps-android-iptv',
+        title: 'Les meilleures applications pour votre IPTV abonnement Android',
+        date: '2026-05-03',
+        excerpt: 'Optimisez votre expérience sur smartphone et box Android avec ces applications performantes.'
+    },
+    {
+        slug: 'eviter-freezes-iptv-abonnement',
+        title: 'IPTV abonnement : Comment éviter les freezes et les coupures',
+        date: '2026-05-04',
+        excerpt: 'Conseils techniques pour garantir une fluidité totale de vos flux en direct.'
+    },
+    {
+        slug: 'comparatif-iptv-vs-satellite',
+        title: 'Comparatif : IPTV abonnement vs Satellite traditionnel',
+        date: '2026-05-05',
+        excerpt: 'Pourquoi de plus en plus de foyers français abandonnent la parabole pour l\'IPTV.'
+    },
+    {
+        slug: 'legalite-iptv-abonnement-france',
+        title: 'Tout savoir sur la légalité de l\'IPTV abonnement en France',
+        date: '2026-05-06',
+        excerpt: 'Comprendre le cadre légal et comment choisir un service responsable.'
+    },
+    {
+        slug: 'configurer-vlc-iptv-abonnement',
+        title: 'Comment configurer votre IPTV abonnement sur VLC Media Player',
+        date: '2026-05-07',
+        excerpt: 'Regardez la télévision sur votre PC ou Mac en quelques clics avec VLC.'
+    },
+    {
+        slug: 'guide-firestick-iptv-abonnement',
+        title: 'Le guide complet pour utiliser votre IPTV abonnement sur Firestick',
+        date: '2026-05-08',
+        excerpt: 'Transformez votre clé Amazon en véritable station multimédia 4K.'
+    },
+    {
+        slug: 'stabilite-critere-numero-un-iptv',
+        title: 'Pourquoi la stabilité est le critère #1 pour un IPTV abonnement',
+        date: '2026-05-09',
+        excerpt: 'Analyse technique de ce qui fait la différence entre un bon et un mauvais service.'
+    },
+    {
+        slug: 'iptv-abonnement-4k-sans-fibre',
+        title: 'Abonnement IPTV : Comment profiter de la 4K sans fibre optique',
+        date: '2026-05-10',
+        excerpt: 'Optimisations et réglages pour les connexions ADSL ou 4G/5G.'
+    }
+];
+
+const title = "Blog IPTV Abonnement - Conseils, Guides & Astuces";
+const description = "Retrouvez nos derniers articles sur l'IPTV abonnement : installation, meilleures applications, conseils techniques et actualités pour profiter du meilleur du streaming.";
+---
+
+<Layout title={title} description={description}>
+    <section class="relative bg-brand-blue py-24 text-white overflow-hidden">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h1 class="text-4xl font-extrabold sm:text-6xl mb-6">Notre Blog IPTV</h1>
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto">
+                Tout ce que vous devez savoir pour optimiser votre expérience avec votre IPTV abonnement.
+            </p>
+        </div>
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-red/20 blur-3xl rounded-full"></div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {posts.map((post) => (
+                    <article class="bg-slate-50 rounded-3xl p-8 border border-slate-100 flex flex-col h-full hover:shadow-xl transition group">
+                        <div class="flex-grow">
+                            <time class="text-sm text-slate-500 mb-4 block" datetime={post.date}>
+                                {new Date(post.date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}
+                            </time>
+                            <h2 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-brand-blue transition">
+                                <a href={`/blog/${post.slug}`}>{post.title}</a>
+                            </h2>
+                            <p class="text-slate-600 mb-6 line-clamp-3">
+                                {post.excerpt}
+                            </p>
+                        </div>
+                        <a href={`/blog/${post.slug}`} class="text-brand-blue font-bold flex items-center group-hover:gap-2 transition-all">
+                            Lire la suite 
+                            <svg class="h-5 w-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-50">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6">Vous ne trouvez pas ce que vous cherchez ?</h2>
+            <p class="text-lg text-slate-600 mb-10">
+                Notre équipe est disponible 24/7 pour répondre à toutes vos questions techniques sur votre IPTV abonnement.
+            </p>
+            <a href="https://wa.link/9ezhx6" class="inline-block bg-brand-blue text-white font-bold px-10 py-5 rounded-2xl hover:scale-105 transition shadow-2xl">
+                Contacter le Support WhatsApp
+            </a>
+        </div>
+    </section>
+</Layout>

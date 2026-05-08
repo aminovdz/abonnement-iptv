@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const terms = [
+	{
+		term: "IPTV",
+		definition: "Internet Protocol Television. La diffusion de la télévision via le protocole internet plutôt que par satellite ou câble."
+	},
+	{
+		term: "EPG",
+		definition: "Electronic Program Guide. Le guide électronique des programmes qui affiche les horaires et les descriptions des émissions."
+	},
+	{
+		term: "VOD",
+		definition: "Video On Demand. Un service qui permet aux utilisateurs de choisir et de regarder du contenu vidéo (films, séries) à tout moment."
+	},
+	{
+		term: "Xtream Codes",
+		definition: "Un système de gestion et un protocole de connexion très populaire pour les services IPTV, permettant une connexion via identifiant et mot de passe."
+	},
+	{
+		term: "M3U",
+		definition: "Un format de fichier (playlist) qui contient une liste de liens vers des flux multimédias. Utilisé par de nombreux lecteurs IPTV."
+	},
+	{
+		term: "Anti-Freeze / Anti-Gel",
+		definition: "Technologie logicielle et matérielle utilisée sur les serveurs pour minimiser les interruptions de flux et les saccades d'image."
+	},
+	{
+		term: "4K / UHD",
+		definition: "Ultra High Definition. Résolution d'image de 3840 x 2160 pixels, offrant une clarté 4 fois supérieure au Full HD."
+	},
+	{
+		term: "CDN",
+		definition: "Content Delivery Network. Réseau de serveurs distribués géographiquement pour accélérer la diffusion du contenu IPTV et réduire la latence."
+	},
+	{
+		term: "Catch-up / Replay",
+		definition: "Fonctionnalité permettant de regarder des programmes déjà diffusés, généralement jusqu'à 72 heures après leur passage en direct."
+	},
+	{
+		term: "Zapping",
+		definition: "Action de changer de chaîne. Un bon service IPTV offre un zapping rapide, généralement inférieur à une seconde."
+	}
+];
+---
+
+<Layout 
+	title="Glossaire IPTV : Tous les termes techniques expliqués"
+	description="Apprenez tout sur le vocabulaire IPTV : EPG, VOD, Xtream Codes, M3U, et plus encore. Le guide ultime pour comprendre la technologie."
+>
+	<header class="bg-brand-blue py-20 text-white">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+			<h1 class="text-4xl font-extrabold sm:text-6xl">Glossaire IPTV</h1>
+			<p class="mt-6 text-xl text-white/80 max-w-2xl mx-auto">Comprenez enfin les termes techniques du monde de la télévision par internet.</p>
+		</div>
+	</header>
+
+	<main class="py-20">
+		<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+			<div class="grid gap-8">
+				{terms.map((t) => (
+					<div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:border-brand-blue/30 transition shadow-indigo-50/50">
+						<h2 class="text-2xl font-bold text-slate-900 mb-3">{t.term}</h2>
+						<p class="text-slate-600 leading-relaxed">{t.definition}</p>
+					</div>
+				))}
+			</div>
+
+			<div class="mt-20 p-12 bg-slate-50 rounded-[40px] border border-slate-200 text-center">
+				<h2 class="text-3xl font-bold text-slate-900 mb-4">Besoin d'un conseil d'expert ?</h2>
+				<p class="text-slate-600 mb-8 max-w-xl mx-auto">Notre équipe technique est là pour vous expliquer comment optimiser votre installation pour une qualité maximale.</p>
+				<a href="https://wa.link/9ezhx6" class="inline-block bg-brand-blue text-white px-10 py-5 rounded-2xl font-bold text-lg hover:scale-105 transition-transform">
+					Contacter le Support
+				</a>
+			</div>
+		</div>
+	</main>
+</Layout>

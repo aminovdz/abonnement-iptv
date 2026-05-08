@@ -7,7 +7,12 @@ export function getStaticPaths() {
 		{ id: 'lyon', name: 'Lyon', region: 'Auvergne-Rhône-Alpes' },
 		{ id: 'marseille', name: 'Marseille', region: 'Provence-Alpes-Côte d\'Azur' },
 		{ id: 'toulouse', name: 'Toulouse', region: 'Occitanie' },
-		{ id: 'nice', name: 'Nice', region: 'Provence-Alpes-Côte d\'Azur' }
+		{ id: 'nice', name: 'Nice', region: 'Provence-Alpes-Côte d\'Azur' },
+		{ id: 'nantes', name: 'Nantes', region: 'Pays de la Loire' },
+		{ id: 'strasbourg', name: 'Strasbourg', region: 'Grand Est' },
+		{ id: 'montpellier', name: 'Montpellier', region: 'Occitanie' },
+		{ id: 'bordeaux', name: 'Bordeaux', region: 'Nouvelle-Aquitaine' },
+		{ id: 'lille', name: 'Lille', region: 'Hauts-de-France' }
 	];
 	return cities.map((city) => ({
 		params: { city: city.id },
