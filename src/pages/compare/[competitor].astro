@@ -1,0 +1,82 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export function getStaticPaths() {
+	const competitors = [
+		{ id: 'volka-pro', name: 'Volka Pro 2' },
+		{ id: 'king-iptv', name: 'King IPTV' },
+		{ id: 'pure-iptv', name: 'Pure IPTV' }
+	];
+	return competitors.map((comp) => ({
+		params: { competitor: comp.id },
+		props: { competitorName: comp.name },
+	}));
+}
+
+const { competitorName } = Astro.props;
+const brandName = "Abonnement IPTV";
+
+const title = `${brandName} vs ${competitorName} - Quelle est la meilleure IPTV en 2024 ?`;
+const description = `Comparaison honnête entre ${brandName} et ${competitorName}. Qualité, stabilité, nombre de chaînes et support client. Découvrez pourquoi nous sommes le choix #1.`;
+
+const comparisonData = [
+  { feature: "Nombre de chaînes", brand: "20,000+", comp: "12,000+" },
+  { feature: "Qualité d'image", brand: "4K / UHD / 8K", comp: "Full HD / 4K" },
+  { feature: "VOD (Films & Séries)", brand: "60,000+", comp: "30,000+" },
+  { feature: "Anti-Freeze Pro", brand: "Oui (v5.0)", comp: "Oui (v3.0)" },
+  { feature: "Support Client", brand: "24/7 (WhatsApp)", comp: "Email uniquement" },
+  { feature: "Stabilité du serveur", brand: "99.9%", comp: "98.5%" }
+];
+---
+
+<Layout title={title} description={description}>
+	<!-- Hero Comparison -->
+	<section class="bg-slate-50 py-20">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+			<h1 class="text-4xl font-extrabold text-slate-900 sm:text-5xl">
+				{brandName} <span class="text-brand-blue">VS</span> {competitorName}
+			</h1>
+			<p class="mt-6 text-xl text-slate-600 max-w-2xl mx-auto">
+				Vous hésitez entre {brandName} et {competitorName} ? Découvrez notre comparatif détaillé pour faire le meilleur choix pour votre divertissement.
+			</p>
+		</div>
+	</section>
+
+	<!-- Table Section -->
+	<section class="py-20 bg-white">
+		<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+			<div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+				<table class="w-full text-left">
+					<thead class="bg-slate-50">
+						<tr>
+							<th class="px-6 py-4 text-sm font-bold text-slate-900">Fonctionnalité</th>
+							<th class="px-6 py-4 text-sm font-bold text-brand-blue">{brandName}</th>
+							<th class="px-6 py-4 text-sm font-bold text-slate-400">{competitorName}</th>
+						</tr>
+					</thead>
+					<tbody class="divide-y divide-slate-100">
+						{comparisonData.map((row) => (
+							<tr>
+								<td class="px-6 py-4 text-sm font-semibold text-slate-700">{row.feature}</td>
+								<td class="px-6 py-4 text-sm font-bold text-brand-blue bg-blue-50/50">{row.brand}</td>
+								<td class="px-6 py-4 text-sm text-slate-500">{row.comp}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+
+			<div class="mt-16 text-center">
+				<h2 class="text-2xl font-bold text-slate-900">Le Verdict</h2>
+				<p class="mt-4 text-slate-600">
+					Alors que <strong>{competitorName}</strong> offre un service correct, <strong>{brandName}</strong> se distingue par sa stabilité supérieure, son support client réactif en français via WhatsApp, et sa bibliothèque VOD mise à jour quotidiennement.
+				</p>
+				<div class="mt-10">
+					<a href="/#pricing" class="rounded-xl bg-brand-blue px-10 py-4 text-lg font-bold text-white hover:bg-blue-800">
+						Choisir {brandName}
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

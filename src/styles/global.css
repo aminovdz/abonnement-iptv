@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #002395;
+  --color-brand-red: #ED2939;
+  --color-brand-white: #FFFFFF;
+  
+  --color-primary: var(--color-brand-blue);
+  --color-secondary: var(--color-brand-red);
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans;
+  }
+}
+
+/* Glassmorphism utility */
+.glass {
+  @apply bg-white/10 backdrop-blur-md border border-white/20;
+}
+
+.glass-dark {
+  @apply bg-black/20 backdrop-blur-lg border border-white/10;
+}

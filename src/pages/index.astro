@@ -1,0 +1,403 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "IPTV Abonnement France - IPTV Premium 4K/UHD #1 en France";
+const description = "Profitez du meilleur iptv abonnement en France. Des milliers de chaînes premium et un vaste catalogue VOD en 4K/Full HD. Service stable, premium et sans coupure avec support 24/7.";
+
+const pricing = [
+	{
+		name: "12 Mois",
+		price: "40€",
+		features: ["Toutes les chaînes", "4K / Full HD", "VOD Illimitée", "Support 24/7", "Meilleure Offre", "🎁 Licence Player 12 mois offerte"],
+		link: "https://wa.link/9ezhx6",
+		popular: true
+	},
+	{
+		name: "1 Mois",
+		price: "6€",
+		features: ["Toutes les chaînes", "4K / Full HD", "VOD Illimitée", "Support 24/7"],
+		link: "https://wa.link/9ezhx6",
+		popular: false
+	},
+	{
+		name: "3 Mois",
+		price: "11€",
+		features: ["Toutes les chaînes", "4K / Full HD", "VOD Illimitée", "Support 24/7", "Économie de 33%"],
+		link: "https://wa.link/9ezhx6",
+		popular: false
+	},
+	{
+		name: "6 Mois",
+		price: "22€",
+		features: ["Toutes les chaînes", "4K / Full HD", "VOD Illimitée", "Support 24/7", "Économie de 40%"],
+		link: "https://wa.link/9ezhx6",
+		popular: false
+	}
+];
+
+const faq = [
+	{
+		q: "Qu'est-ce qu'un abonnement IPTV ?",
+		a: "L'IPTV (Internet Protocol Television) vous permet de regarder la télévision via votre connexion internet au lieu des câbles ou satellites traditionnels."
+	},
+	{
+		q: "Quels appareils sont compatibles ?",
+		a: "Notre service est compatible avec Smart TV (Samsung, LG), Android Box, Firestick, Apple TV, Smartphones, et Tablettes."
+	},
+	{
+		q: "Est-ce que le service est stable ?",
+		a: "Oui, nous utilisons des serveurs ultra-rapides avec une technologie anti-gel pour garantir une expérience sans coupure."
+	},
+	{
+		q: "Puis-je tester le service ?",
+		a: "Oui, nous proposons des tests de 24 heures pour vous permettre de vérifier la qualité de nos chaînes et de notre VOD avant de vous engager."
+	},
+	{
+		q: "Comment se passe l'activation ?",
+		a: "Une fois le paiement effectué, l'activation est généralement instantanée ou prend au maximum 15 à 30 minutes."
+	},
+	{
+		q: "Proposez-vous des chaînes en replay ?",
+		a: "Oui, la majorité de nos chaînes premium disposent d'une fonction replay (catch-up) allant jusqu'à 72 heures."
+	}
+];
+---
+
+<Layout title={title} description={description}>
+	<section class="relative overflow-hidden bg-brand-blue py-24 text-white lg:py-32">
+		<!-- Hero Image Background -->
+		<div class="absolute inset-0 z-0">
+			<img src="/hero.png" alt="Meilleur IPTV abonnement France en 4K UHD" class="h-full w-full object-cover opacity-30" />
+			<div class="absolute inset-0 bg-gradient-to-r from-brand-blue via-brand-blue/80 to-transparent"></div>
+		</div>
+
+		<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="lg:w-2/3">
+				<a href="/" class="flex items-center space-x-3 mb-8">
+					<img src="/logo.png" alt="Abonnement IPTV Premium Logo - Service #1 en France" class="h-10 w-auto" />
+					<span class="text-2xl font-extrabold tracking-tight text-white hidden sm:inline">
+						ABONNEMENT<span class="text-brand-red">IPTV</span>
+					</span>
+				</a>
+				<h1 class="text-4xl font-extrabold tracking-tight sm:text-6xl text-white">
+					Le Meilleur <span class="text-brand-red">IPTV Abonnement</span> en France
+				</h1>
+				<p class="mt-6 text-xl text-blue-50">
+					Accédez à des milliers de chaînes mondiales et un vaste catalogue de films et séries en 4K. Profitez d'un service stable, premium et sans engagement.
+				</p>
+				<div class="mt-10 flex flex-wrap gap-4">
+					<a href="#pricing" class="rounded-xl bg-white px-8 py-4 text-lg font-bold text-brand-blue transition hover:bg-blue-50 shadow-lg">
+						Voir les Tarifs
+					</a>
+					<a href="https://wa.link/9ezhx6" class="rounded-xl border-2 border-white px-8 py-4 text-lg font-bold text-white transition hover:bg-white/10 backdrop-blur-sm">
+						Essai Gratuit
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Features Grid -->
+	<section id="features" class="py-24 bg-white">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="text-center">
+				<h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Pourquoi choisir notre iptv abonnement ?</h2>
+				<p class="mt-4 text-slate-600 max-w-2xl mx-auto">Nous offrons la technologie la plus avancée du marché pour garantir une stabilité maximale et une qualité d'image exceptionnelle sur tous vos écrans.</p>
+			</div>
+			<div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+				<div class="rounded-2xl border border-slate-100 bg-slate-50 p-8 transition hover:shadow-lg">
+					<div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-blue text-white shadow-lg shadow-brand-blue/30">
+						<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+					</div>
+					<h3 class="mt-6 text-xl font-bold text-slate-900">Qualité 4K & 8K Ultra HD</h3>
+					<p class="mt-2 text-slate-500 leading-relaxed">Ne faites aucun compromis sur l'image. Toutes vos chaînes de sport et de cinéma préférées sont diffusées en 4K et Full HD pour une immersion totale.</p>
+				</div>
+				<div class="rounded-2xl border border-slate-100 bg-slate-50 p-8 transition hover:shadow-lg">
+					<div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-blue text-white shadow-lg shadow-brand-blue/30">
+						<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+					</div>
+					<h3 class="mt-6 text-xl font-bold text-slate-900">Technologie Anti-Freeze Pro</h3>
+					<p class="mt-2 text-slate-500 leading-relaxed">Grâce à nos serveurs de dernière génération et au protocole H.265, profitez d'un flux fluide même avec une connexion internet modérée.</p>
+				</div>
+				<div class="rounded-2xl border border-slate-100 bg-slate-50 p-8 transition hover:shadow-lg">
+					<div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-blue text-white shadow-lg shadow-brand-blue/30">
+						<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path></svg>
+					</div>
+					<h3 class="mt-6 text-xl font-bold text-slate-900">Zapping Ultra Rapide</h3>
+					<p class="mt-2 text-slate-500 leading-relaxed">Plus besoin d'attendre. Le changement de chaîne se fait en moins d'une seconde pour une expérience télévisuelle identique au satellite.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Pricing Section -->
+	<section id="pricing" class="bg-slate-50 py-24">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="text-center">
+				<h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Nos Forfaits IPTV France</h2>
+				<p class="mt-4 text-slate-600">Choisissez l'offre qui vous convient. Activation instantanée.</p>
+			</div>
+			<div class="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+				{pricing.map((plan) => (
+					<div class={`relative flex flex-col rounded-2xl p-8 transition hover:scale-105 ${plan.popular ? 'bg-brand-blue text-white shadow-2xl ring-4 ring-brand-blue/30' : 'bg-white border border-slate-200'}`}>
+						{plan.popular && (
+							<span class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-brand-red px-4 py-1 text-xs font-bold uppercase tracking-widest text-white">
+								Populaire
+							</span>
+						)}
+						<h3 class={`text-lg font-bold ${plan.popular ? 'text-white' : 'text-slate-900'}`}>{plan.name}</h3>
+						<div class="mt-4 flex items-baseline">
+							<span class={`text-4xl font-extrabold tracking-tight ${plan.popular ? 'text-white' : 'text-slate-900'}`}>{plan.price}</span>
+						</div>
+						<ul class={`mt-8 space-y-4 text-sm ${plan.popular ? 'text-blue-100' : 'text-slate-600'}`}>
+							{plan.features.map((feature) => (
+								<li class="flex items-center">
+									<svg class={`mr-3 h-5 w-5 ${plan.popular ? 'text-blue-300' : 'text-brand-blue'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+									{feature}
+								</li>
+							))}
+						</ul>
+						<a href={plan.link} class={`mt-10 block rounded-xl py-3 text-center text-sm font-bold transition ${plan.popular ? 'bg-white text-brand-blue hover:bg-blue-50' : 'bg-brand-blue text-white hover:bg-blue-800'}`}>
+							S'abonner Maintenant
+						</a>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- How It Works Section -->
+	<section class="py-24 bg-slate-50">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="text-center mb-16">
+				<h2 class="text-3xl font-bold text-slate-900">Comment activer votre iptv abonnement ?</h2>
+				<p class="mt-4 text-slate-600">Une procédure simple et rapide en 3 étapes.</p>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+				<div class="relative text-center">
+					<div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-blue text-white text-2xl font-black shadow-xl">1</div>
+					<h4 class="mt-6 text-xl font-bold text-slate-900">Choisissez votre offre</h4>
+					<p class="mt-2 text-slate-500">Sélectionnez la durée qui vous convient : 1, 3, 6 ou 12 mois selon vos besoins.</p>
+				</div>
+				<div class="relative text-center">
+					<div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-blue text-white text-2xl font-black shadow-xl">2</div>
+					<h4 class="mt-6 text-xl font-bold text-slate-900">Paiement Sécurisé</h4>
+					<p class="mt-2 text-slate-500">Effectuez votre règlement via nos méthodes sécurisées. Vous recevrez une confirmation immédiate.</p>
+				</div>
+				<div class="relative text-center">
+					<div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-blue text-white text-2xl font-black shadow-xl">3</div>
+					<h4 class="mt-6 text-xl font-bold text-slate-900">Installation Guidée</h4>
+					<p class="mt-2 text-slate-500">Nos techniciens vous accompagnent pas à pas pour configurer votre application sur votre appareil.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Channels Showcase Section -->
+	<section class="py-24 bg-white">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="lg:flex items-center gap-16">
+				<div class="lg:w-1/2">
+					<h2 class="text-3xl font-bold text-slate-900">Des milliers de chaînes mondiales à portée de main</h2>
+					<p class="mt-6 text-lg text-slate-600 leading-relaxed">
+						Notre **iptv abonnement** vous donne accès à un catalogue immense de chaînes internationales. Que vous soyez fan de sport, de cinéma, de documentaires ou de dessins animés, nous avons tout ce qu'il vous faut.
+					</p>
+					<ul class="mt-8 grid grid-cols-2 gap-4">
+						<li class="flex items-center text-slate-700 font-medium">
+							<span class="mr-2 text-brand-red">●</span> Sport & Événements Direct
+						</li>
+						<li class="flex items-center text-slate-700 font-medium">
+							<span class="mr-2 text-brand-red">●</span> Cinéma & Séries Illimités
+						</li>
+						<li class="flex items-center text-slate-700 font-medium">
+							<span class="mr-2 text-brand-red">●</span> Chaînes Françaises & Locales
+						</li>
+						<li class="flex items-center text-slate-700 font-medium">
+							<span class="mr-2 text-brand-red">●</span> Documentaires & Découverte
+						</li>
+						<li class="flex items-center text-slate-700 font-medium">
+							<span class="mr-2 text-brand-red">●</span> Chaînes Enfants
+						</li>
+						<li class="flex items-center text-slate-700 font-medium">
+							<span class="mr-2 text-brand-red">●</span> Événements en Direct (PPV)
+						</li>
+					</ul>
+				</div>
+				<div class="mt-12 lg:mt-0 lg:w-1/2 relative">
+					<div class="absolute -inset-4 bg-brand-blue/10 blur-3xl rounded-full"></div>
+					<img 
+						src="/channels.png" 
+						alt="Catalogue de chaînes mondiales - IPTV abonnement stable et rapide" 
+						class="relative z-10 rounded-3xl shadow-2xl border border-white/20 transform hover:scale-105 transition duration-700" 
+					/>
+					<!-- Decorative badges -->
+					<div class="absolute -bottom-6 -left-6 z-20 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 hidden sm:block">
+						<div class="flex items-center gap-3">
+							<div class="h-10 w-10 bg-brand-red rounded-full flex items-center justify-center text-white font-bold italic">LIVE</div>
+							<div>
+								<p class="text-xs font-bold text-slate-900 uppercase">Qualité Premium</p>
+								<p class="text-[10px] text-slate-500">4K Ultra High Definition</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Referral Section -->
+	<section class="py-24 bg-brand-blue text-white overflow-hidden relative">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+			<div class="lg:flex items-center justify-between">
+				<div class="lg:w-1/2">
+					<h2 class="text-3xl font-bold sm:text-5xl">Parrainez vos amis et gagnez !</h2>
+					<p class="mt-6 text-xl text-blue-100 leading-relaxed">
+						Partagez votre expérience **Abonnement IPTV** avec vos amis. Pour chaque nouvel abonné parrainé, vous ET votre ami recevez **1 MOIS DE BONUS GRATUIT**.
+					</p>
+					<div class="mt-10">
+						<p class="text-blue-200 mb-4 font-semibold italic italic">Comment ça marche ? Donnez simplement le numéro WhatsApp de votre parrain lors de votre commande.</p>
+						<a href="https://wa.link/9ezhx6" class="inline-block rounded-xl bg-white px-8 py-4 text-lg font-bold text-brand-blue hover:bg-blue-50 transition shadow-xl">
+							Commander maintenant
+						</a>
+					</div>
+				</div>
+				<div class="mt-12 lg:mt-0 lg:w-1/3 text-center lg:text-right">
+					<div class="inline-block p-8 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20">
+						<span class="block text-6xl font-black text-white">+1 MOIS</span>
+						<span class="block mt-2 text-sm uppercase tracking-widest text-blue-200">Pour vous et votre ami</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Decorative blobs -->
+		<div class="absolute -bottom-24 -left-24 w-96 h-96 bg-brand-red/20 blur-3xl rounded-full"></div>
+	</section>
+
+	<!-- Testimonials Section -->
+	<section class="py-24 bg-slate-50 overflow-hidden">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="text-center mb-16">
+				<h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Ce que disent nos clients</h2>
+				<p class="mt-4 text-slate-600">Plus de 50,000 utilisateurs nous font confiance pour leur divertissement quotidien.</p>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				<div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 relative">
+					<div class="flex text-brand-red mb-4">
+						{[...Array(5)].map(() => (
+							<svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+						))}
+					</div>
+					<p class="text-slate-600 italic">"Client depuis 2 ans, la stabilité est bluffante. Le support WhatsApp est super réactif, même le dimanche soir !"</p>
+					<div class="mt-6 flex items-center gap-4">
+						<div class="h-10 w-10 rounded-full bg-slate-200"></div>
+						<div>
+							<h4 class="font-bold text-slate-900 text-sm">Jean-Pierre M.</h4>
+							<p class="text-slate-500 text-xs">Paris, France</p>
+						</div>
+					</div>
+				</div>
+				<div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 relative">
+					<div class="flex text-brand-red mb-4">
+						{[...Array(5)].map(() => (
+							<svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+						))}
+					</div>
+					<p class="text-slate-600 italic">"Enfin un service IPTV qui ne coupe pas pendant les gros matchs de Ligue des Champions. Qualité 4K au top !"</p>
+					<div class="mt-6 flex items-center gap-4">
+						<div class="h-10 w-10 rounded-full bg-slate-200"></div>
+						<div>
+							<h4 class="font-bold text-slate-900 text-sm">Marc L.</h4>
+							<p class="text-slate-500 text-xs">Lyon, France</p>
+						</div>
+					</div>
+				</div>
+				<div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 relative">
+					<div class="flex text-brand-red mb-4">
+						{[...Array(5)].map(() => (
+							<svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+						))}
+					</div>
+					<p class="text-slate-600 italic">"L'installation sur ma Smart TV a pris moins de 5 minutes avec leur guide. Très satisfait de l'offre 12 mois."</p>
+					<div class="mt-6 flex items-center gap-4">
+						<div class="h-10 w-10 rounded-full bg-slate-200"></div>
+						<div>
+							<h4 class="font-bold text-slate-900 text-sm">Sophie D.</h4>
+							<p class="text-slate-500 text-xs">Marseille, France</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- FAQ Section -->
+	<section id="faq" class="bg-white py-24">
+		<div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+			<h2 class="text-center text-3xl font-bold text-slate-900 sm:text-4xl">Questions Fréquentes</h2>
+			<div class="mt-12 space-y-8">
+				{faq.map((item) => (
+					<div class="rounded-xl border border-slate-100 bg-slate-50 p-6">
+						<h3 class="text-lg font-bold text-slate-900">{item.q}</h3>
+						<p class="mt-2 text-slate-600 leading-relaxed">{item.a}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact Section -->
+	<section id="contact" class="py-24 bg-slate-50">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+				<div>
+					<h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Besoin d'aide ? Contactez-nous</h2>
+					<p class="mt-4 text-slate-600">Notre équipe technique est à votre disposition pour toute question concernant l'installation ou le renouvellement de votre abonnement.</p>
+					
+					<div class="mt-10 space-y-6">
+						<div class="flex items-center space-x-4">
+							<div class="flex h-12 w-12 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue">
+								<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.63 1.438h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+							</div>
+							<div>
+								<h4 class="font-bold text-slate-900">WhatsApp</h4>
+								<a href="https://wa.link/9ezhx6" class="text-brand-blue hover:underline">Discuter avec un expert</a>
+							</div>
+						</div>
+						<div class="flex items-center space-x-4">
+							<div class="flex h-12 w-12 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue">
+								<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+							</div>
+							<div>
+								<h4 class="font-bold text-slate-900">Email</h4>
+								<a href="mailto:contact@abonnement-iptv.info" class="text-brand-blue hover:underline">contact@abonnement-iptv.info</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+					<form class="space-y-4">
+						<input type="text" placeholder="Nom complet" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue outline-none transition" />
+						<input type="email" placeholder="Adresse Email" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue outline-none transition" />
+						<textarea placeholder="Votre message" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue outline-none transition"></textarea>
+						<button type="button" class="w-full bg-brand-blue text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition shadow-lg">Envoyer le message</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Section -->
+	<section class="bg-slate-900 py-16">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+			<h2 class="text-3xl font-bold text-white">Prêt à passer à l'IPTV Premium ?</h2>
+			<p class="mt-4 text-slate-400">Rejoignez plus de 50,000 clients satisfaits.</p>
+			<div class="mt-10">
+				<a href="https://wa.link/9ezhx6" class="inline-flex items-center rounded-xl bg-brand-blue px-10 py-5 text-xl font-bold text-white transition hover:scale-105 active:scale-95">
+					<svg class="mr-3 h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.63 1.438h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+					Contacter sur WhatsApp
+				</a>
+			</div>
+		</div>
+	</section>
+</Layout>

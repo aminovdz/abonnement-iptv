@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "Politique de Remboursement - Abonnement IPTV";
+const description = "Informations sur notre politique de remboursement et d'annulation.";
+---
+
+<Layout title={title} description={description}>
+    <section class="py-24 bg-white">
+        <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold text-slate-900 mb-8">Politique de Remboursement</h1>
+            
+            <div class="prose prose-slate max-w-none space-y-6 text-slate-600 leading-relaxed">
+                <p>Nous nous efforçons de fournir le meilleur service possible. Si vous rencontrez des problèmes techniques insolubles, vous pouvez être éligible à un remboursement.</p>
+                
+                <h2 class="text-2xl font-bold text-slate-900 mt-12">1. Période de remboursement</h2>
+                <p>Vous avez 7 jours à compter de la date de votre achat pour demander un remboursement si le service ne fonctionne pas comme décrit et que notre équipe technique ne peut pas résoudre le problème.</p>
+                
+                <h2 class="text-2xl font-bold text-slate-900 mt-12">2. Conditions de remboursement</h2>
+                <p>Les remboursements ne sont accordés que dans les cas suivants :</p>
+                <ul class="list-disc pl-6">
+                    <li>Le service est totalement inaccessible pendant plus de 24 heures consécutives.</li>
+                    <li>Notre équipe technique confirme un défaut majeur de notre côté.</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-slate-900 mt-12">3. Procédure</h2>
+                <p>Pour demander un remboursement, veuillez contacter notre support via WhatsApp ou Email avec votre numéro de commande et une description détaillée du problème.</p>
+            </div>
+        </div>
+    </section>
+</Layout>

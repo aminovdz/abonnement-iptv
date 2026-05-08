@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "Appareils & Applications Compatibles - Abonnement IPTV";
+const description = "Découvrez tous les appareils et applications compatibles avec notre service IPTV : Smart TV, Firestick, Android Box, Smartphone et plus.";
+
+const devices = [
+    {
+        name: "Smart TV",
+        desc: "Samsung, LG, Sony, Philips, etc. Pas besoin de boîtier externe.",
+        icon: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+        apps: ["IPTV Smarters", "Smart IPTV", "Set IPTV", "IBO Player"]
+    },
+    {
+        name: "Firestick & Android Box",
+        desc: "Le meilleur choix pour une fluidité maximale et une interface moderne.",
+        icon: "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z",
+        apps: ["XCIPTV", "TiviMate", "OttNavigator", "GSE Smart IPTV"]
+    },
+    {
+        name: "Smartphone & Tablette",
+        desc: "Emportez votre télévision partout avec vous en 4G/5G ou Wi-Fi.",
+        icon: "M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z",
+        apps: ["IPTV Smarters Pro", "Lxtream", "VLC Player"]
+    },
+    {
+        name: "Ordinateur (PC/Mac)",
+        desc: "Regardez vos programmes directement sur votre navigateur ou via app.",
+        icon: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+        apps: ["IPTV Smarters", "VLC Player", "PotPlayer"]
+    }
+];
+---
+
+<Layout title={title} description={description}>
+    <section class="relative bg-brand-blue py-24 text-white overflow-hidden">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h1 class="text-4xl font-extrabold sm:text-6xl mb-6">Appareils & Apps</h1>
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto">
+                Notre service IPTV est universel. Voici comment en profiter sur tous vos écrans avec les meilleures applications du marché.
+            </p>
+        </div>
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-red/20 blur-3xl rounded-full"></div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                {devices.map((device) => (
+                    <div class="bg-slate-50 rounded-3xl p-10 border border-slate-100 transition hover:shadow-xl group">
+                        <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-blue text-white shadow-lg mb-8 group-hover:scale-110 transition">
+                            <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={device.icon}></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4">{device.name}</h2>
+                        <p class="text-slate-600 mb-8 leading-relaxed">{device.desc}</p>
+                        
+                        <div>
+                            <h4 class="text-sm font-bold uppercase tracking-wider text-brand-blue mb-4">Applications Recommandées :</h4>
+                            <div class="flex flex-wrap gap-2">
+                                {device.apps.map((app) => (
+                                    <span class="bg-white border border-slate-200 text-slate-700 px-4 py-2 rounded-xl text-sm font-medium">
+                                        {app}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 text-white">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-8">Besoin d'aide pour l'installation ?</h2>
+            <p class="text-xl text-slate-400 mb-10 leading-relaxed">
+                Ne vous inquiétez pas, notre équipe technique vous accompagne pas à pas via WhatsApp pour configurer votre appareil en moins de 5 minutes.
+            </p>
+            <a href="https://wa.link/9ezhx6" class="inline-block bg-brand-blue text-white font-bold px-10 py-5 rounded-2xl hover:scale-105 transition shadow-2xl">
+                Contacter le Support Technique
+            </a>
+        </div>
+    </section>
+</Layout>

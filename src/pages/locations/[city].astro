@@ -1,0 +1,190 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export function getStaticPaths() {
+	const cities = [
+		{ id: 'paris', name: 'Paris', region: 'Île-de-France' },
+		{ id: 'lyon', name: 'Lyon', region: 'Auvergne-Rhône-Alpes' },
+		{ id: 'marseille', name: 'Marseille', region: 'Provence-Alpes-Côte d\'Azur' },
+		{ id: 'toulouse', name: 'Toulouse', region: 'Occitanie' },
+		{ id: 'nice', name: 'Nice', region: 'Provence-Alpes-Côte d\'Azur' }
+	];
+	return cities.map((city) => ({
+		params: { city: city.id },
+		props: { cityName: city.name, regionName: city.region },
+	}));
+}
+
+const { cityName, regionName } = Astro.props;
+
+const title = `IPTV Abonnement ${cityName} - IPTV Premium #1 à ${cityName} (${regionName})`;
+const description = `Besoin d'un abonnement IPTV à ${cityName} ? Profitez de milliers de chaînes premium et d'un vaste catalogue VOD en 4K. Le service IPTV le plus stable de ${regionName}.`;
+
+const pricing = [
+	{ name: "1 Mois", price: "6€", link: "https://wa.link/9ezhx6" },
+	{ name: "3 Mois", price: "11€", link: "https://wa.link/9ezhx6" },
+	{ name: "6 Mois", price: "22€", link: "https://wa.link/9ezhx6", popular: true },
+	{ name: "12 Mois", price: "40€", link: "https://wa.link/9ezhx6" }
+];
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": `IPTV Abonnement ${cityName}`,
+  "description": description,
+  "provider": {
+    "@type": "Organization",
+    "name": "Abonnement IPTV"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": cityName
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": "6",
+    "highPrice": "40",
+    "priceCurrency": "EUR"
+  }
+};
+---
+
+<Layout title={title} description={description}>
+	<script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+	
+	<!-- Hero Section -->
+	<section class="relative bg-brand-blue py-20 text-white">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+			<h1 class="text-4xl font-extrabold sm:text-6xl">
+				Abonnement IPTV <span class="text-brand-red">{cityName}</span>
+			</h1>
+			<p class="mt-6 text-xl text-blue-100 max-w-2xl mx-auto">
+				Rejoignez le service IPTV premium numéro 1 à {cityName}. Profitez de la meilleure stabilité et de la qualité 4K UHD dans toute la région {regionName}.
+			</p>
+			<div class="mt-10">
+				<a href="#pricing" class="rounded-xl bg-white px-8 py-4 text-lg font-bold text-brand-blue hover:bg-blue-50">
+					Offres Spéciales {cityName}
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Local Content Section -->
+	<section class="py-24 bg-white">
+		<div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+				<div>
+					<h2 class="text-3xl font-bold text-slate-900 leading-tight">Pourquoi nous choisir pour votre iptv abonnement à {cityName} ?</h2>
+					<div class="mt-8 space-y-6 text-slate-600 leading-relaxed text-lg">
+						<p>
+							Habitant de <strong>{cityName}</strong> ou de la région <strong>{regionName}</strong> ? Vous recherchez une alternative fiable au câble traditionnel. Notre service est spécialement optimisé pour les infrastructures réseau de {cityName}.
+						</p>
+						<p>
+							Que vous soyez en plein centre-ville de {cityName} ou dans la périphérie de {regionName}, notre technologie Anti-Freeze Pro vous garantit une fluidité totale, même pendant les grands soirs de match ou les lancements de séries blockbusters.
+						</p>
+						<ul class="space-y-4">
+							<li class="flex items-center">
+								<span class="flex h-6 w-6 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue mr-3">
+									<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+								</span>
+								Serveurs ultra-rapides situés en Europe
+							</li>
+							<li class="flex items-center">
+								<span class="flex h-6 w-6 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue mr-3">
+									<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+								</span>
+								Optimisation spéciale Fibre Orange/Free/SFR/Bouygues
+							</li>
+							<li class="flex items-center">
+								<span class="flex h-6 w-6 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue mr-3">
+									<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+								</span>
+								Support technique disponible 7j/7 à {cityName}
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="bg-slate-50 rounded-3xl p-10 border border-slate-100 shadow-sm">
+					<h3 class="text-2xl font-bold text-slate-900 mb-6">Comment installer à {cityName} ?</h3>
+					<div class="space-y-8">
+						<div class="flex gap-4">
+							<div class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-blue text-white font-bold">1</div>
+							<div>
+								<h4 class="font-bold text-slate-900">Choix de l'abonnement</h4>
+								<p class="text-slate-500 mt-1">Sélectionnez votre forfait ci-dessous selon vos besoins.</p>
+							</div>
+						</div>
+						<div class="flex gap-4">
+							<div class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-blue text-white font-bold">2</div>
+							<div>
+								<h4 class="font-bold text-slate-900">Réception des codes</h4>
+								<p class="text-slate-500 mt-1">Vos accès m3u ou codes Xtream sont envoyés en 15 min.</p>
+							</div>
+						</div>
+						<div class="flex gap-4">
+							<div class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-blue text-white font-bold">3</div>
+							<div>
+								<h4 class="font-bold text-slate-900">Configuration IPTV</h4>
+								<p class="text-slate-500 mt-1">Utilisez votre Smart TV ou Box à {cityName} immédiatement.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Pricing Grid -->
+	<section id="pricing" class="py-24 bg-slate-50">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="text-center mb-16">
+				<h2 class="text-3xl font-bold text-slate-900">Nos Tarifs Spéciaux {cityName}</h2>
+				<p class="mt-4 text-slate-600">Le meilleur rapport qualité/prix de {regionName}.</p>
+			</div>
+			<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+				{pricing.map((plan) => (
+					<div class={`flex flex-col rounded-3xl p-10 transition hover:-translate-y-2 ${plan.popular ? 'bg-brand-blue text-white shadow-2xl ring-4 ring-brand-blue/20' : 'bg-white border border-slate-200'}`}>
+						<h3 class="text-xl font-bold">{plan.name}</h3>
+						<div class="mt-6 flex items-baseline">
+							<span class="text-5xl font-black">{plan.price}</span>
+						</div>
+						<ul class={`mt-8 space-y-4 text-sm ${plan.popular ? 'text-blue-100' : 'text-slate-500'}`}>
+							<li class="flex items-center">
+								<svg class="h-5 w-5 mr-3 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+								Des milliers de Chaînes 4K
+							</li>
+							<li class="flex items-center">
+								<svg class="h-5 w-5 mr-3 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+								Vaste Catalogue VOD Multilingue
+							</li>
+							<li class="flex items-center">
+								<svg class="h-5 w-5 mr-3 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+								Support 24/7 à {cityName}
+							</li>
+						</ul>
+						<a href={plan.link} class={`mt-10 block rounded-2xl py-4 text-center text-base font-bold transition shadow-lg ${plan.popular ? 'bg-white text-brand-blue hover:bg-blue-50' : 'bg-brand-blue text-white hover:bg-blue-800'}`}>
+							S'abonner Maintenant
+						</a>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Local Trust Section -->
+	<section class="py-24 bg-white border-t border-slate-100">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+			<h2 class="text-3xl font-bold text-slate-900">L'expertise IPTV numéro 1 à {cityName}</h2>
+			<p class="mt-6 text-slate-600 max-w-3xl mx-auto leading-relaxed">
+				Nous ne sommes pas juste un fournisseur de plus. Nous sommes le partenaire de confiance de milliers de foyers à <strong>{cityName}</strong>. Notre mission est de vous offrir l'accès à la culture et au divertissement mondial au meilleur prix, sans les contraintes des contrats classiques. Rejoignez la révolution télévisuelle dès aujourd'hui dans toute la région <strong>{regionName}</strong>.
+			</p>
+			<div class="mt-12 flex justify-center gap-8 opacity-50 grayscale">
+				<!-- Logos placeholders for trust -->
+				<div class="h-8 w-24 bg-slate-200 rounded"></div>
+				<div class="h-8 w-24 bg-slate-200 rounded"></div>
+				<div class="h-8 w-24 bg-slate-200 rounded"></div>
+				<div class="h-8 w-24 bg-slate-200 rounded"></div>
+			</div>
+		</div>
+	</section>
+</Layout>
