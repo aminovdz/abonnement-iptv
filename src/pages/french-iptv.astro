@@ -1,0 +1,728 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import ExitPopup from '../components/ExitPopup.astro';
+import SocialPopup from '../components/SocialPopup.astro';
+import GroupsPopup from '../components/GroupsPopup.astro';
+import { 
+  CheckCircle2, 
+  Star, 
+  ShieldCheck, 
+  Zap, 
+  Tv, 
+  Globe2, 
+  Sparkles, 
+  ArrowRight, 
+  MessageCircle, 
+  HelpCircle,
+  Award,
+  Radio
+} from 'lucide-astro';
+
+// Dedicated French IPTV Schema (Server-side rendered)
+const frenchIptvSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "French IPTV — Premium French TV & Sports Streaming Service 4K",
+  "image": "https://abonnement-iptv.cloud/images/french-iptv-hero.webp",
+  "description": "Premium French IPTV subscription with stable 4K 60FPS streaming, Anti-Freeze 9.8™ technology, French sports networks, cinema, VOD and instant 2-minute WhatsApp activation worldwide.",
+  "brand": {
+    "@type": "Brand",
+    "name": "France IPTV"
+  },
+  "sku": "FRENCH-IPTV-2025",
+  "mpn": "FRENCH-IPTV-PRO",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.95",
+    "bestRating": "5.0",
+    "worstRating": "1.0",
+    "ratingCount": "2460",
+    "reviewCount": "2460"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "EUR",
+    "lowPrice": "8.00",
+    "highPrice": "55.00",
+    "offerCount": "4",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "French IPTV 12 Months (Best Value)",
+        "price": "55.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": "https://abonnement-iptv.cloud/french-iptv"
+      },
+      {
+        "@type": "Offer",
+        "name": "French IPTV 6 Months",
+        "price": "30.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": "https://abonnement-iptv.cloud/french-iptv"
+      }
+    ]
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Julien D. (London, UK)" },
+      "datePublished": "2025-02-18",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "As an expat living in the UK, finding reliable French IPTV with French commentary on Ligue 1 was tough until I discovered this service. 4K quality with zero lag!"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Sophie L. (Montreal, Canada)" },
+      "datePublished": "2025-02-12",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "The best French IPTV service hands down. Fast WhatsApp delivery in 2 minutes, crystal clear 4K picture and great French news and cinema channels."
+    }
+  ]
+};
+
+const frenchIptvFaq = [
+  {
+    question: "What is French IPTV and how does it work?",
+    answer: "French IPTV (Internet Protocol Television) allows you to stream French television channels, live sports, news, and on-demand movies over any internet connection without satellite dishes, cables, or restrictive local set-top boxes. All you need is an internet connection and a compatible device (Smart TV, streaming stick, phone, tablet, or PC)."
+  },
+  {
+    question: "Can I watch French IPTV outside France (UK, USA, Canada, Europe)?",
+    answer: "Yes, absolutely! Our French IPTV network uses a worldwide high-speed CDN with nodes in Paris, Frankfurt, London, and North America. You can access 100% of French channels and sports worldwide with zero regional geoblocking and without needing a complex VPN setup."
+  },
+  {
+    question: "Which sports events and French leagues are included?",
+    answer: "You get full live coverage of French Ligue 1, UEFA Champions League, European football tournaments, Top 14 Rugby, Formula 1, tennis Grand Slams, and combat sports, all with live French commentary in 4K and Full HD at 60 FPS."
+  },
+  {
+    question: "What is included with the 12-Month French IPTV deal for 55 €?",
+    answer: "The 12-month package is our flagship bestseller at 55 € per year (~4.16 €/month). It includes full access to all French live channels, unlimited VOD with French audio (VF/VOSTFR), our proprietary Anti-Freeze 9.8™ technology, a free permanent licence for our Premium Player application (15 € value), 24/7 WhatsApp VIP support, and a strict 24-hour money-back guarantee."
+  },
+  {
+    question: "How quickly is my French IPTV account activated?",
+    answer: "Activation takes under 2 minutes. Once your payment is confirmed, your secure M3U playlist link and Xtream Codes API credentials are delivered immediately via WhatsApp message or email."
+  }
+];
+
+const whatsappFrenchUrl = "https://wa.me/18036582620?text=Hello%20!%20I%20would%20like%20to%20order%20the%20French%20IPTV%2012-Month%20plan%20for%2055%20%E2%82%AC%20with%20free%20Premium%20Player.";
+---
+
+<Layout
+  title="French IPTV 2026 — Best French IPTV Subscription in 4K UHD Worldwide"
+  description="Looking for the best French IPTV service? Stream 100% French channels, Ligue 1 sports & cinema anywhere in the world. 4K 60FPS Anti-Freeze 9.8™, 55 €/year with Player included."
+  canonicalURL="https://abonnement-iptv.cloud/french-iptv"
+  schema={frenchIptvSchema}
+  keywords={[
+    'french iptv',
+    'best french iptv',
+    'french iptv subscription',
+    'iptv french channels',
+    'french iptv 4k',
+    'french iptv provider',
+    'watch french tv abroad',
+    'french iptv expat',
+    'french iptv ligue 1'
+  ]}
+>
+  <StickyHeader currentPath="/french-iptv" />
+
+  <main id="main-content" class="flex-1">
+    
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-[#07080E] overflow-hidden border-b border-white/[0.06]">
+      <!-- Background Glow Accents -->
+      <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[400px] bg-gradient-to-b from-[#0055D4]/25 via-[#DC2626]/15 to-transparent rounded-full blur-[150px]"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Left Column -->
+          <div class="lg:col-span-7 text-left">
+            
+            <!-- Badges -->
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider">
+                <Globe2 class="w-3.5 h-3.5" />
+                Worldwide Access · Expats & France
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                <Sparkles class="w-3.5 h-3.5" />
+                4K 60FPS Anti-Freeze 9.8™
+              </span>
+            </div>
+
+            <!-- Single Page H1 Tag with Exact Primary Keyword Placement -->
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15] mb-6">
+              The Best <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#F87171]">French IPTV</span> <br />
+              Subscription in 4K UHD
+            </h1>
+
+            <!-- Primary Keyword within First 75-100 Words -->
+            <p class="text-base sm:text-lg text-gray-300 font-normal leading-relaxed mb-8">
+              Experience the highest quality <strong>French IPTV</strong> streaming service worldwide. Whether you live in France or abroad in the UK, USA, Canada, Europe, or beyond, our high-speed network provides seamless access to French national channels, live sports tournaments with French commentary, and an extensive library of on-demand movies and series. Powered by our proprietary Anti-Freeze 9.8™ technology with 2-minute instant activation on WhatsApp.
+            </p>
+
+            <!-- Highlights Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8">
+              <div class="flex items-center gap-2.5 text-sm text-gray-200">
+                <CheckCircle2 class="w-5 h-5 text-emerald-400 shrink-0" />
+                <span>100% French channels & live sport in 4K 60FPS</span>
+              </div>
+              <div class="flex items-center gap-2.5 text-sm text-gray-200">
+                <CheckCircle2 class="w-5 h-5 text-emerald-400 shrink-0" />
+                <span>Anti-Freeze 9.8™ with 99.98% uptime guarantee</span>
+              </div>
+              <div class="flex items-center gap-2.5 text-sm text-gray-200">
+                <CheckCircle2 class="w-5 h-5 text-emerald-400 shrink-0" />
+                <span>Free Premium Player included with 12-month plan</span>
+              </div>
+              <div class="flex items-center gap-2.5 text-sm text-gray-200">
+                <CheckCircle2 class="w-5 h-5 text-emerald-400 shrink-0" />
+                <span>Instant 2-minute setup & 24h money-back guarantee</span>
+              </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-8">
+              <a
+                href={whatsappFrenchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#0055D4] via-[#2563EB] to-[#DC2626] text-white font-extrabold text-sm uppercase tracking-wider shadow-[0_0_30px_rgba(0,85,212,0.4)] hover:scale-[1.03] transition-all"
+              >
+                <MessageCircle class="w-5 h-5 text-emerald-300" />
+                <span>Get French IPTV on WhatsApp (55 €/yr)</span>
+                <ArrowRight class="w-4 h-4" />
+              </a>
+
+              <a
+                href="#pricing"
+                class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-[#11121C] hover:bg-[#161826] text-white font-bold text-sm border border-white/10 hover:border-[#0055D4]/40 transition-colors"
+              >
+                <span>View Plans & Pricing</span>
+              </a>
+            </div>
+
+            <!-- Social Proof -->
+            <div class="flex items-center gap-4 pt-4 border-t border-white/[0.08] text-xs text-gray-300">
+              <div class="flex text-amber-400">
+                {[...Array(5)].map(() => (
+                  <Star class="w-4 h-4 fill-amber-400" />
+                ))}
+              </div>
+              <span class="font-bold text-white">4.95 / 5.0</span>
+              <span>•</span>
+              <span>2 460+ Active Subscribers in France & Abroad</span>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Visual Showcase -->
+          <div class="lg:col-span-5">
+            <div class="rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.8)] bg-[#111322] relative group">
+              <img 
+                src="/images/french-iptv-hero.webp" 
+                alt="French IPTV 2026 service provider streaming French channels 4K UHD"
+                class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                width="1200"
+                height="675"
+                loading="eager"
+                decoding="async"
+              />
+              <div class="p-6 bg-gradient-to-b from-[#111322] to-[#0A0B14]">
+                <div class="flex items-center justify-between text-xs text-gray-400 mb-2">
+                  <span class="font-mono text-[#60A5FA]">FRENCH IPTV OFFICIAL PASS</span>
+                  <span class="text-emerald-400 font-bold">4K UHD · 60 FPS</span>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Pure French TV & Sports Stream</h3>
+                <p class="text-xs text-gray-300">French national channels, live football in French commentary, cinema & series on demand.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Worldwide Access for Expats -->
+    <section class="py-20 md:py-28 bg-[#090A12] border-b border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-4">
+            <Globe2 class="w-3.5 h-3.5" />
+            <span>Global Coverage</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            Watch <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#F87171]">French IPTV Anywhere</span> in the World
+          </h2>
+          <p class="text-base text-gray-300 leading-relaxed">
+            Living outside France or traveling frequently? Our dedicated international CDN ensures you never miss French news, culture, or live sports matches from your home country.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <div class="lg:col-span-6 rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#111322]">
+            <img 
+              src="/images/french-iptv-worldwide.webp" 
+              alt="Watch French IPTV anywhere in the world with zero buffering and low latency"
+              class="w-full h-auto object-cover"
+              width="1200"
+              height="675"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <div class="lg:col-span-6 space-y-4">
+            
+            <div class="p-5 rounded-2xl bg-[#121424] border border-white/[0.08] flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-[#60A5FA] flex items-center justify-center shrink-0">
+                <Globe2 class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-white mb-1">No Geoblocking & No VPN Mandatory</h3>
+                <p class="text-xs text-gray-300 leading-relaxed">
+                  Unlike traditional French broadcaster websites that block foreign IP addresses, our French IPTV connection works seamlessly across the UK, North America, Europe, Asia, and the Middle East.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-[#121424] border border-white/[0.08] flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                <Zap class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-white mb-1">Low-Latency Global Edge CDN</h3>
+                <p class="text-xs text-gray-300 leading-relaxed">
+                  Direct optical peering with major internet exchanges in Paris (TH2), Frankfurt (DE-CIX), and London (LINX) ensures sub-10ms packet delivery and zero buffering.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-[#121424] border border-white/[0.08] flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center shrink-0">
+                <Radio class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-white mb-1">French Commentary on All Major Sports</h3>
+                <p class="text-xs text-gray-300 leading-relaxed">
+                  Enjoy French Ligue 1, UEFA competitions, Top 14 Rugby, Formula 1, and tennis with passionate, native French audio commentary.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-[#121424] border border-white/[0.08] flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center shrink-0">
+                <ShieldCheck class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-white mb-1">24-Hour Money-Back Guarantee</h3>
+                <p class="text-xs text-gray-300 leading-relaxed">
+                  Test the stream speed and image stability on your equipment without risk. If you are not satisfied within 24 hours, request an immediate refund.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 3: French IPTV Pricing Grid -->
+    <section id="pricing" class="py-20 md:py-28 bg-[#07080E] border-b border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+            <Award class="w-3.5 h-3.5" />
+            <span>Official Transparent Rates</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            Affordable <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#34D399]">French IPTV Plans</span>
+          </h2>
+          <p class="text-base text-gray-300 leading-relaxed">
+            Clear prepaid pricing with zero long-term contracts and zero hidden fees. Choose the 12-month best deal and get a Premium Player included for free.
+          </p>
+        </div>
+
+        <!-- Pricing Grid: 12-month displayed FIRST as per user rule -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+          
+          <!-- 12 Months: Flagship Recommandé -->
+          <div class="relative rounded-3xl p-7 flex flex-col justify-between bg-gradient-to-b from-[#14182E] via-[#0F1222] to-[#0A0B14] border-2 border-[#0055D4] shadow-[0_0_40px_rgba(0,85,212,0.35)] lg:-translate-y-3">
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-wider shadow-md whitespace-nowrap bg-gradient-to-r from-[#0055D4] to-[#10B981] text-white">
+              BEST VALUE · #1 IN FRANCE
+            </div>
+            <div>
+              <div class="text-center mb-5 pt-1">
+                <h3 class="text-xl font-bold text-white mb-1">12 Months Plan</h3>
+                <span class="inline-block text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#0055D4]/25 text-[#60A5FA] border border-[#0055D4]/40 mb-3">
+                  FREE Premium Player Included
+                </span>
+                <div class="flex items-baseline justify-center gap-1.5 my-3">
+                  <span class="text-5xl font-black text-white font-mono">55 €</span>
+                  <span class="text-xs text-gray-400 font-semibold uppercase">/ year</span>
+                </div>
+                <p class="text-xs text-emerald-400 font-medium">Only ~4.16 € / month</p>
+              </div>
+
+              <ul class="space-y-2.5 text-xs text-gray-200 mb-6 border-t border-white/[0.08] pt-4">
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Free Premium Player Licence (15 € value)</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Ultra HD 4K & 8K 60FPS Streaming</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Anti-Freeze 9.8™ Technology</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>EPG TV Guide & 7-Day Replay</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>VIP 24/7 Priority WhatsApp Support</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>24-Hour Money-Back Guarantee</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <a
+                href={whatsappFrenchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#0055D4] to-[#10B981] text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:scale-105 transition-transform"
+              >
+                <MessageCircle class="w-4 h-4" />
+                <span>Choose 12 Months (55 €)</span>
+              </a>
+              <a
+                href="/abonnement-iptv-12-mois"
+                class="mt-2 text-center text-xs text-[#60A5FA] hover:underline font-semibold block"
+              >
+                Learn more about the 12-Month deal ›
+              </a>
+            </div>
+          </div>
+
+          <!-- 6 Months Plan -->
+          <div class="rounded-3xl p-7 flex flex-col justify-between bg-[#11121C]/90 border border-white/[0.08] hover:border-white/[0.2] shadow-lg">
+            <div>
+              <div class="text-center mb-5 pt-1">
+                <h3 class="text-xl font-bold text-white mb-1">6 Months Plan</h3>
+                <span class="inline-block text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white/[0.05] text-gray-300 mb-3">
+                  Player Included · Popular
+                </span>
+                <div class="flex items-baseline justify-center gap-1.5 my-3">
+                  <span class="text-5xl font-black text-white font-mono">30 €</span>
+                  <span class="text-xs text-gray-400 font-semibold uppercase">/ 6 mo</span>
+                </div>
+                <p class="text-xs text-gray-300 font-medium">~5.00 € / month</p>
+              </div>
+
+              <ul class="space-y-2.5 text-xs text-gray-300 mb-6 border-t border-white/[0.08] pt-4">
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Free Premium Player Licence Included</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Full HD & 4K 60FPS Streams</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Anti-Freeze 9.8™ Enabled</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Full EPG & Replay Access</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>24-Hour Money-Back Guarantee</span>
+                </li>
+              </ul>
+            </div>
+
+            <a
+              href="https://wa.me/18036582620?text=Hello,%20I%20would%20like%20to%20order%20the%206-Month%20French%20IPTV%20plan%20for%2030%20euros."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.15] text-white font-bold text-xs uppercase tracking-wider transition-colors"
+            >
+              <span>Choose 6 Months (30 €)</span>
+            </a>
+          </div>
+
+          <!-- 3 Months Plan -->
+          <div class="rounded-3xl p-7 flex flex-col justify-between bg-[#11121C]/90 border border-white/[0.08] hover:border-white/[0.2] shadow-lg">
+            <div>
+              <div class="text-center mb-5 pt-1">
+                <h3 class="text-xl font-bold text-white mb-1">3 Months Plan</h3>
+                <span class="inline-block text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white/[0.05] text-gray-300 mb-3">
+                  Quarterly Standard
+                </span>
+                <div class="flex items-baseline justify-center gap-1.5 my-3">
+                  <span class="text-5xl font-black text-white font-mono">20 €</span>
+                  <span class="text-xs text-gray-400 font-semibold uppercase">/ 3 mo</span>
+                </div>
+                <p class="text-xs text-gray-300 font-medium">~6.67 € / month</p>
+              </div>
+
+              <ul class="space-y-2.5 text-xs text-gray-300 mb-6 border-t border-white/[0.08] pt-4">
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Full French Channels & Sports</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Full HD & 4K Stream Quality</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Anti-Freeze 9.8™ System</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Fast 2-Minute Activation</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>24-Hour Refund Guarantee</span>
+                </li>
+              </ul>
+            </div>
+
+            <a
+              href="https://wa.me/18036582620?text=Hello,%20I%20would%20like%20to%20order%20the%203-Month%20French%20IPTV%20plan%20for%2020%20euros."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.15] text-white font-bold text-xs uppercase tracking-wider transition-colors"
+            >
+              <span>Choose 3 Months (20 €)</span>
+            </a>
+          </div>
+
+          <!-- 1 Month Trial -->
+          <div class="rounded-3xl p-7 flex flex-col justify-between bg-[#11121C]/90 border border-white/[0.08] hover:border-white/[0.2] shadow-lg">
+            <div>
+              <div class="text-center mb-5 pt-1">
+                <h3 class="text-xl font-bold text-white mb-1">1 Month Plan</h3>
+                <span class="inline-block text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white/[0.05] text-gray-300 mb-3">
+                  Discovery Pass
+                </span>
+                <div class="flex items-baseline justify-center gap-1.5 my-3">
+                  <span class="text-5xl font-black text-white font-mono">8 €</span>
+                  <span class="text-xs text-gray-400 font-semibold uppercase">/ month</span>
+                </div>
+                <p class="text-xs text-gray-300 font-medium">No commitment</p>
+              </div>
+
+              <ul class="space-y-2.5 text-xs text-gray-300 mb-6 border-t border-white/[0.08] pt-4">
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Complete French Channel Access</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Full HD / 4K Video Quality</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Anti-Freeze 9.8™ Protection</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Instant WhatsApp Setup</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>24-Hour Refund Guarantee</span>
+                </li>
+              </ul>
+            </div>
+
+            <a
+              href="https://wa.me/18036582620?text=Hello,%20I%20would%20like%20to%20order%20the%201-Month%20French%20IPTV%20discovery%20pass%20for%208%20euros."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.15] text-white font-bold text-xs uppercase tracking-wider transition-colors"
+            >
+              <span>Choose 1 Month (8 €)</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 4: Device Compatibility with Visual Assets -->
+    <section class="py-20 md:py-28 bg-[#090A12] border-b border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+            <Tv class="w-3.5 h-3.5" />
+            <span>Universal Setup</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            Watch French IPTV on <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#F87171]">All Your Devices</span>
+          </h2>
+          <p class="text-base text-gray-300 leading-relaxed">
+            Our French IPTV stream integrates effortlessly with all modern screens, players, and media devices.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <div class="rounded-2xl bg-[#11121C] border border-white/[0.08] overflow-hidden shadow-lg group hover:border-[#0055D4]/40 transition-all">
+            <img 
+              src="/images/smart-tv-streaming-4k.webp" 
+              alt="French IPTV on modern Smart TVs in 4K UHD"
+              class="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500"
+              width="600"
+              height="400"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="p-5">
+              <h3 class="text-base font-bold text-white mb-1">Smart TVs</h3>
+              <p class="text-xs text-gray-400">Direct installation on connected TVs with native remote control support.</p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-[#11121C] border border-white/[0.08] overflow-hidden shadow-lg group hover:border-[#0055D4]/40 transition-all">
+            <img 
+              src="/images/boitier-tv-streaming-4k.webp" 
+              alt="French IPTV on 4K streaming sticks and TV boxes"
+              class="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500"
+              width="600"
+              height="400"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="p-5">
+              <h3 class="text-base font-bold text-white mb-1">4K Sticks & Media Boxes</h3>
+              <p class="text-xs text-gray-400">High-performance playback on HDMI streaming devices and TV boxes.</p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-[#11121C] border border-white/[0.08] overflow-hidden shadow-lg group hover:border-[#0055D4]/40 transition-all">
+            <img 
+              src="/images/mobile-streaming-4k.webp" 
+              alt="French IPTV on mobile phones and tablets iOS Android"
+              class="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500"
+              width="600"
+              height="400"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="p-5">
+              <h3 class="text-base font-bold text-white mb-1">Phones & Tablets</h3>
+              <p class="text-xs text-gray-400">Watch French television on iOS and Android devices while on the go.</p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-[#11121C] border border-white/[0.08] overflow-hidden shadow-lg group hover:border-[#0055D4]/40 transition-all">
+            <img 
+              src="/images/pc-streaming-4k.webp" 
+              alt="French IPTV on PC Windows Mac and browser web player"
+              class="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500"
+              width="600"
+              height="400"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="p-5">
+              <h3 class="text-base font-bold text-white mb-1">PC, Mac & Web Player</h3>
+              <p class="text-xs text-gray-400">Stream straight from your web browser or desktop multimedia applications.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 5: French IPTV FAQ -->
+    <section class="py-20 bg-[#07080E] border-b border-white/[0.06]">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+            <HelpCircle class="w-3.5 h-3.5" />
+            <span>French IPTV Questions</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight mb-4">
+            Frequently Asked Questions about French IPTV
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          {frenchIptvFaq.map((faq) => (
+            <div class="p-6 rounded-2xl bg-[#11121C] border border-white/[0.08]">
+              <h3 class="text-base sm:text-lg font-bold text-white mb-2">{faq.question}</h3>
+              <p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bottom Conversion Banner -->
+    <section class="py-16 bg-gradient-to-r from-[#0055D4]/20 via-[#0A0D1F] to-[#DC2626]/15 text-center">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4">
+          Ready for the Best French IPTV Streaming Experience?
+        </h2>
+        <p class="text-sm sm:text-base text-gray-300 mb-8 max-w-2xl mx-auto">
+          Join thousands of satisfied viewers in France and worldwide. Get the 12-month deal for only <strong>55 €</strong> with instant 2-minute activation on WhatsApp and our 24h money-back guarantee.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href={whatsappFrenchUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#0055D4] to-[#10B981] text-white font-extrabold text-sm uppercase tracking-wider shadow-lg hover:scale-105 transition-transform"
+          >
+            <MessageCircle class="w-5 h-5 text-white" />
+            <span>Order French IPTV on WhatsApp (55 €)</span>
+          </a>
+          <a
+            href="/#pricing"
+            class="inline-flex items-center gap-2 px-6 py-4 rounded-2xl bg-[#11121C] hover:bg-[#171926] text-white font-bold text-xs border border-white/10 transition-colors"
+          >
+            <span>Explore all plans</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+  <ExitPopup />
+  <SocialPopup />
+  <GroupsPopup />
+</Layout>

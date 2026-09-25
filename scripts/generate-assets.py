@@ -444,4 +444,32 @@ create_editorial_image(
     ]
 )
 
+# 22. French IPTV Hero Asset
+create_editorial_image(
+    "french-iptv-hero.webp",
+    "French IPTV Streaming 2026",
+    "Best French IPTV Service Worldwide",
+    "Watch French Channels, Ligue 1 & VOD in 4K 60 FPS Anti-Freeze",
+    "🇫🇷 OFFICIAL FRENCH IPTV CHANNELS • 55 € / YEAR (PLAYER INCLUDED)",
+    (0, 85, 212),
+    [
+        "✓ 100% French Channels, Sports in French commentary, VOD in VF & VOSTFR",
+        "✓ Anti-Freeze 9.8™ • Worldwide CDN streaming • Instant WhatsApp setup"
+    ]
+)
+
+# 23. French IPTV Worldwide Access
+create_editorial_image(
+    "french-iptv-worldwide.webp",
+    "Expats & Global Access",
+    "French IPTV Anywhere in the World",
+    "USA, UK, Canada, Europe, Dubai & Worldwide Access with Zero Geoblocking",
+    "🌍 LOW-LATENCY GLOBAL CDN NETWORK • 99.98% UPTIME",
+    (16, 185, 129),
+    [
+        "✓ No VPN required • Direct high-speed connection from any country",
+        "✓ Compatible with Smart TVs, 4K streaming sticks, tablets, phones & PC"
+    ]
+)
+
 print("All visual assets successfully generated in:", OUTPUT_DIR)
