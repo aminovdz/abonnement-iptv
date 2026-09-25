@@ -20,7 +20,8 @@ import {
   Sparkles,
   ShieldCheck,
   MessageCircle,
-  Send
+  Send,
+  ListOrdered
 } from 'lucide-astro';
 
 export async function getStaticPaths() {
@@ -32,7 +33,8 @@ export async function getStaticPaths() {
 }
 
 const { guide } = Astro.props;
-const { Content } = await guide.render();
+const { Content, headings } = await guide.render();
+const tocHeadings = headings ? headings.filter((h) => h.depth === 2 || h.depth === 3) : [];
 
 // Related guides
 const allGuides = await getCollection('guides');
@@ -205,18 +207,44 @@ const shareUrl = encodeURIComponent(currentUrl);
           </a>
         </div>
 
+        <!-- Interactive Table of Contents (Sommaire Structuré) -->
+        {tocHeadings.length > 0 && (
+          <nav class="mb-12 p-6 sm:p-7 rounded-2xl bg-[#0D1020] border border-[#0055D4]/30 shadow-xl" aria-label="Sommaire de l'article">
+            <div class="flex items-center gap-2.5 text-white font-bold text-base mb-4">
+              <ListOrdered class="w-5 h-5 text-[#60A5FA]" />
+              <span>Sommaire du Guide & Navigation Rapide</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
+              {tocHeadings.map((h) => (
+                <a 
+                  href={`#${h.slug}`}
+                  class={`text-xs sm:text-sm hover:text-[#60A5FA] transition-colors flex items-start gap-2 py-1 ${
+                    h.depth === 3 
+                      ? 'pl-5 text-gray-400 font-normal border-l border-white/10' 
+                      : 'text-gray-200 font-semibold'
+                  }`}
+                >
+                  <span class="text-[#0055D4] shrink-0 font-bold">{h.depth === 2 ? '▸' : '•'}</span>
+                  <span class="leading-snug">{h.text}</span>
+                </a>
+              ))}
+            </div>
+          </nav>
+        )}
+
         <!-- Markdown Body -->
         <article class="prose prose-invert max-w-none 
-          prose-headings:font-black prose-headings:tracking-tight prose-headings:text-white
-          prose-h2:text-2xl prose-h2:sm:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:border-b prose-h2:border-white/[0.08] prose-h2:pb-3
-          prose-h3:text-lg prose-h3:sm:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-[#60A5FA]
+          prose-headings:font-black prose-headings:tracking-tight prose-headings:text-white prose-headings:scroll-mt-28
+          prose-h2:text-2xl prose-h2:sm:text-3xl prose-h2:mt-14 prose-h2:mb-6 prose-h2:border-b prose-h2:border-[#0055D4]/30 prose-h2:pb-4 prose-h2:text-transparent prose-h2:bg-clip-text prose-h2:bg-gradient-to-r prose-h2:from-white prose-h2:via-gray-100 prose-h2:to-gray-300
+          prose-h3:text-lg prose-h3:sm:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-[#60A5FA] prose-h3:flex prose-h3:items-center prose-h3:gap-2
           prose-p:text-gray-300 prose-p:leading-relaxed prose-p:text-base prose-p:font-normal prose-p:mb-6
           prose-li:text-gray-300 prose-li:text-base prose-li:font-normal
           prose-strong:text-white prose-strong:font-bold
-          prose-blockquote:border-l-4 prose-blockquote:border-[#0055D4] prose-blockquote:bg-[#111322] prose-blockquote:p-4 prose-blockquote:rounded-r-xl prose-blockquote:italic prose-blockquote:text-gray-300
-          prose-table:w-full prose-table:border-collapse prose-table:my-8
-          prose-th:bg-[#141728] prose-th:p-3.5 prose-th:text-xs prose-th:font-bold prose-th:text-white prose-th:border prose-th:border-white/10
-          prose-td:p-3.5 prose-td:text-xs prose-td:sm:text-sm prose-td:text-gray-300 prose-td:border prose-td:border-white/[0.08] prose-tr:hover:bg-white/[0.02]"
+          prose-blockquote:border-l-4 prose-blockquote:border-[#0055D4] prose-blockquote:bg-[#111322] prose-blockquote:p-5 prose-blockquote:rounded-r-2xl prose-blockquote:text-gray-200 prose-blockquote:my-8 prose-blockquote:shadow-lg
+          prose-table:w-full prose-table:border-collapse prose-table:my-8 prose-table:rounded-xl prose-table:overflow-hidden
+          prose-th:bg-[#141728] prose-th:p-4 prose-th:text-xs prose-th:font-bold prose-th:text-white prose-th:border prose-th:border-white/10
+          prose-td:p-3.5 prose-td:text-xs prose-td:sm:text-sm prose-td:text-gray-300 prose-td:border prose-td:border-white/[0.08] prose-tr:hover:bg-white/[0.02]
+          prose-img:rounded-2xl prose-img:border prose-img:border-white/10 prose-img:shadow-2xl prose-img:my-8"
         >
           <Content />
         </article>
