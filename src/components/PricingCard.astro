@@ -242,6 +242,15 @@ const plans: Plan[] = [
               <span>{plan.ctaText}</span>
             </a>
 
+            {plan.featured && (
+              <a 
+                href="/abonnement-iptv-12-mois" 
+                class="mt-2 text-center text-xs text-[#60A5FA] hover:text-white hover:underline font-semibold block transition-colors"
+              >
+                En savoir plus sur la formule 12 mois & les avantages ›
+              </a>
+            )}
+
             <div class="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-gray-400">
               <ShieldCheck class="w-3.5 h-3.5 text-emerald-400" />
               <span>Garantie de remboursement 24h</span>

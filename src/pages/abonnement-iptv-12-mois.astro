@@ -1,0 +1,591 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import ExitPopup from '../components/ExitPopup.astro';
+import SocialPopup from '../components/SocialPopup.astro';
+import GroupsPopup from '../components/GroupsPopup.astro';
+import { 
+  CheckCircle2, 
+  Star, 
+  ShieldCheck, 
+  Zap, 
+  Tv, 
+  Clock, 
+  ArrowRight,
+  MessageCircle, 
+  Gift, 
+  BadgePercent,
+  HelpCircle,
+  Flame,
+  Award
+} from 'lucide-astro';
+
+
+// Dedicated 12-Month Schema (Server-side rendered)
+const product12mSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Abonnement IPTV 12 Mois — Forfait Annuel Recommandé 4K UHD",
+  "image": "https://abonnement-iptv.cloud/images/abonnement-iptv-12-mois.webp",
+  "description": "Formule annuelle 12 mois d'abonnement IPTV en France à 55 € (soit ~4,16 €/mois) incluant la licence Lecteur Premium offerte. Streaming stable 4K 60 FPS Anti-Freeze 9.8™.",
+  "brand": {
+    "@type": "Brand",
+    "name": "France IPTV"
+  },
+  "sku": "IPTV-12M-2025",
+  "mpn": "IPTV-FR-12M-55",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.96",
+    "bestRating": "5.0",
+    "worstRating": "1.0",
+    "ratingCount": "1840",
+    "reviewCount": "1840"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://abonnement-iptv.cloud/abonnement-iptv-12-mois",
+    "priceCurrency": "EUR",
+    "price": "55.00",
+    "priceValidUntil": "2026-12-31",
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Abonnement IPTV France"
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "FR",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 1,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
+    }
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Guillaume V." },
+      "datePublished": "2025-02-14",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "J'ai pris la formule 12 mois pour 55 € avec le lecteur offert. Zéro coupure pendant la Ligue 1 et le zapping est ultra rapide sur ma Smart TV !"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Frédéric M." },
+      "datePublished": "2025-02-10",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "Excellent rapport qualité/prix. 4,16 € par mois avec un support WhatsApp disponible dans la minute. Le meilleur choix en France."
+    }
+  ]
+};
+
+const faq12M = [
+  {
+    question: "Pourquoi la formule 12 Mois est-elle la plus avantageuse ?",
+    answer: "À 55 € pour l'année complète, vous ne payez que ~4,16 € par mois au lieu de 8 € par mois en formule découverte. Vous économisez immédiatement 41 € par an tout en bénéficiant de la licence Lecteur Premium offerte (d'une valeur de 15 €) et d'un support prioritaire VIP 7j/7."
+  },
+  {
+    question: "Comment se déroule l'activation après la commande ?",
+    answer: "L'activation est instantanée : dès confirmation de votre règlement, vous recevez vos identifiants sécurisés (lien M3U chiffré et identifiants API Xtream Codes) directement sur votre messagerie WhatsApp ou par email en moins de 2 minutes."
+  },
+  {
+    question: "Sur quels appareils puis-je utiliser mon abonnement 12 mois ?",
+    answer: "Votre abonnement fonctionne sur tous vos équipements : Smart TV connectées récentes, clés multimédias 4K, boîtiers TV de salon, smartphones et tablettes (Android & iOS), ainsi que sur ordinateurs PC et Mac."
+  },
+  {
+    question: "Que se passe-t-il si je ne suis pas satisfait ?",
+    answer: "Vous bénéficiez d'une garantie stricte de remboursement intégral sous 24 heures. Si le service ne répond pas entièrement à vos attentes, adressez simplement un message à notre support WhatsApp pour un remboursement immédiat."
+  }
+];
+
+const whatsapp12mUrl = "https://wa.me/18036582620?text=Bonjour%20!%20Je%20souhaite%20commander%20la%20formule%2012%20Mois%20%C3%A0%2055%20%E2%82%AC%20avec%20le%20Lecteur%20Premium%20inclus.";
+---
+
+<Layout
+  title="Abonnement IPTV 12 Mois — 55 €/an (Meilleure Vente) + Lecteur Premium Offert"
+  description="Souscrivez à la formule 12 Mois à 55 € (soit ~4,16 €/mois) avec Lecteur Premium inclus offert. Streaming 4K 60 FPS Anti-Freeze 9.8™, activation en 2 min par WhatsApp et garantie 24h."
+  canonicalURL="https://abonnement-iptv.cloud/abonnement-iptv-12-mois"
+  schema={product12mSchema}
+  keywords={[
+    'abonnement iptv 12 mois',
+    'iptv 12 mois 55 euros',
+    'abonnement iptv annuel',
+    'meilleur abonnement iptv france',
+    'iptv 1 an lecteur offert',
+    'iptv 4k 60fps anti freeze'
+  ]}
+>
+  <StickyHeader currentPath="/abonnement-iptv-12-mois" />
+
+  <main id="main-content" class="flex-1">
+    
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-[#07080E] overflow-hidden border-b border-white/[0.06]">
+      <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[400px] bg-gradient-to-b from-[#0055D4]/20 via-[#10B981]/15 to-transparent rounded-full blur-[150px]"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Left Column: Copy & Pricing Anchor -->
+          <div class="lg:col-span-7 text-left">
+            
+            <!-- Badges -->
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                <Flame class="w-3.5 h-3.5 text-emerald-400" />
+                Meilleure Vente France
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider">
+                <Gift class="w-3.5 h-3.5" />
+                Lecteur Premium Inclus Offert
+              </span>
+            </div>
+
+            <!-- Main H1 -->
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15] mb-6">
+              Abonnement IPTV <br />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#34D399]">
+                12 Mois : 55 € Tout Inclus
+              </span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-gray-300 font-normal leading-relaxed mb-6">
+              Profitez d'une année complète de divertissement sans restriction pour seulement <strong>~4,16 € par mois</strong>. Vos retransmissions sportives, cinémas et séries en Ultra Haute Définition 4K à 60 FPS avec notre technologie exclusive Anti-Freeze 9.8™.
+            </p>
+
+            <!-- Price Highlight Box -->
+            <div class="p-6 rounded-3xl bg-gradient-to-r from-[#111425] to-[#0A0D1B] border border-emerald-500/30 shadow-2xl mb-8">
+              <div class="flex flex-wrap items-baseline gap-3 mb-2">
+                <span class="text-4xl sm:text-5xl font-black text-white font-mono">55 €</span>
+                <span class="text-sm font-semibold text-gray-400">/ an complet</span>
+                <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 text-xs font-bold">
+                  Soit ~4,16 € / mois seulement
+                </span>
+              </div>
+              <p class="text-xs text-gray-300 flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Paiement unique prépayé sans prélèvement tacite • <strong>45% d'économie</strong> par rapport au mois par mois</span>
+              </p>
+            </div>
+
+            <!-- Bullet Highlights -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8">
+              <div class="flex items-center gap-2 text-sm text-gray-200">
+                <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Lecteur Premium offert (valeur 15 €)</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-200">
+                <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Streaming 4K / 8K à 60 FPS Anti-Freeze</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-200">
+                <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Activation instantanée sous 2 minutes</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-200">
+                <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Garantie 24h satisfait ou remboursé</span>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <a
+                href={whatsapp12mUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#0055D4] via-[#2563EB] to-[#10B981] text-white font-extrabold text-sm uppercase tracking-wider shadow-[0_0_30px_rgba(0,85,212,0.4)] hover:scale-[1.03] transition-all"
+              >
+                <MessageCircle class="w-5 h-5 text-emerald-200" />
+                <span>Commander 12 Mois sur WhatsApp</span>
+                <ArrowRight class="w-4 h-4" />
+              </a>
+
+              <a
+                href="#details"
+                class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-[#11121C] hover:bg-[#161826] text-white font-bold text-sm border border-white/10 hover:border-emerald-500/40 transition-colors"
+              >
+                <span>Découvrir le Pack Complet</span>
+              </a>
+            </div>
+
+            <!-- Rating Strip -->
+            <div class="flex items-center gap-4 mt-8 pt-4 border-t border-white/[0.08] text-xs text-gray-300">
+              <div class="flex text-amber-400">
+                {[...Array(5)].map(() => (
+                  <Star class="w-4 h-4 fill-amber-400" />
+                ))}
+              </div>
+              <span class="font-bold text-white">4.96 / 5</span>
+              <span>•</span>
+              <span>1 840+ clients ont choisi cette formule</span>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Visual Product Showcase -->
+          <div class="lg:col-span-5">
+            <div class="rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.8)] bg-[#111322] relative group">
+              <img 
+                src="/images/abonnement-iptv-12-mois.webp" 
+                alt="Abonnement IPTV 12 Mois France 55 euros lecteur premium inclus streaming 4K"
+                class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                width="1200"
+                height="675"
+                loading="eager"
+                decoding="async"
+              />
+              <div class="p-6 bg-gradient-to-b from-[#111322] to-[#0A0B14]">
+                <div class="flex items-center justify-between text-xs text-gray-400 mb-2">
+                  <span class="font-mono text-[#60A5FA]">PACK ANNUEL OFFICIEL</span>
+                  <span class="text-emerald-400 font-bold">12 MOIS VALIDITÉ</span>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Formule Complète 12 Mois + Lecteur</h3>
+                <p class="text-xs text-gray-300">Tout inclus : chaînes 4K, direct sport, VOD illimitée et licence lecteur offerte.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: What is Included in 12 Months -->
+    <section id="details" class="py-20 md:py-28 bg-[#090A12] border-b border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-4">
+            <Award class="w-3.5 h-3.5" />
+            <span>Formule Tout Compris</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            Tout ce qui est Inclus dans Votre <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#34D399]">Abonnement 12 Mois</span>
+          </h2>
+          <p class="text-base text-gray-300 leading-relaxed">
+            Une solution clé en main conçue pour vous offrir une expérience télévisuelle sans compromis technique ni frais cachés.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-16">
+          
+          <div class="lg:col-span-6 rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#111322]">
+            <img 
+              src="/images/pack-12-mois-bundle.webp" 
+              alt="Pack complet abonnement IPTV 12 mois avec lecteur multimedia offert et support WhatsApp"
+              class="w-full h-auto object-cover"
+              width="1200"
+              height="675"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <div class="lg:col-span-6 space-y-4">
+            
+            <div class="p-5 rounded-2xl bg-[#121424] border border-white/[0.08] flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center shrink-0">
+                <Gift class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-white mb-1">Lecteur Multimédia Premium Inclus (Valeur 15 €)</h3>
+                <p class="text-xs text-gray-300 leading-relaxed">
+                  Recevez gratuitement une licence complète pour un lecteur premium (zapping instantané, gestion des favoris, EPG dynamique et replay).
+                </p>
+              </div>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-[#121424] border border-white/[0.08] flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-[#60A5FA] flex items-center justify-center shrink-0">
+                <Zap class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-white mb-1">Technologie Anti-Freeze 9.8™ & Serveurs 10 Gbps</h3>
+                <p class="text-xs text-gray-300 leading-relaxed">
+                  Serveurs interconnectés aux grands nœuds réseau français (TH2 Paris & LyonIX) pour une latence inférieure à 10 ms sans buffering pendant les matchs.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-[#121424] border border-white/[0.08] flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                <Clock class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-white mb-1">Tranquillité Garantie 365 Jours</h3>
+                <p class="text-xs text-gray-300 leading-relaxed">
+                  Aucun risque de voir votre ligne coupée la veille d'une finale de Champions League ou d'un Classique. Vous êtes couvert toute la saison.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-[#121424] border border-white/[0.08] flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+                <ShieldCheck class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-white mb-1">Assistance VIP 24/7 en Français & Garantie 24h</h3>
+                <p class="text-xs text-gray-300 leading-relaxed">
+                  Nos techniciens répondent à vos questions en direct sur WhatsApp 365 jours par an avec une garantie satisfait ou remboursé sous 24h.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 3: Savings Comparison (12 Months vs Monthly) -->
+    <section class="py-20 md:py-28 bg-[#07080E] border-b border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4">
+            <BadgePercent class="w-3.5 h-3.5" />
+            <span>Calcul d'Économie Réelle</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            Pourquoi Payer Plus Cher ? <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-white to-emerald-400">Économisez 41 €</span>
+          </h2>
+          <p class="text-base text-gray-300 leading-relaxed">
+            Découvrez la différence concrète entre la formule annuelle 12 mois et les renouvellements mensuels à répétition.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <div class="lg:col-span-6 space-y-6">
+            
+            <div class="p-6 rounded-3xl bg-[#121422] border-2 border-emerald-500/40 relative shadow-2xl">
+              <span class="absolute -top-3.5 right-6 px-3 py-1 rounded-full bg-emerald-500 text-white text-xs font-black uppercase">
+                Recommandé
+              </span>
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Formule 12 Mois</h3>
+                  <p class="text-xs text-emerald-400 font-semibold">1 seul règlement pour toute l'année</p>
+                </div>
+                <div class="text-right">
+                  <span class="text-3xl font-black text-white font-mono">55 €</span>
+                  <p class="text-[11px] text-gray-400">~4,16 € / mois</p>
+                </div>
+              </div>
+              <ul class="space-y-2 text-xs text-gray-300 pt-3 border-t border-white/[0.08]">
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400" />
+                  <span>Lecteur Premium inclus offert (économie de 15 €)</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400" />
+                  <span>Prix bloqué pendant 1 an sans hausse</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400" />
+                  <span>Support VIP prioritaire WhatsApp</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="p-6 rounded-3xl bg-[#0D0F1B] border border-white/[0.08] opacity-80">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <h3 class="text-lg font-bold text-gray-300">Renouvellement Mensuel</h3>
+                  <p class="text-xs text-gray-400">12 paiements de 8 € par an</p>
+                </div>
+                <div class="text-right">
+                  <span class="text-2xl font-bold text-gray-300 font-mono">96 €</span>
+                  <p class="text-[11px] text-gray-400">8,00 € / mois</p>
+                </div>
+              </div>
+              <ul class="space-y-2 text-xs text-gray-400 pt-3 border-t border-white/[0.08]">
+                <li class="flex items-center gap-2 text-gray-400">
+                  <span>✕ Lecteur multimédia non offert</span>
+                </li>
+                <li class="flex items-center gap-2 text-gray-400">
+                  <span>✕ Obligation de renouveler chaque mois</span>
+                </li>
+                <li class="flex items-center gap-2 text-red-400">
+                  <span>✕ Surcoût de 41 € sur l'année</span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="lg:col-span-6 rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#111322]">
+            <img 
+              src="/images/comparatif-12-mois-vs-mensuel.webp" 
+              alt="Comparatif economie abonnement IPTV 12 mois 55 euros vs abonnement mensuel"
+              class="w-full h-auto object-cover"
+              width="1200"
+              height="675"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 4: Device Compatibility with Visual Assets -->
+    <section class="py-20 md:py-28 bg-[#090A12] border-b border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+            <Tv class="w-3.5 h-3.5" />
+            <span>Tous Vos Écrans</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            Compatible avec 100% de <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#F87171]">Vos Équipements</span>
+          </h2>
+          <p class="text-base text-gray-300 leading-relaxed">
+            Installez votre abonnement 12 mois sur vos télévisions de salon, boîtiers, smartphones ou ordinateurs en quelques minutes.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <div class="rounded-2xl bg-[#11121C] border border-white/[0.08] overflow-hidden shadow-lg group hover:border-[#0055D4]/40 transition-all">
+            <img 
+              src="/images/smart-tv-streaming-4k.webp" 
+              alt="Abonnement IPTV sur Smart TV connectees 4K"
+              class="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500"
+              width="600"
+              height="400"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="p-5">
+              <h3 class="text-base font-bold text-white mb-1">Smart TV Connectées</h3>
+              <p class="text-xs text-gray-400">Téléviseurs connectés récents avec applications intégrées.</p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-[#11121C] border border-white/[0.08] overflow-hidden shadow-lg group hover:border-[#0055D4]/40 transition-all">
+            <img 
+              src="/images/boitier-tv-streaming-4k.webp" 
+              alt="Abonnement IPTV sur boitiers TV et cles multimedias 4K"
+              class="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500"
+              width="600"
+              height="400"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="p-5">
+              <h3 class="text-base font-bold text-white mb-1">Clés & Boîtiers 4K</h3>
+              <p class="text-xs text-gray-400">Clés multimédias HDMI et boîtiers de salon haute performance.</p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-[#11121C] border border-white/[0.08] overflow-hidden shadow-lg group hover:border-[#0055D4]/40 transition-all">
+            <img 
+              src="/images/mobile-streaming-4k.webp" 
+              alt="Abonnement IPTV sur smartphones et tablettes iOS et Android"
+              class="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500"
+              width="600"
+              height="400"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="p-5">
+              <h3 class="text-base font-bold text-white mb-1">Mobiles & Tablettes</h3>
+              <p class="text-xs text-gray-400">Applications mobiles Android et iOS pour regarder en déplacement.</p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-[#11121C] border border-white/[0.08] overflow-hidden shadow-lg group hover:border-[#0055D4]/40 transition-all">
+            <img 
+              src="/images/pc-streaming-4k.webp" 
+              alt="Abonnement IPTV sur ordinateurs PC Windows et Mac"
+              class="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500"
+              width="600"
+              height="400"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="p-5">
+              <h3 class="text-base font-bold text-white mb-1">PC, Mac & Navigateur</h3>
+              <p class="text-xs text-gray-400">Lecteur Web ou logiciels multimédias sur ordinateurs de bureau.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 5: FAQ 12 Months -->
+    <section class="py-20 bg-[#07080E] border-b border-white/[0.06]">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+            <HelpCircle class="w-3.5 h-3.5" />
+            <span>Questions Fréquentes</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight mb-4">
+            Tout Savoir sur l'Abonnement 12 Mois
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          {faq12M.map((faq) => (
+            <div class="p-6 rounded-2xl bg-[#11121C] border border-white/[0.08]">
+              <h3 class="text-base sm:text-lg font-bold text-white mb-2">{faq.question}</h3>
+              <p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bottom Urgency Banner -->
+    <section class="py-16 bg-gradient-to-r from-[#0055D4]/20 via-[#0A0D1F] to-[#10B981]/15 text-center">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4">
+          Prêt à Passer au Meilleur Streaming IPTV en France ?
+        </h2>
+        <p class="text-sm sm:text-base text-gray-300 mb-8 max-w-2xl mx-auto">
+          Commandez votre formule 12 Mois pour seulement <strong>55 €</strong> et recevez vos accès sous 2 minutes par WhatsApp avec la garantie 24h satisfait ou remboursé.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href={whatsapp12mUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#0055D4] to-[#10B981] text-white font-extrabold text-sm uppercase tracking-wider shadow-lg hover:scale-105 transition-transform"
+          >
+            <MessageCircle class="w-5 h-5 text-white" />
+            <span>Commander la Formule 12 Mois (55 €)</span>
+          </a>
+          <a
+            href="/#pricing"
+            class="inline-flex items-center gap-2 px-6 py-4 rounded-2xl bg-[#11121C] hover:bg-[#171926] text-white font-bold text-xs border border-white/10 transition-colors"
+          >
+            <span>Voir les autres formules</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+  <ExitPopup />
+  <SocialPopup />
+  <GroupsPopup />
+</Layout>

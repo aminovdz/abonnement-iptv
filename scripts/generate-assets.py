@@ -346,4 +346,102 @@ create_editorial_image(
     ]
 )
 
-print("All 14 visual assets successfully generated in:", OUTPUT_DIR)
+# 15. Abonnement 12 Mois Flagship Hero
+create_editorial_image(
+    "abonnement-iptv-12-mois.webp",
+    "Formule Bestseller 2026",
+    "Abonnement IPTV 12 Mois — 55 €",
+    "Seulement ~4,16 €/mois • Lecteur Premium Offert Inclus • 4K 60 FPS Anti-Freeze",
+    "★ NOTRE OFFRE LA PLUS POPULAIRE & ÉCONOMIQUE EN FRANCE",
+    (16, 185, 129),
+    [
+        "✓ 12 Mois d'accès illimité sans engagement • Licence Lecteur Premium offerte",
+        "✓ Activation immédiate sur WhatsApp en 2 min • Garantie 24h satisfait ou remboursé"
+    ]
+)
+
+# 16. Pack 12 Mois Bundle
+create_editorial_image(
+    "pack-12-mois-bundle.webp",
+    "Pack Tout Compris 55 €",
+    "Le Pack Complet 12 Mois + Lecteur",
+    "Tout ce dont vous avez besoin pour un streaming ultra-fluide sur vos écrans",
+    "🎁 LECTEUR MULTIMÉDIA PREMIUM INCLUS GRATUITEMENT (VALEUR 15 €)",
+    (147, 51, 234),
+    [
+        "✓ Flux 4K & 8K HDR optimisés pour la fibre optique • Anti-Freeze 9.8™",
+        "✓ Guide des programmes EPG complet + Replay 7 jours + Multi-langues VF/VO"
+    ]
+)
+
+# 17. Comparatif 12 Mois vs Mensuel
+create_editorial_image(
+    "comparatif-12-mois-vs-mensuel.webp",
+    "Économie Garantie",
+    "12 Mois (55 €) vs Forfait Mensuel (96 €)",
+    "Économisez plus de 41 € par an avec la formule recommandée",
+    "💰 45% D'ÉCONOMIE IMMÉDIATE + LECTEUR OFFERT",
+    (245, 158, 11),
+    [
+        "✓ Formule 12 Mois = 4,16 € / mois vs 8 € / mois en formule découverte",
+        "✓ Tranquillité garantie 365 jours sans risque d'interruption lors des matchs"
+    ]
+)
+
+# 18. Smart TV Device Image
+create_editorial_image(
+    "smart-tv-streaming-4k.webp",
+    "Smart TV Connectée",
+    "Streaming Direct sur Smart TV 4K",
+    "Compatible téléviseurs connectés récents (systèmes TV intégrés)",
+    "📺 LECTURE DIRECTE SANS DÉCODEUR NI CÂBLE SUPERFLU",
+    (0, 85, 212),
+    [
+        "✓ Compatible téléviseurs connectés avec systèmes récents",
+        "✓ Qualité 4K 60 FPS • Télécommande native • Zapping sous la seconde"
+    ]
+)
+
+# 19. Boîtier TV & Clé Stick Image
+create_editorial_image(
+    "boitier-tv-streaming-4k.webp",
+    "Clés & Boîtiers HDMI",
+    "Boîtiers TV & Clés Multimédias 4K",
+    "Transformez n'importe quel écran en lecteur haute performance",
+    "⚡ PERFORMANCE MAXIMALE • ANTI-FREEZE 9.8™",
+    (220, 38, 38),
+    [
+        "✓ Compatible clés TV 4K, boîtiers multimédias et passerelles HDMI",
+        "✓ Fluidité maximale, décodage matériel HEVC/H.265 et son Dolby Digital"
+    ]
+)
+
+# 20. Mobile Streaming Image
+create_editorial_image(
+    "mobile-streaming-4k.webp",
+    "Nomade & Mobile",
+    "Smartphones & Tablettes 4G / 5G",
+    "Emportez votre télévision partout en déplacement et vacances",
+    "📱 COMPATIBLE TOUS SMARTPHONES & TABLETTES",
+    (16, 185, 129),
+    [
+        "✓ Compatible Android & iOS • Fonction de diffusion Cast vers grand écran",
+        "✓ Consommation de données optimisée • Flux adaptatif basse latence"
+    ]
+)
+
+# 21. PC & Laptop Streaming Image
+create_editorial_image(
+    "pc-streaming-4k.webp",
+    "Ordinateurs & Mac",
+    "PC Windows, Mac & Web Player",
+    "Visionnez directement depuis votre navigateur ou logiciel favori",
+    "💻 COMPATIBLE WINDOWS, MACOS & LECTEURS WEB",
+    (99, 102, 241),
+    [
+        "✓ Lecteur Web accessible sans installation • Compatible lecteurs PC",
+        "✓ Multitâche fluide et reprise de lecture en un clic"
+    ]
+)
+
+print("All visual assets successfully generated in:", OUTPUT_DIR)
