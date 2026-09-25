@@ -2,7 +2,6 @@ name = "abonnement-iptv"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "dist"
-account_id = "392d394e18fb1dd4fd3873e10fc86a73"
 
 [vars]
 SITE_URL = "https://abonnement-iptv.cloud"
