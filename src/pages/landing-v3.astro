@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Hero from '../components/Hero.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import PricingCard from '../components/PricingCard.astro';
+import ReferralBanner from '../components/ReferralBanner.astro';
+import UserReviewsSection from '../components/UserReviewsSection.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import SupportedDevices from '../components/SupportedDevices.astro';
+import LiveScores from '../components/LiveScores.astro';
+import CitiesList from '../components/CitiesList.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FAQSection from '../components/FAQSection.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+
+// Interactive Conversion & Retention Popups
+import ExitPopup from '../components/ExitPopup.astro';
+import SocialPopup from '../components/SocialPopup.astro';
+import GroupsPopup from '../components/GroupsPopup.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`IPTV Premium France ${currentYear} — Qualité 4K/8K & Serveurs Dédiés 10 Gbps`}
+  description="Découvrez l'expérience IPTV Premium en France : qualité cinéma en 4K Ultra HD et 8K, technologie Anti-Freeze 9.8™, Replay 7 jours et lecteur premium offert."
+  keywords={[
+    'iptv premium',
+    'iptv premium france',
+    'meilleur iptv premium',
+    'abonnement iptv 4k',
+    'iptv sans coupure',
+    'serveur iptv stable',
+    'code iptv premium',
+    'iptv smart tv 4k'
+  ]}
+  canonicalURL="https://abonnement-iptv.cloud/landing-v3"
+>
+  <!-- Sticky Global Navigation -->
+  <StickyHeader currentPath="/landing-v3" />
+
+  <!-- Main Content Sequence (Strict Required Order) -->
+  <main id="main-content" class="flex-1 flex flex-col">
+    <!-- 1. Hero Conversion Section (Tuned for Premium & Cinema Experience) -->
+    <Hero
+      headline="Abonnement IPTV Premium — Qualité Cinéma 4K/8K & Zéro Compromis"
+      subheadline="Pour les téléspectateurs exigeants qui recherchent une pureté d'image cristalline, notre offre IPTV Premium met à votre disposition une infrastructure serveur dédiée 10 Gbps en France, un Replay complet de 7 jours et un lecteur d'application activé gratuitement."
+    />
+
+    <!-- Dedicated Cinema & Series VOD Visual Showcase -->
+    <section class="py-8 bg-[#090A10] border-b border-white/[0.06]">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-3xl overflow-hidden border border-purple-500/30 shadow-2xl relative group">
+          <img 
+            src="/images/cinema-vod-4k.webp" 
+            alt="Catalogue streaming VOD plus de 85000 films et séries en direct 4K HDR avec son Dolby Digital" 
+            class="w-full h-auto max-h-[480px] object-cover transition-transform duration-700 group-hover:scale-[1.01]"
+            width="1200"
+            height="675"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Features Grid & Technological Edge -->
+    <FeatureGrid />
+
+    <!-- 3. Pricing Cards (12 Months Displayed First) -->
+    <PricingCard />
+
+    <!-- 4. Viral Growth & Referral Rewards Banner -->
+    <ReferralBanner />
+
+    <!-- 5. Real French Testimonials & User Reviews -->
+    <UserReviewsSection />
+
+    <!-- 6. 3-Step Setup Process -->
+    <ProcessSteps />
+
+    <!-- 7. Supported Devices & Compatibility -->
+    <SupportedDevices />
+
+    <!-- 8. Real Sports Match Center & Broadcast Status -->
+    <LiveScores />
+
+    <!-- 9. Programmatic Local SEO (10 French Metropolises) -->
+    <CitiesList />
+
+    <!-- 10. Direct Contact Channels & Interactive Form -->
+    <ContactForm />
+
+    <!-- 11. FAQ Section with Google FAQPage Schema -->
+    <FAQSection />
+
+    <!-- 12. Bottom High-Urgency Call to Action -->
+    <CTASection
+      title="Passez dès Aujourd'hui au Niveau Supérieur de l'IPTV"
+      subtitle="Rejoignez les utilisateurs français qui profitent de la qualité Premium en 4K Ultra HD. Activation express en 2 minutes par WhatsApp et garantie 24h satisfait ou remboursé."
+    />
+  </main>
+
+  <!-- Global Footer -->
+  <Footer />
+
+  <!-- Engagement Popups & Widgets (24h LocalStorage Capped) -->
+  <ExitPopup />
+  <SocialPopup />
+  <GroupsPopup />
+  <FloatingWhatsApp />
+</Layout>

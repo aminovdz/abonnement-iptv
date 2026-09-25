@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Hero from '../components/Hero.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import PricingCard from '../components/PricingCard.astro';
+import ReferralBanner from '../components/ReferralBanner.astro';
+import UserReviewsSection from '../components/UserReviewsSection.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import SupportedDevices from '../components/SupportedDevices.astro';
+import LiveScores from '../components/LiveScores.astro';
+import CitiesList from '../components/CitiesList.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FAQSection from '../components/FAQSection.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+
+// Interactive Conversion & Retention Popups
+import ExitPopup from '../components/ExitPopup.astro';
+import SocialPopup from '../components/SocialPopup.astro';
+import GroupsPopup from '../components/GroupsPopup.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`Abonnement IPTV France ${currentYear} — Meilleur Service Streaming 4K Sans Coupure`}
+  description="Découvrez le meilleur abonnement IPTV en France. Streaming stable en 4K/8K à 60 FPS, technologie Anti-Freeze 9.8™, activation en 2 minutes et support 24/7 sur WhatsApp."
+  keywords={[
+    'abonnement iptv',
+    'iptv abonnement',
+    'iptv france',
+    'iptv premium',
+    'code iptv',
+    'abonnement iptv 12 mois',
+    'meilleur iptv',
+    'iptv sans coupure',
+    'iptv ligue 1'
+  ]}
+  canonicalURL="https://abonnement-iptv.cloud"
+>
+  <!-- Sticky Global Navigation -->
+  <StickyHeader currentPath="/" />
+
+  <!-- Main Content Sequence (Strict Required Order) -->
+  <main id="main-content" class="flex-1 flex flex-col">
+    <!-- 1. Hero Conversion Section -->
+    <Hero />
+
+    <!-- 2. Features Grid & Technological Edge -->
+    <FeatureGrid />
+
+    <!-- 3. Pricing Cards (12 Months Displayed First) -->
+    <PricingCard />
+
+    <!-- 4. Viral Growth & Referral Rewards Banner -->
+    <ReferralBanner />
+
+    <!-- 5. Real French Testimonials & User Reviews -->
+    <UserReviewsSection />
+
+    <!-- 6. 3-Step Setup Process -->
+    <ProcessSteps />
+
+    <!-- 7. Supported Devices & Compatibility -->
+    <SupportedDevices />
+
+    <!-- 8. Real Sports Match Center & Broadcast Status -->
+    <LiveScores />
+
+    <!-- 9. Programmatic Local SEO (10 French Metropolises) -->
+    <CitiesList />
+
+    <!-- 10. Direct Contact Channels & Interactive Form -->
+    <ContactForm />
+
+    <!-- 11. FAQ Section with Google FAQPage Schema -->
+    <FAQSection />
+
+    <!-- 12. Bottom High-Urgency Call to Action -->
+    <CTASection />
+  </main>
+
+  <!-- Global Footer -->
+  <Footer />
+
+  <!-- Engagement Popups & Widgets (24h LocalStorage Capped) -->
+  <ExitPopup />
+  <SocialPopup />
+  <GroupsPopup />
+  <FloatingWhatsApp />
+</Layout>

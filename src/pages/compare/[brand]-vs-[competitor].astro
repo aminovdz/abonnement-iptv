@@ -1,0 +1,401 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import PricingCard from '../../components/PricingCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+import ExitPopup from '../../components/ExitPopup.astro';
+import SocialPopup from '../../components/SocialPopup.astro';
+import GroupsPopup from '../../components/GroupsPopup.astro';
+import { 
+  Check, 
+  X, 
+  Trophy, 
+  ArrowRight, 
+  ChevronRight, 
+  HelpCircle
+} from 'lucide-astro';
+
+export async function getStaticPaths() {
+  const comparisons = [
+    {
+      brandSlug: "abonnement-iptv",
+      competitorSlug: "acheteriptvpro",
+      competitorName: "AcheterIPTVPro",
+      title: "Abonnement IPTV vs AcheterIPTVPro : Le Grand Comparatif 2025",
+      metaDescription: "Comparatif complet entre Abonnement IPTV et AcheterIPTVPro. Stabilité Anti-Freeze, prix annuel (55€ vs 75€+), qualité 4K et support WhatsApp. Qui choisir ?",
+      headline: "Abonnement IPTV vs AcheterIPTVPro",
+      subtitle: "Découvrez pourquoi notre service offre une stabilité supérieure, un prix plus juste (55 €/an) et une assistance client réactive 24/7 en français.",
+      verdict: "Bien que AcheterIPTVPro soit un acteur connu, son manque d'optimisation sur les flux 4K 60FPS et ses prix élevés (plus de 75 €/an sans lecteur inclus) en font une option moins avantageuse. Avec notre formule 12 Mois à 55 € incluant un lecteur premium et la technologie Anti-Freeze 9.8™, vous bénéficiez du meilleur rapport qualité/prix du marché français.",
+      criteria: [
+        { name: "Prix Forfait Annuel (12 Mois)", us: "55 € (soit ~4,58 €/mois)", them: "75 € à 89 €", winner: "us" },
+        { name: "Technologie Anti-Coupure", us: "Anti-Freeze 9.8™ matériel", them: "Système standard non optimisé", winner: "us" },
+        { name: "Qualité Flux Sport (Ligue 1, Champions)", us: "4K UHD & 60 FPS sans latence", them: "Full HD 30 FPS / 4K compressé", winner: "us" },
+        { name: "Lecteur Premium Inclus", us: "Inclus gratuitement (valeur 15 €)", them: "Non inclus (frais supplémentaires)", winner: "us" },
+        { name: "Délai de Livraison du Code", us: "Instantané sous 2 minutes", them: "30 min à 3 heures d'attente", winner: "us" },
+        { name: "Support Client en Français", us: "WhatsApp direct & réactif 24/7", them: "Tickets emails souvent lents", winner: "us" },
+        { name: "Compatibilité Box FAI Français", us: "100% (Toutes box internet fibre des opérateurs français)", them: "Blocages DNS réguliers", winner: "us" },
+        { name: "Garantie Satisfait ou Remboursé", us: "24h sans condition", them: "Conditions restrictives", winner: "us" }
+      ],
+      faqs: [
+        {
+          q: "Pourquoi Abonnement IPTV est-il plus économique que AcheterIPTVPro ?",
+          a: "Nous mutualisons nos infrastructures de diffusion en direct directement avec les nœuds de peering français, ce qui réduit drastiquement les coûts intermédiaires tout en offrant une meilleure qualité aux abonnés à 55 €/an."
+        },
+        {
+          q: "Puis-je transférer ma configuration depuis AcheterIPTVPro ?",
+          a: "Absolument. Si vous utilisez déjà une application comme TiviMate ou IBO Player, il vous suffit de remplacer les identifiants Xtream ou le lien m3u par ceux que nous vous envoyons en 2 minutes."
+        }
+      ]
+    },
+    {
+      brandSlug: "abonnement-iptv",
+      competitorSlug: "abonnementsiptv-premium",
+      competitorName: "Abonnements IPTV Premium",
+      title: "Abonnement IPTV vs Abonnements IPTV Premium : Quel est le Meilleur Choix ?",
+      metaDescription: "Test et avis comparatif : Abonnement IPTV face à Abonnements IPTV Premium. Serveurs fibre 10 Gbps, replay 7j, prix et qualité d'image. Comparatif objectif.",
+      headline: "Abonnement IPTV vs Abonnements IPTV Premium",
+      subtitle: "Analyse détaillée des performances, de la disponibilité des flux en direct et de la qualité du support technique.",
+      verdict: "Abonnements IPTV Premium souffre régulièrement de saturations aux heures de pointe (notamment les soirs de grands matchs européens). Grâce à nos clusters CDN distribués avec bande passante 10 Gbps dédiée, nous garantissons un flux ininterrompu sans décalage de score pour seulement 55 €/an.",
+      criteria: [
+        { name: "Prix Forfait Annuel", us: "55 € (Tout inclus)", them: "65 € à 80 €", winner: "us" },
+        { name: "Stabilité Heures de Pointe", us: "99.98% SLA garanti", them: "Ralentissements fréquents le soir", winner: "us" },
+        { name: "Replay & Guide TV (EPG)", us: "Replay 7 jours complet + EPG", them: "EPG incomplet sur les chaînes sport", winner: "us" },
+        { name: "Application Offerte", us: "Oui (Configuration automatique)", them: "Non fournie", winner: "us" },
+        { name: "Support Technique en Français", us: "WhatsApp & Telegram 24/7", them: "Email uniquement", winner: "us" },
+        { name: "Activation de la Ligne", us: "Immédiate (Automatisée 2 min)", them: "Manuelle (Plusieurs heures)", winner: "us" }
+      ],
+      faqs: [
+        {
+          q: "Les chaînes sportives coupent-elles pendant les matchs importants ?",
+          a: "Non. Contrairement à Abonnements IPTV Premium, nos serveurs basculent automatiquement sur des flux CDN de secours grâce à notre protocole Anti-Freeze 9.8™ dès qu'un pic de spectateurs survient."
+        },
+        {
+          q: "Comment tester la différence de qualité ?",
+          a: "Vous pouvez commander notre formule 1 Mois à 8 € sans engagement ou solliciter notre équipe sur WhatsApp pour tester la stabilité sur votre propre appareil."
+        }
+      ]
+    },
+    {
+      brandSlug: "abonnement-iptv",
+      competitorSlug: "iptv-premiumfrance",
+      competitorName: "IPTV Premium France",
+      title: "Abonnement IPTV vs IPTV Premium France : Comparateur 2025",
+      metaDescription: "Comparatif indépendant entre Abonnement IPTV et IPTV Premium France. Anti-Freeze, diffusion 4K 60FPS, prix et avis clients vérifiés.",
+      headline: "Abonnement IPTV vs IPTV Premium France",
+      subtitle: "Comparez les débits réels, la clarté des flux et le service après-vente pour faire le bon choix.",
+      verdict: "Malgré un nom accrocheur, IPTV Premium France présente un taux de renouvellement inférieur en raison d'un support après-vente peu réactif sur les pannes de liens m3u. Notre infrastructure propriétaire avec serveurs redondants assure une pérennité totale tout au long de votre abonnement.",
+      criteria: [
+        { name: "Prix 12 Mois", us: "55 € (Meilleur tarif garanti)", them: "69 € à 85 €", winner: "us" },
+        { name: "Redondance des Serveurs", us: "Double ligne de secours automatique", them: "Serveur unique (risques de coupure)", winner: "us" },
+        { name: "Fluidité du Zapping", us: "Sous la seconde (< 0,8s)", them: "2 à 4 secondes par chaîne", winner: "us" },
+        { name: "Support WhatsApp", us: "Réponse en moins de 3 minutes", them: "Support limité ou inexistant", winner: "us" },
+        { name: "Sécurité & Confidentialité", us: "Chiffrement SSL 256 bits intégral", them: "Flux non chiffrés", winner: "us" }
+      ],
+      faqs: [
+        {
+          q: "Pourquoi le support client est-il si important ?",
+          a: "Dans le streaming en direct, pouvoir contacter un technicien en français via WhatsApp en moins de 3 minutes fait toute la différence lorsqu'une mise à jour de playlist est requise avant le coup d'envoi d'un match."
+        },
+        {
+          q: "Vos serveurs sont-ils situés en France ?",
+          a: "Oui, nous disposons de passerelles directes avec les principaux centres d'échange réseau français (Paris, Lyon, Marseille) pour minimiser la latence."
+        }
+      ]
+    },
+    {
+      brandSlug: "abonnement-iptv",
+      competitorSlug: "cable-traditionnel",
+      competitorName: "Bouquets TV Traditionnels & Câble",
+      title: "Abonnement IPTV vs Bouquets TV Traditionnels : Économisez 900 € par An",
+      metaDescription: "Pourquoi payer plus de 1 000 €/an en cumulant plusieurs bouquets payants ? Découvrez la solution tout-en-un à 55 €/an, sans engagement et en 4K UHD.",
+      headline: "Abonnement IPTV vs Bouquets TV Traditionnels",
+      subtitle: "Halte aux abonnements multiples et aux hausses de tarifs abusives. Accédez à tous vos programmes préférés réunis au même endroit.",
+      verdict: "Avec la hausse des prix des retransmissions sportives en France (jusqu'à 40 €/mois pour le seul championnat), le coût annuel des abonnements télévisés dépasse 1 000 €/an. Notre abonnement IPTV regroupe toutes les compétitions et flux de divertissement dans une interface unique pour seulement 55 € par an, sans engagement ni reconduction tacite.",
+      criteria: [
+        { name: "Coût Annuel Total", us: "55 € / an (Tout inclus)", them: "Plus de 1 000 € / an (cumul de plusieurs abonnements payants)", winner: "us" },
+        { name: "Engagement & Résiliation", us: "0 mois (Sans engagement)", them: "Contrats rigides de 12 à 24 mois", winner: "us" },
+        { name: "Nombre d'Applications", us: "1 seule application tout-en-un", them: "3 à 5 applications différentes requises", winner: "us" },
+        { name: "Qualité de Diffusion", us: "4K UHD & 60 FPS sur tous les écrans", them: "4K souvent réservée aux box propriétaires", winner: "us" },
+        { name: "Activation", us: "En 2 minutes chrono", them: "Attente de décodeur ou technicien", winner: "us" },
+        { name: "Mobilité en Voyage", us: "Partout dans le monde sans blocage", them: "Restrictions géographiques et IP strictes", winner: "us" }
+      ],
+      faqs: [
+        {
+          q: "Combien puis-je réellement économiser chaque année ?",
+          a: "Un amateur de sport en France paye en moyenne 40 €/mois pour le championnat, 30 €/mois pour les coupes d'Europe et 15 €/mois pour d'autres options, soit plus de 1 000 € par an. Avec notre abonnement à 55 € par an, vous économisez plus de 940 € net."
+        },
+        {
+          q: "Est-ce difficile à installer par rapport à un décodeur TV ?",
+          a: "C'est encore plus simple. Il vous suffit d'installer une application gratuite sur votre écran connecté ou passerelle multimédia, de renseigner vos identifiants reçus en 2 minutes, et tous vos flux s'affichent instantanément."
+        }
+      ]
+    }
+  ];
+
+  return comparisons.map((comp) => ({
+    params: {
+      brand: comp.brandSlug,
+      competitor: comp.competitorSlug
+    },
+    props: { comp }
+  }));
+}
+
+const { comp } = Astro.props;
+
+// Comparison Schema
+const comparisonSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": comp.title,
+  "description": comp.metaDescription,
+  "url": `https://abonnement-iptv.cloud/compare/${comp.brandSlug}-vs-${comp.competitorSlug}`,
+  "mainEntity": {
+    "@type": "Product",
+    "name": "Abonnement IPTV France 12 Mois",
+    "offers": {
+      "@type": "Offer",
+      "price": "55.00",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+};
+---
+
+<Layout
+  title={comp.title}
+  description={comp.metaDescription}
+  canonicalURL={`https://abonnement-iptv.cloud/compare/${comp.brandSlug}-vs-${comp.competitorSlug}`}
+  schema={comparisonSchema}
+>
+  <StickyHeader />
+
+  <main id="main-content">
+    
+    <!-- Hero Comparison -->
+    <section class="relative pt-32 pb-16 md:pt-40 md:pb-24 bg-[#07080E] overflow-hidden border-b border-white/[0.06]">
+      <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[#0055D4]/15 rounded-full blur-[140px]"></div>
+      </div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <!-- Breadcrumb -->
+        <nav class="inline-flex items-center gap-2 text-xs text-gray-400 mb-6" aria-label="Fil d'Ariane">
+          <a href="/" class="hover:text-white transition-colors">Accueil</a>
+          <ChevronRight class="w-3.5 h-3.5 text-gray-600" />
+          <a href="/compare" class="hover:text-white transition-colors">Comparatifs</a>
+          <ChevronRight class="w-3.5 h-3.5 text-gray-600" />
+          <span class="text-[#60A5FA] font-medium" aria-current="page">{comp.competitorName}</span>
+        </nav>
+
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-6">
+          <Trophy class="w-3.5 h-3.5 text-amber-400" />
+          <span>Comparatif Objectif 2025</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-6">
+          {comp.headline}
+        </h1>
+
+        <p class="text-base sm:text-lg text-gray-300 font-normal max-w-3xl mx-auto leading-relaxed mb-10">
+          {comp.subtitle}
+        </p>
+
+        <!-- Quick Summary Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto text-left">
+          
+          <!-- Our Service Card (Winner) -->
+          <div class="relative rounded-2xl bg-gradient-to-b from-[#121730] to-[#0D1022] border-2 border-[#0055D4] p-6 shadow-xl">
+            <div class="absolute -top-3.5 right-6 px-3 py-1 rounded-full bg-[#0055D4] text-white text-[11px] font-black uppercase tracking-wider shadow-md">
+              Choix Recommandé
+            </div>
+            <div class="text-xs font-bold text-[#60A5FA] uppercase tracking-wider mb-1">Notre Offre</div>
+            <h2 class="text-2xl font-black text-white mb-2">Abonnement IPTV</h2>
+            <div class="text-3xl font-black text-white mb-4">55 € <span class="text-xs font-normal text-gray-400">/ an (Lecteur Inclus)</span></div>
+            <ul class="space-y-2.5 text-xs text-gray-300">
+              <li class="flex items-center gap-2 text-emerald-400 font-medium">
+                <Check class="w-4 h-4 text-emerald-400 shrink-0" /> Technologie Anti-Freeze 9.8™
+              </li>
+              <li class="flex items-center gap-2 text-emerald-400 font-medium">
+                <Check class="w-4 h-4 text-emerald-400 shrink-0" /> Flux 4K UHD 60 FPS sans coupure
+              </li>
+              <li class="flex items-center gap-2 text-emerald-400 font-medium">
+                <Check class="w-4 h-4 text-emerald-400 shrink-0" /> Assistance WhatsApp 24/7 en français
+              </li>
+              <li class="flex items-center gap-2 text-emerald-400 font-medium">
+                <Check class="w-4 h-4 text-emerald-400 shrink-0" /> Activation instantanée sous 2 minutes
+              </li>
+            </ul>
+          </div>
+
+          <!-- Competitor Card -->
+          <div class="rounded-2xl bg-[#0F101A] border border-white/10 p-6 opacity-90">
+            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Alternative</div>
+            <h2 class="text-2xl font-black text-gray-300 mb-2">{comp.competitorName}</h2>
+            <div class="text-3xl font-black text-gray-400 mb-4">{comp.competitorSlug === 'cable-traditionnel' ? '> 1 000 €' : '65 € - 89 €'} <span class="text-xs font-normal text-gray-500">/ an</span></div>
+            <ul class="space-y-2.5 text-xs text-gray-400">
+              <li class="flex items-center gap-2 text-red-400">
+                <X class="w-4 h-4 text-red-400 shrink-0" /> Tarif plus onéreux
+              </li>
+              <li class="flex items-center gap-2 text-red-400">
+                <X class="w-4 h-4 text-red-400 shrink-0" /> Pas de lecteur premium offert
+              </li>
+              <li class="flex items-center gap-2 text-gray-400">
+                <span class="w-4 h-4 text-amber-400 shrink-0 text-center font-bold">~</span> Risques de ralentissements le soir
+              </li>
+              <li class="flex items-center gap-2 text-gray-400">
+                <span class="w-4 h-4 text-amber-400 shrink-0 text-center font-bold">~</span> Support client limité ou lent
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Side-by-side Criteria Table -->
+    <section class="py-16 md:py-24 bg-[#0A0B14]" aria-labelledby="comparison-table-title">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-12">
+          <h2 id="comparison-table-title" class="text-2xl sm:text-3xl font-black text-white tracking-tight mb-3">
+            Tableau Comparatif Détaillé
+          </h2>
+          <p class="text-sm text-gray-400 font-normal mb-8">
+            Critère par critère, découvrez ce qui fait la différence pour votre confort de visionnage.
+          </p>
+
+          <!-- Comparative Visual Banner -->
+          <div class="rounded-2xl overflow-hidden border border-white/[0.08] shadow-xl max-w-4xl mx-auto mb-10 group">
+            <img 
+              src="/images/comparatif-iptv-france.webp" 
+              alt={`Comparatif indépendant ${comp.headline} et benchmark technique`} 
+              class="w-full h-auto max-h-[380px] object-cover transition-transform duration-700 group-hover:scale-[1.01]"
+              width="1200"
+              height="675"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-white/[0.08] overflow-hidden bg-[#10121F] shadow-2xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-[#151829] border-b border-white/[0.08] text-xs font-bold uppercase tracking-wider text-gray-300">
+                  <th class="py-4 px-6">Critères d'Évaluation</th>
+                  <th class="py-4 px-6 text-[#60A5FA] bg-[#0055D4]/10 border-l border-r border-[#0055D4]/20">Abonnement IPTV (Notre Service)</th>
+                  <th class="py-4 px-6 text-gray-400">{comp.competitorName}</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-white/[0.06] text-xs sm:text-sm">
+                {comp.criteria.map((item) => (
+                  <tr class="hover:bg-white/[0.02] transition-colors">
+                    <td class="py-4 px-6 font-semibold text-white">
+                      {item.name}
+                    </td>
+                    <td class="py-4 px-6 font-bold text-emerald-400 bg-[#0055D4]/05 border-l border-r border-[#0055D4]/15">
+                      <div class="flex items-center gap-2">
+                        <Check class="w-4 h-4 text-emerald-400 shrink-0" />
+                        <span>{item.us}</span>
+                      </div>
+                    </td>
+                    <td class="py-4 px-6 text-gray-400">
+                      <div class="flex items-center gap-2">
+                        <X class="w-4 h-4 text-red-400 shrink-0" />
+                        <span>{item.them}</span>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- In-depth Editorial Verdict -->
+        <div class="mt-12 rounded-2xl bg-gradient-to-r from-[#121526] via-[#101428] to-[#141220] border border-[#0055D4]/30 p-8 shadow-xl">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-[#0055D4]/20 border border-[#0055D4]/40 flex items-center justify-center text-[#60A5FA]">
+              <Trophy class="w-5 h-5 text-amber-400" />
+            </div>
+            <div>
+              <h3 class="text-lg font-black text-white">Verdict de nos Experts Streaming</h3>
+              <p class="text-xs text-gray-400">Analyse indépendante basée sur 30 jours de tests continus</p>
+            </div>
+          </div>
+          <p class="text-sm text-gray-300 leading-relaxed font-normal mb-6">
+            {comp.verdict}
+          </p>
+          <div class="flex flex-col sm:flex-row items-center gap-4">
+            <a
+              href="#pricing"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#0055D4] to-[#2563EB] text-white font-bold text-sm hover:shadow-[0_0_20px_rgba(0,85,212,0.4)] transition-all"
+            >
+              <span>Choisir l'Abonnement 12 Mois à 55 €</span>
+              <ArrowRight class="w-4 h-4" />
+            </a>
+            <a
+              href="https://wa.me/18036582620?text=Bonjour,%20j'ai%20une%20question%20sur%20votre%20comparatif%20"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-[#17192A] hover:bg-[#1E2138] text-gray-200 border border-white/10 text-xs font-bold transition-all text-center"
+            >
+              <span>Poser une question sur WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <PricingCard />
+
+    <!-- Comparison FAQs -->
+    <section class="py-16 md:py-24 bg-[#080912] border-t border-white/[0.06]" aria-labelledby="faq-comp-title">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-3">
+            <HelpCircle class="w-3.5 h-3.5" />
+            <span>Questions Fréquentes</span>
+          </div>
+          <h2 id="faq-comp-title" class="text-2xl sm:text-3xl font-black text-white">
+            Vos Questions sur ce Comparatif
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          {comp.faqs.map((faq, idx) => (
+            <div class="rounded-xl bg-[#111322] border border-white/[0.08] p-6 hover:border-[#0055D4]/40 transition-colors">
+              <h3 class="text-base font-bold text-white mb-2 flex items-start gap-3">
+                <span class="text-[#0055D4] font-black">{idx + 1}.</span>
+                <span>{faq.q}</span>
+              </h3>
+              <p class="text-xs sm:text-sm text-gray-300 leading-relaxed pl-7 font-normal">
+                {faq.a}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <CTASection />
+
+  </main>
+
+  <Footer />
+
+  <FloatingWhatsApp />
+  <SocialPopup />
+  <ExitPopup />
+  <GroupsPopup />
+
+</Layout>

@@ -1,0 +1,101 @@
+---
+import { MessageCircle, Send, Sparkles, ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-astro';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "Prêt à Passer au Meilleur Abonnement IPTV en France ?",
+  subtitle = "Rejoignez plus de 2 400 abonnés satisfaits. Profitez d'une qualité d'image exceptionnelle en 4K Ultra HD sans payer des centaines d'euros d'abonnements séparés chaque année."
+} = Astro.props;
+
+const whatsappUrl = "https://wa.me/18036582620?text=Bonjour%21+Je+souhaite+profiter+de+l%27offre+12+Mois+Abonnement+IPTV+%C3%A0+55+%E2%82%AC+avec+Lecteur+Premium+inclus.";
+const telegramUrl = "https://t.me/castvera_com";
+---
+
+<section class="py-20 md:py-28 relative overflow-hidden bg-gradient-to-b from-[#090A10] via-[#0F101A] to-[#090A10]" aria-labelledby="cta-heading">
+  <!-- Glowing Background Accents -->
+  <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[360px] bg-gradient-to-r from-[#0055D4]/20 via-[#DC2626]/15 to-[#0055D4]/20 rounded-full blur-[140px]"></div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative rounded-3xl bg-gradient-to-br from-[#121422] via-[#0D0E18] to-[#0A0B12] border border-[#0055D4]/40 p-8 sm:p-12 md:p-16 shadow-[0_20px_50px_rgba(0,0,0,0.7)] overflow-hidden text-center">
+      
+      <!-- Top Promo Pill -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/40 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-6">
+        <Sparkles class="w-4 h-4 text-amber-400" />
+        <span>Activation Instantanée 24/7 · Installation en 2 Minutes</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h2 id="cta-heading" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight max-w-3xl mx-auto mb-6 leading-tight">
+        {title}
+      </h2>
+
+      <!-- Subtitle -->
+      <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+        {subtitle} Choisissez la formule qui vous convient dès 8 €, recevez vos accès en moins de 2 minutes et regardez vos programmes préférés sur Smart TV connectée, clé multimédia TV 4K, smartphone ou ordinateur.
+      </p>
+
+      <!-- Value Props Checkpoints -->
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mb-10 text-sm font-medium text-gray-200">
+        <div class="flex items-center gap-2">
+          <CheckCircle2 class="w-4 h-4 text-[#10B981]" />
+          <span>Sans engagement ni frais cachés</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <CheckCircle2 class="w-4 h-4 text-[#10B981]" />
+          <span>Lecteur Premium offert (6 & 12M)</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <CheckCircle2 class="w-4 h-4 text-[#10B981]" />
+          <span>Garantie de remboursement 24h</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-xl mx-auto mb-10">
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#0055D4] via-[#1E40AF] to-[#0055D4] text-white font-black text-sm uppercase tracking-wider shadow-[0_0_30px_rgba(0,85,212,0.4)] hover:shadow-[0_0_40px_rgba(0,85,212,0.6)] transition-all duration-300 hover:scale-[1.03]"
+          aria-label="Commander sur WhatsApp et obtenir les identifiants"
+        >
+          <MessageCircle class="w-5 h-5 text-emerald-300" />
+          <span>Souscrire sur WhatsApp</span>
+          <ArrowRight class="w-4 h-4 ml-1" />
+        </a>
+
+        <a
+          href="/#pricing"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-[#11121C] hover:bg-[#161826] text-white font-bold text-sm tracking-wide border border-white/[0.12] hover:border-[#DC2626]/50 transition-all duration-300 hover:scale-[1.02]"
+          aria-label="Voir le détail de tous les tarifs"
+        >
+          <span>Consulter les Tarifs</span>
+        </a>
+      </div>
+
+      <!-- Channel Support Strip -->
+      <div class="pt-8 border-t border-white/[0.08] flex flex-wrap items-center justify-center gap-6 text-xs text-gray-400">
+        <span class="flex items-center gap-1.5">
+          <ShieldCheck class="w-4 h-4 text-emerald-400" />
+          Assistance technique 7j/7 en direct
+        </span>
+        <span class="hidden sm:inline text-gray-600">•</span>
+        <a href={telegramUrl} target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-gray-300 hover:text-[#60A5FA] transition-colors">
+          <Send class="w-3.5 h-3.5 text-[#60A5FA]" />
+          Canal Telegram disponible
+        </a>
+        <span class="hidden sm:inline text-gray-600">•</span>
+        <span class="text-gray-300">
+          Email : <strong class="text-white">support@castvera.com</strong>
+        </span>
+      </div>
+
+    </div>
+  </div>
+</section>

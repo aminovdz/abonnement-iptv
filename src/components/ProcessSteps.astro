@@ -1,0 +1,108 @@
+---
+import { CreditCard, Send, Tv, Sparkles, CheckCircle2 } from 'lucide-astro';
+
+const steps = [
+  {
+    step: "01",
+    title: "Choisissez Votre Forfait Sans Engagement",
+    description: "Sélectionnez la durée de votre choix (nous recommandons la Formule 12 Mois à 55 € pour bénéficier du Lecteur Premium offert). Paiement rapide et sécurisé par Carte Bancaire, PayPal ou Crypto.",
+    icon: CreditCard,
+    badge: "Paiement Sécurisé"
+  },
+  {
+    step: "02",
+    title: "Recevez Vos Identifiants en 2 Minutes",
+    description: "Notre système automatique génère votre lien de playlist M3U sécurisé ainsi que vos codes d'accès Xtream Codes, envoyés directement sur votre WhatsApp ou par email.",
+    icon: Send,
+    badge: "Activation Instantanée"
+  },
+  {
+    step: "03",
+    title: "Lancez Votre Application & Profitez en 4K",
+    description: "Ouvrez votre application sur Smart TV connectée, clé multimédia TV 4K, smartphone ou tablette. Entrez vos identifiants et accédez immédiatement au streaming haute fluidité sans coupure.",
+    icon: Tv,
+    badge: "Diffusion 4K Immédiate"
+  }
+];
+---
+
+<section id="process" class="py-20 md:py-28 relative bg-[#0C0D16] overflow-hidden" aria-labelledby="process-heading">
+  <!-- Subtle Lighting Accents -->
+  <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#0055D4]/08 rounded-full blur-[160px]"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+        <Sparkles class="w-3.5 h-3.5" />
+        <span>Installation Facile en 3 Étapes</span>
+      </div>
+      <h2 id="process-heading" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-6">
+        Comment Activer Votre <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] to-[#F87171]">Abonnement IPTV</span> en 2 Minutes ?
+      </h2>
+      <p class="text-base sm:text-lg text-gray-300 font-normal leading-relaxed">
+        Aucune connaissance technique requise, pas d'installation de parabole ni de câble encombrant. Le lancement de votre service se fait simplement depuis vos écrans habituels.
+      </p>
+    </div>
+
+    <!-- 3-Step Process Flow -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+      {steps.map((item) => (
+        <div class="relative rounded-3xl bg-[#121422] border border-white/[0.08] p-8 flex flex-col justify-between hover:border-[#0055D4]/50 transition-all duration-300 hover:-translate-y-1 shadow-lg group">
+          
+          <div>
+            <!-- Top Step Indicator & Icon -->
+            <div class="flex items-center justify-between mb-6">
+              <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#0055D4] via-[#60A5FA] to-[#DC2626]">
+                {item.step}
+              </span>
+              <div class="w-12 h-12 rounded-2xl bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <item.icon class="w-6 h-6" />
+              </div>
+            </div>
+
+            <!-- Badge -->
+            <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/[0.05] text-gray-300 mb-4 border border-white/[0.08]">
+              {item.badge}
+            </span>
+
+            <!-- Title & Description -->
+            <h3 class="text-lg font-bold text-white mb-3 tracking-tight group-hover:text-[#60A5FA] transition-colors">
+              {item.title}
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal">
+              {item.description}
+            </p>
+          </div>
+
+          <!-- Bottom Status Check -->
+          <div class="mt-8 pt-4 border-t border-white/[0.06] flex items-center gap-2 text-xs text-emerald-400 font-medium">
+            <CheckCircle2 class="w-4 h-4 shrink-0" />
+            <span>Assistance guidée pas à pas</span>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    <!-- Quick Assistance Banner -->
+    <div class="mt-14 p-6 rounded-2xl bg-gradient-to-r from-[#11121C] via-[#141728] to-[#11121C] border border-[#0055D4]/20 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+      <div>
+        <h4 class="text-sm font-bold text-white mb-1">Besoin d'aide pour l'installation sur votre Smart TV ou clé TV 4K ?</h4>
+        <p class="text-xs text-gray-400">Notre équipe de support francophone vous guide en direct par message sur WhatsApp.</p>
+      </div>
+      <a
+        href="https://wa.me/18036582620?text=Bonjour%21+J%27ai+besoin+d%27aide+pour+l%27installation+de+mon+abonnement+IPTV."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider transition-colors shrink-0"
+      >
+        <span>Contacter l'Assistance WhatsApp</span>
+      </a>
+    </div>
+
+  </div>
+</section>

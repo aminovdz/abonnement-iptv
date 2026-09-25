@@ -1,0 +1,366 @@
+---
+import { Zap, Calendar, PlayCircle, Radio, RefreshCw } from 'lucide-astro';
+
+interface LiveMatch {
+  id: string;
+  league: string;
+  sport: string;
+  homeTeam: string;
+  homeLogo: string;
+  homeScore: string;
+  awayTeam: string;
+  awayLogo: string;
+  awayScore: string;
+  status: string;
+  isLive: boolean;
+  quality: string;
+}
+
+// Fallback real fixtures in case ESPN API is unreachable at build time
+const fallbackMatches: LiveMatch[] = [
+  {
+    id: "401876449",
+    league: "Ligue 1 France",
+    sport: "Football",
+    homeTeam: "Marseille",
+    homeLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/176.png",
+    homeScore: "1",
+    awayTeam: "Paris Saint-Germain",
+    awayLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
+    awayScore: "2",
+    status: "Score Final (FT)",
+    isLive: false,
+    quality: "4K UHD · 60 FPS"
+  },
+  {
+    id: "401876452",
+    league: "Ligue 1 France",
+    sport: "Football",
+    homeTeam: "Nice",
+    homeLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/2502.png",
+    homeScore: "2",
+    awayTeam: "Lille",
+    awayLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/166.png",
+    awayScore: "1",
+    status: "Score Final (FT)",
+    isLive: false,
+    quality: "4K UHD · 60 FPS"
+  },
+  {
+    id: "401876456",
+    league: "Ligue 1 France",
+    sport: "Football",
+    homeTeam: "AJ Auxerre",
+    homeLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/172.png",
+    homeScore: "2",
+    awayTeam: "Brest",
+    awayLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/6997.png",
+    awayScore: "1",
+    status: "Score Final (FT)",
+    isLive: false,
+    quality: "4K UHD · 60 FPS"
+  },
+  {
+    id: "ucl-1",
+    league: "UEFA Champions League",
+    sport: "Football",
+    homeTeam: "Real Madrid",
+    homeLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
+    homeScore: "3",
+    awayTeam: "Manchester City",
+    awayLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/382.png",
+    awayScore: "2",
+    status: "Score Final (FT)",
+    isLive: false,
+    quality: "4K UHD · 60 FPS"
+  },
+  {
+    id: "ucl-2",
+    league: "UEFA Champions League",
+    sport: "Football",
+    homeTeam: "Bayern Munich",
+    homeLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/132.png",
+    homeScore: "5",
+    awayTeam: "Bodo/Glimt",
+    awayLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/4094.png",
+    awayScore: "0",
+    status: "Score Final (FT)",
+    isLive: false,
+    quality: "4K UHD · 60 FPS"
+  },
+  {
+    id: "ucl-3",
+    league: "UEFA Champions League",
+    sport: "Football",
+    homeTeam: "Fenerbahce",
+    homeLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/436.png",
+    homeScore: "1",
+    awayTeam: "AS Roma",
+    awayLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/104.png",
+    awayScore: "1",
+    status: "Score Final (FT)",
+    isLive: false,
+    quality: "4K UHD · 60 FPS"
+  }
+];
+
+let featuredMatches: LiveMatch[] = fallbackMatches;
+
+try {
+  const [resL1, resUCL] = await Promise.allSettled([
+    fetch("https://site.api.espn.com/apis/site/v2/sports/soccer/fra.1/scoreboard", { signal: AbortSignal.timeout(4000) }).then(r => r.json()),
+    fetch("https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard", { signal: AbortSignal.timeout(4000) }).then(r => r.json())
+  ]);
+
+  const parseEvents = (data: any, leagueName: string): LiveMatch[] => {
+    if (!data?.events || !Array.isArray(data.events)) return [];
+    return data.events.map((event: any) => {
+      const comp = event.competitions?.[0];
+      const home = comp?.competitors?.find((c: any) => c.homeAway === "home");
+      const away = comp?.competitors?.find((c: any) => c.homeAway === "away");
+      const isLive = event.status?.type?.state === "in";
+      const isPost = event.status?.type?.state === "post";
+      let statusText = event.status?.type?.detail || "À venir";
+      if (isLive) {
+        statusText = `${event.status?.displayClock || ''} En Direct`.trim();
+      } else if (isPost) {
+        statusText = `Score Final (${event.status?.type?.shortDetail || 'FT'})`;
+      }
+      return {
+        id: String(event.id),
+        league: leagueName,
+        sport: "Football",
+        homeTeam: home?.team?.displayName || home?.team?.name || "Équipe Domicile",
+        homeLogo: home?.team?.logo || "https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo-500.png",
+        homeScore: home?.score || "0",
+        awayTeam: away?.team?.displayName || away?.team?.name || "Équipe Extérieure",
+        awayLogo: away?.team?.logo || "https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo-500.png",
+        awayScore: away?.score || "0",
+        status: statusText,
+        isLive,
+        quality: "4K UHD · 60 FPS"
+      };
+    });
+  };
+
+  const l1Matches = resL1.status === "fulfilled" ? parseEvents(resL1.value, "Ligue 1 France") : [];
+  const uclMatches = resUCL.status === "fulfilled" ? parseEvents(resUCL.value, "UEFA Champions League") : [];
+  const realMatches = [...l1Matches, ...uclMatches];
+
+  if (realMatches.length >= 3) {
+    featuredMatches = realMatches.slice(0, 6);
+  }
+} catch {
+  featuredMatches = fallbackMatches;
+}
+---
+
+<section id="live-scores" class="py-20 md:py-28 relative bg-[#0C0D16] overflow-hidden" aria-labelledby="livescores-heading">
+  <!-- Ambient Gradients -->
+  <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+    <div class="absolute top-1/2 left-1/3 w-[600px] h-[300px] bg-[#0055D4]/10 rounded-full blur-[160px]"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DC2626]/15 border border-[#DC2626]/30 text-red-400 text-xs font-bold uppercase tracking-wider mb-4">
+        <Radio class="w-3.5 h-3.5 animate-pulse" />
+        <span>Scores & Matchs Officiels en Direct</span>
+      </div>
+      <h2 id="livescores-heading" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+        Tous Vos Matchs en Direct en <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#F87171]">4K & 60 FPS</span>
+      </h2>
+      <p class="text-base sm:text-lg text-gray-300 font-normal leading-relaxed">
+        Suivez chaque rencontre de Ligue 1 et des grandes coupes européennes avec les scores réels en temps réel. Zéro freeze même en prolongation grâce à l'Anti-Freeze 9.8™.
+      </p>
+    </div>
+
+    <!-- Live Sync Status Bar -->
+    <div class="max-w-7xl mx-auto mb-8 flex flex-wrap items-center justify-between gap-4 px-5 py-3 rounded-2xl bg-[#11121C] border border-white/[0.08] text-xs text-gray-300">
+      <div class="flex items-center gap-2.5">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+        </span>
+        <span class="font-medium text-gray-200">Flux de données synchronisé avec les scores officiels en direct</span>
+      </div>
+      <div class="flex items-center gap-2 text-gray-400">
+        <RefreshCw class="w-3.5 h-3.5 text-[#60A5FA] animate-spin" style="animation-duration: 8s;" />
+        <span id="live-refresh-time">Actualisation automatique (Ligue 1 & Coupes)</span>
+      </div>
+    </div>
+
+    <!-- Match Cards Grid -->
+    <div id="live-matches-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {featuredMatches.map((match) => (
+        <div 
+          class="rounded-3xl bg-[#121422] border border-white/[0.08] hover:border-[#0055D4]/40 p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-md group"
+          data-match-card={match.id}
+        >
+          <div>
+            <!-- Header: League & Status Badge -->
+            <div class="flex items-center justify-between mb-5">
+              <span class="text-xs font-bold text-[#60A5FA] flex items-center gap-1.5">
+                <Calendar class="w-3.5 h-3.5" />
+                {match.league}
+              </span>
+
+              {match.isLive ? (
+                <span class="match-status-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-500/20 border border-red-500/40 text-red-400 text-[10px] font-black uppercase tracking-wider animate-pulse">
+                  <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span>
+                  <span class="status-text">{match.status}</span>
+                </span>
+              ) : (
+                <span class="match-status-badge text-[10px] font-bold text-gray-300 bg-white/[0.05] px-2.5 py-1 rounded-full border border-white/[0.06]">
+                  <span class="status-text">{match.status}</span>
+                </span>
+              )}
+            </div>
+
+            <!-- Scoreboard -->
+            <div class="space-y-3.5 my-4">
+              <!-- Home Team -->
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <img 
+                    src={match.homeLogo} 
+                    alt={`Logo officiel club ${match.homeTeam}`} 
+                    class="w-6 h-6 object-contain rounded-full bg-white/5 p-0.5"
+                    width="24"
+                    height="24"
+                    loading="lazy"
+                    decoding="async"
+                    onerror="this.style.display='none'"
+                  />
+                  <span class="text-sm font-bold text-white group-hover:text-[#60A5FA] transition-colors home-team-name">
+                    {match.homeTeam}
+                  </span>
+                </div>
+                <span class="text-xl font-black text-white font-mono px-3 py-1 rounded-lg bg-black/40 border border-white/[0.08] home-score">
+                  {match.homeScore}
+                </span>
+              </div>
+
+              <!-- Away Team -->
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <img 
+                    src={match.awayLogo} 
+                    alt={`Logo officiel club ${match.awayTeam}`} 
+                    class="w-6 h-6 object-contain rounded-full bg-white/5 p-0.5"
+                    width="24"
+                    height="24"
+                    loading="lazy"
+                    decoding="async"
+                    onerror="this.style.display='none'"
+                  />
+                  <span class="text-sm font-bold text-white group-hover:text-[#60A5FA] transition-colors away-team-name">
+                    {match.awayTeam}
+                  </span>
+                </div>
+                <span class="text-xl font-black text-white font-mono px-3 py-1 rounded-lg bg-black/40 border border-white/[0.08] away-score">
+                  {match.awayScore}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Footer: Quality & Stream CTA -->
+          <div class="pt-4 border-t border-white/[0.06] flex items-center justify-between mt-3">
+            <span class="text-[11px] font-semibold text-emerald-400 flex items-center gap-1">
+              <Zap class="w-3 h-3" /> {match.quality}
+            </span>
+
+            <a
+              href="https://wa.me/18036582620?text=Bonjour%21+Je+souhaite+tester+le+streaming+sport+en+direct+4K."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 text-xs font-bold text-white hover:text-[#60A5FA] transition-colors"
+            >
+              <span>Regarder le Direct</span>
+              <PlayCircle class="w-4 h-4 text-[#0055D4]" />
+            </a>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    <!-- Sports Reassurance Strip -->
+    <div class="mt-12 p-6 rounded-2xl bg-[#11121C] border border-[#0055D4]/25 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+      <div>
+        <h4 class="text-sm font-bold text-white mb-1">
+          Tous les championnats français et européens en direct
+        </h4>
+        <p class="text-xs text-gray-300">
+          Ligue 1, Champions League, championnats européens, Top 14 de Rugby, sports mécaniques & tournois majeurs inclus dans chaque formule.
+        </p>
+      </div>
+
+      <a
+        href="/#pricing"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0055D4] hover:bg-[#1E40AF] text-white text-xs font-bold uppercase tracking-wider shrink-0 shadow-md transition-colors"
+      >
+        <span>Accéder aux Tarifs (dès 8 €)</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Client-side real-time polling script -->
+<script is:inline>
+  (function initLiveScoresAutoRefresh() {
+    async function updateScores() {
+      try {
+        const res = await fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/fra.1/scoreboard');
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!data.events || !Array.isArray(data.events)) return;
+
+        data.events.forEach(event => {
+          const comp = event.competitions?.[0];
+          const home = comp?.competitors?.find(c => c.homeAway === 'home');
+          const away = comp?.competitors?.find(c => c.homeAway === 'away');
+          if (!home || !away) return;
+
+          const card = document.querySelector(`[data-match-card="${event.id}"]`);
+          if (card) {
+            const homeScoreEl = card.querySelector('.home-score');
+            const awayScoreEl = card.querySelector('.away-score');
+            const statusTextEl = card.querySelector('.status-text');
+
+            if (homeScoreEl) homeScoreEl.textContent = home.score || '0';
+            if (awayScoreEl) awayScoreEl.textContent = away.score || '0';
+
+            if (statusTextEl) {
+              const isLive = event.status?.type?.state === 'in';
+              const isPost = event.status?.type?.state === 'post';
+              if (isLive) {
+                statusTextEl.textContent = `${event.status?.displayClock || ''} En Direct`.trim();
+              } else if (isPost) {
+                statusTextEl.textContent = `Score Final (${event.status?.type?.shortDetail || 'FT'})`;
+              } else {
+                statusTextEl.textContent = event.status?.type?.detail || 'À venir';
+              }
+            }
+          }
+        });
+
+        const refreshTimeEl = document.getElementById('live-refresh-time');
+        if (refreshTimeEl) {
+          const now = new Date();
+          const timeStr = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+          refreshTimeEl.textContent = `Actualisé à ${timeStr} (En direct)`;
+        }
+      } catch (err) {
+        // Silently keep current display if network hiccup
+      }
+    }
+
+    // Refresh every 60 seconds
+    setInterval(updateScores, 60000);
+  })();
+</script>

@@ -1,0 +1,151 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { Clock, ShieldCheck, CheckCircle2, MessageCircle, AlertTriangle } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+const whatsappRefundUrl = "https://wa.me/18036582620?text=Bonjour%21+Je+souhaite+faire+une+demande+concernant+la+garantie+de+remboursement+24h.";
+---
+
+<Layout
+  title={`Politique de Remboursement 24 Heures — Abonnement IPTV France ${currentYear}`}
+  description="Consultez notre politique stricte de remboursement sous 24 heures. Garantie satisfait ou remboursé intégrale en cas d'insatisfaction technique dans les 24h suivant l'activation."
+  canonicalURL="https://abonnement-iptv.cloud/refund"
+>
+  <StickyHeader currentPath="/refund" />
+
+  <main class="flex-1 py-16 sm:py-24 bg-[#090A10]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="mb-12 text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-4">
+          <Clock class="w-3.5 h-3.5" />
+          <span>Garantie Satisfait ou Remboursé 24h</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+          Politique de Remboursement
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-400 mb-8">
+          Règle stricte et transparente : Tout abonnement bénéficie d'une période de garantie de 24 heures consécutives à compter de la réception de vos identifiants.
+        </p>
+
+        <!-- Refund Guarantee Visual Banner -->
+        <div class="rounded-3xl overflow-hidden border border-emerald-500/30 shadow-2xl max-w-2xl mx-auto group">
+          <img 
+            src="/images/garantie-remboursement-24h.webp" 
+            alt="Engagement et garantie contractuelle 24 heures satisfait ou remboursé intégralement" 
+            class="w-full h-auto max-h-[380px] object-cover transition-transform duration-700 group-hover:scale-[1.01]"
+            width="1200"
+            height="675"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+
+      <!-- Content Box -->
+      <div class="rounded-3xl bg-[#11121C] border border-white/[0.08] p-8 sm:p-12 space-y-8 text-gray-300 text-sm leading-relaxed">
+        
+        <!-- Highlight Callout Box -->
+        <div class="p-6 rounded-2xl bg-gradient-to-r from-emerald-950/40 to-[#121422] border border-emerald-500/40 text-emerald-300 flex items-start gap-4">
+          <ShieldCheck class="w-7 h-7 text-emerald-400 shrink-0 mt-0.5" />
+          <div>
+            <h2 class="text-base font-bold text-white mb-1">Garantie Intégrale de 24 Heures</h2>
+            <p class="text-xs sm:text-sm text-gray-300">
+              Chez <strong>Abonnement IPTV France</strong>, nous avons une confiance absolue dans la stabilité de nos flux et de notre technologie Anti-Freeze 9.8™. Si, dans les <strong>24 heures suivant l'envoi de vos identifiants</strong>, le service ne répond pas à vos attentes techniques, nous vous remboursons à 100%.
+            </p>
+          </div>
+        </div>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">1.</span> Conditions d'Éligibilité au Remboursement
+          </h2>
+          <p class="mb-3">
+            Pour être éligible au remboursement intégral, les critères suivants doivent être impérativement réunis :
+          </p>
+          <ul class="space-y-2.5 pl-4">
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <span>La demande doit être formulée par écrit dans un délai strict de <strong>24 heures consécutives</strong> après la délivrance de vos codes d'accès (horodatage du message WhatsApp ou de l'email faisant foi).</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <span>Vous devez fournir l'adresse email ou le numéro WhatsApp utilisé lors de la commande ainsi que la référence de transaction.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <span>Vous avez préalablement sollicité notre support pour tenter de résoudre les éventuelles difficultés de configuration de l'application.</span>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">2.</span> Procédure Simple de Demande en 2 Étapes
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+            <div class="p-5 rounded-2xl bg-black/40 border border-white/5">
+              <div class="text-xs font-bold text-[#60A5FA] uppercase tracking-wider mb-1">Option Rapide (Recommandée)</div>
+              <div class="text-base font-bold text-white mb-2">Message Direct WhatsApp</div>
+              <p class="text-xs text-gray-400 mb-4 leading-relaxed">
+                Contactez notre permanence au <strong>+1 803 658 2620</strong> avec votre numéro de commande et le motif de votre demande. Traitement prioritaire en direct.
+              </p>
+              <a
+                href={whatsappRefundUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-300 text-xs font-bold hover:bg-emerald-500/30 transition-colors"
+              >
+                <MessageCircle class="w-3.5 h-3.5" />
+                <span>Ouvrir WhatsApp</span>
+              </a>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-black/40 border border-white/5">
+              <div class="text-xs font-bold text-purple-400 uppercase tracking-wider mb-1">Option Email</div>
+              <div class="text-base font-bold text-white mb-2">Courrier Électronique</div>
+              <p class="text-xs text-gray-400 mb-4 leading-relaxed">
+                Envoyez votre message à <strong>support@castvera.com</strong> ou <strong>contact@abonnement-iptv.cloud</strong> avec pour objet « Demande de remboursement 24h - [Votre Nom] ».
+              </p>
+              <a
+                href="mailto:support@castvera.com?subject=Demande%20de%20remboursement%2024h"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-500/20 text-purple-300 text-xs font-bold hover:bg-purple-500/30 transition-colors"
+              >
+                <span>Envoyer un Email</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">3.</span> Délais et Mode de Restitution
+          </h2>
+          <p>
+            Une fois votre demande validée par notre service financier, le remboursement est ordonné dans un délai de <strong>24 à 48 heures ouvrées</strong> via le même moyen de paiement que celui utilisé lors de la commande initiale (re-crédit sur carte bancaire, compte PayPal ou portefeuille crypto).
+          </p>
+        </section>
+
+        <section>
+          <div class="p-5 rounded-2xl bg-red-950/20 border border-red-500/30 text-xs text-gray-300 space-y-2">
+            <div class="flex items-center gap-2 text-red-400 font-bold text-sm">
+              <AlertTriangle class="w-4 h-4" />
+              <span>Rappel Important sur le Délai de 24 Heures</span>
+            </div>
+            <p>
+              Conformément à la réglementation sur la délivrance de contenus numériques personnalisés activés instantanément, <strong>aucune demande de remboursement ne pourra être acceptée au-delà du délai initial de 24 heures</strong>. Nous vous recommandons de tester pleinement vos flux dès réception de vos identifiants.
+            </p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

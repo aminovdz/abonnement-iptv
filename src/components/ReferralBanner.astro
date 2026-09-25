@@ -1,0 +1,79 @@
+---
+import { Gift, Users, Sparkles, ArrowRight, ShieldCheck } from 'lucide-astro';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<section class={`py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto ${className}`} aria-labelledby="referral-banner-title">
+  <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#0C0E1A] via-[#101326] to-[#0A0C16] border border-[#0055D4]/30 p-8 sm:p-12 shadow-2xl">
+    <!-- Decorative background elements -->
+    <div class="absolute -top-24 -right-24 w-96 h-96 bg-[#0055D4]/15 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-[#DC2626]/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <!-- Left Content -->
+      <div class="lg:col-span-8 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-semibold tracking-wide uppercase">
+          <Sparkles class="w-3.5 h-3.5" />
+          <span>Programme de Parrainage Officiel 2026</span>
+        </div>
+
+        <h3 id="referral-banner-title" class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-snug">
+          Recommandez Notre Service à Vos Proches et Recevez <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] to-[#F87171]">30 Jours Gratuits !</span>
+        </h3>
+
+        <p class="text-gray-300 text-sm sm:text-base leading-relaxed max-w-2xl font-normal">
+          Partagez la qualité de notre streaming sans coupure avec vos amis ou votre famille. Pour chaque proche qui souscrit à une formule annuelle, recevez <strong>1 mois supplémentaire offert</strong> sur votre propre compte. Votre filleul bénéficie quant à lui de 10% de réduction immédiate !
+        </p>
+
+        <!-- Perks list -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+          <div class="flex items-center gap-2.5 text-gray-300 text-xs sm:text-sm">
+            <div class="w-7 h-7 rounded-full bg-[#0055D4]/20 text-[#60A5FA] flex items-center justify-center shrink-0">
+              <Gift class="w-4 h-4" />
+            </div>
+            <span>+30 Jours par filleul</span>
+          </div>
+
+          <div class="flex items-center gap-2.5 text-gray-300 text-xs sm:text-sm">
+            <div class="w-7 h-7 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center shrink-0">
+              <Users class="w-4 h-4" />
+            </div>
+            <span>Filleuls illimités</span>
+          </div>
+
+          <div class="flex items-center gap-2.5 text-gray-300 text-xs sm:text-sm">
+            <div class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+              <ShieldCheck class="w-4 h-4" />
+            </div>
+            <span>Validation immédiate</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Action CTA -->
+      <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center items-stretch lg:items-end">
+        <a
+          href="/referral"
+          class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-gradient-to-r from-[#0055D4] to-[#1E40AF] hover:from-[#1E40AF] hover:to-[#0055D4] text-white font-extrabold text-sm uppercase tracking-wider shadow-[0_0_25px_rgba(0,85,212,0.4)] transition-all duration-200 hover:scale-[1.02] text-center"
+        >
+          <span>Découvrir le Parrainage</span>
+          <ArrowRight class="w-4 h-4" />
+        </a>
+
+        <a
+          href="https://wa.me/18036582620?text=Bonjour%21+Je+souhaite+parrainer+un+ami+sur+Abonnement+IPTV."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] text-gray-300 hover:text-white text-xs font-semibold transition-colors text-center"
+        >
+          <span>Parrainer via WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

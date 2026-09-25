@@ -1,0 +1,111 @@
+---
+import { HelpCircle, ChevronDown, MessageCircle } from 'lucide-astro';
+
+const faqs = [
+  {
+    question: "Qu'est-ce qu'un abonnement IPTV et comment ça fonctionne ?",
+    answer: "L'IPTV (Internet Protocol Television) est une technologie qui transmet les flux audiovisuels directement via votre connexion internet, plutôt que par une antenne râteau classique ou une parabole satellite. Après avoir souscrit, vous recevez un lien M3U et des identifiants Xtream Codes que vous intégrez dans une application sur votre Smart TV connectée, clé multimédia TV 4K ou smartphone pour regarder instantanément vos programmes en qualité 4K Ultra HD."
+  },
+  {
+    question: "L'IPTV est-il légal en France et que dit l'Arcom (ex-Hadopi) ?",
+    answer: "La technologie IPTV en elle-même est un protocole de télécommunication parfaitement légal et standardisé, utilisé par les fournisseurs d'accès internet du monde entier. En tant qu'utilisateur, regarder un flux en direct pour un usage strictement privé ne constitue pas un acte de contrefaçon au sens de la distribution publique. De plus, les dispositifs automatisés de l'Arcom ciblent le protocole de partage torrent (P2P) et non la réception de flux de streaming individuel chiffré."
+  },
+  {
+    question: "Comment recevoir mes identifiants et quel est le délai d'activation ?",
+    answer: "L'activation est entièrement automatisée et immédiate 24h/24 et 7j/7. Dès confirmation de votre règlement par Carte Bancaire, PayPal ou Crypto, vos identifiants (lien M3U, code Xtream, serveur, nom d'utilisateur et mot de passe) vous sont envoyés en moins de 2 minutes directement sur WhatsApp ou par email avec le guide de configuration."
+  },
+  {
+    question: "Qu'est-ce que la technologie Anti-Freeze 9.8™ et évite-t-elle les coupures ?",
+    answer: "La technologie Anti-Freeze 9.8™ est un algorithme exclusif de redondance et de mise en mémoire tampon dynamique développé pour nos serveurs européens. Même lors des grands soirs d'affluence sportive, le système répartit la charge entre plusieurs serveurs miroirs haute vitesse à 10 Gbps pour éliminer le buffering, les gels d'image et les déconnexions intempestives."
+  },
+  {
+    question: "Sur quels appareils puis-je regarder mes programmes ?",
+    answer: "Notre abonnement IPTV est compatible avec 100% des appareils modernes : Smart TV connectées de toutes marques récentes, clés multimédias HDMI 4K, boîtiers de streaming de salon, téléphones et tablettes (iOS et Android), ainsi qu'ordinateurs (Windows, Mac, Linux). Vous pouvez utiliser vos lecteurs multimédias préférés (TiviMate, IBO Player, IPTV Smarters Pro, Smart IPTV)."
+  },
+  {
+    question: "Le lecteur IPTV Premium est-il réellement offert avec les formules 6 et 12 mois ?",
+    answer: "Oui, absolument ! Pour toute souscription à nos formules 6 Mois (30 €) ou 12 Mois (55 €), nous vous offrons l'activation complète d'une licence pour lecteur multimédia IPTV Premium (valeur de 15 €), sans aucun coût additionnel, vous garantissant une interface fluide et moderne sur votre téléviseur."
+  },
+  {
+    question: "Quelle est votre politique de remboursement ?",
+    answer: "Nous appliquons une politique de garantie satisfait ou remboursé valable strictement pendant 24 heures à compter de l'activation du service. Si vous constatez un problème technique persistant que notre assistance 24/7 ne peut résoudre, un simple message sur notre support WhatsApp vous permet d'obtenir le remboursement intégral de votre commande sans formalités compliquées."
+  },
+  {
+    question: "Quels sont les modes de paiement disponibles ?",
+    answer: "Nous acceptons les méthodes de paiement les plus sûres et reconnues en France : Carte Bancaire (Carte Bleue, Visa, Mastercard) avec sécurité 3D-Secure, PayPal pour une protection maximale de vos achats, et les cryptomonnaies (USDT, Bitcoin) pour les utilisateurs souhaitant une discrétion totale."
+  }
+];
+
+// Exact JSON-LD FAQPage Schema for Google Rich Snippets
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<section id="faq" class="py-20 md:py-28 relative bg-[#090A10] overflow-hidden" aria-labelledby="faq-heading">
+  <!-- FAQ Schema Injection for Rich Snippets -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+        <HelpCircle class="w-3.5 h-3.5 text-[#60A5FA]" />
+        <span>Réponses à Vos Questions</span>
+      </div>
+      <h2 id="faq-heading" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+        Foire Aux Questions sur l'<span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#F87171]">Abonnement IPTV</span>
+      </h2>
+      <p class="text-base sm:text-lg text-gray-300 font-normal leading-relaxed">
+        Tout ce que vous devez savoir avant de commander : fonctionnement, légalité en France, délai de livraison et compatibilité technique.
+      </p>
+    </div>
+
+    <!-- FAQ Accordion List -->
+    <div class="space-y-4" role="region" aria-label="Questions fréquentes">
+      {faqs.map((faq) => (
+        <details class="group rounded-2xl bg-[#11121C]/90 border border-white/[0.08] hover:border-[#0055D4]/40 transition-all duration-200 overflow-hidden shadow-sm">
+          <summary class="flex items-center justify-between p-6 cursor-pointer list-none select-none text-left focus:outline-none focus:ring-1 focus:ring-[#0055D4]">
+            <h3 class="text-base sm:text-lg font-bold text-white pr-4 tracking-tight group-hover:text-[#60A5FA] transition-colors">
+              {faq.question}
+            </h3>
+            <span class="w-8 h-8 rounded-full bg-white/[0.05] group-hover:bg-[#0055D4]/20 border border-white/[0.08] flex items-center justify-center shrink-0 transition-transform duration-300 group-open:rotate-180 text-gray-300 group-hover:text-[#60A5FA]">
+              <ChevronDown class="w-4 h-4" />
+            </span>
+          </summary>
+          <div class="px-6 pb-6 pt-1 text-xs sm:text-sm text-gray-300 leading-relaxed border-t border-white/[0.04]">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- Bottom Help Box -->
+    <div class="mt-12 p-6 rounded-2xl bg-[#121422] border border-[#0055D4]/30 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div>
+        <h4 class="text-sm font-bold text-white mb-1">Vous avez une question spécifique qui n'apparaît pas ici ?</h4>
+        <p class="text-xs text-gray-400">Notre équipe francophone vous répond en direct sur WhatsApp 7j/7.</p>
+      </div>
+      <a
+        href="https://wa.me/18036582620?text=Bonjour%21+J%27ai+une+question+concernant+l%27abonnement+IPTV."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#0055D4] to-[#1E40AF] text-white text-xs font-bold uppercase tracking-wider shrink-0 shadow-md hover:scale-[1.02] transition-transform"
+      >
+        <MessageCircle class="w-4 h-4 text-emerald-300" />
+        <span>Poser une Question</span>
+      </a>
+    </div>
+
+  </div>
+</section>

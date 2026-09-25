@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { Gift, ShieldCheck, MessageCircle } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+const whatsappShareUrl = "https://wa.me/?text=Salut%20%21%20Je%20te%20recommande%20le%20meilleur%20abonnement%20IPTV%20en%20France%20pour%20regarder%20tout%20le%20sport%20et%20la%20TV%20en%204K%20sans%20coupure%20%3A%20https%3A%2F%2Fabonnement-iptv.cloud";
+---
+
+<Layout
+  title={`Programme de Parrainage — Abonnement IPTV France ${currentYear}`}
+  description="Invitez vos proches à tester notre abonnement IPTV et gagnez 30 jours gratuits pour chaque filleul inscrit. Vos amis profitent de 10% de réduction immédiate."
+  canonicalURL="https://abonnement-iptv.cloud/referral"
+>
+  <StickyHeader currentPath="/referral" />
+
+  <main class="flex-1 py-16 sm:py-24 bg-[#090A10]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="mb-16 text-center max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+          <Gift class="w-3.5 h-3.5" />
+          <span>Partagez & Gagnez des Mois Gratuits</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+          Programme de Parrainage <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] to-[#F87171]">Abonnement IPTV</span>
+        </h1>
+        <p class="text-base sm:text-lg text-gray-300 leading-relaxed font-normal">
+          Vous aimez la stabilité de notre service ? Recommandez-le à vos amis, vos collègues ou votre famille et recevez <strong>1 mois supplémentaire gratuit</strong> pour chaque nouvel abonné annuel.
+        </p>
+      </div>
+
+      <!-- How it works 3 steps -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        <div class="p-7 rounded-3xl bg-[#11121C] border border-white/[0.08] text-center">
+          <div class="w-12 h-12 rounded-2xl bg-[#0055D4]/20 text-[#60A5FA] font-black text-xl flex items-center justify-center mx-auto mb-4">
+            1
+          </div>
+          <h3 class="text-base font-bold text-white mb-2">Partagez Votre Lien</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Envoyez votre recommandation à un proche par WhatsApp, Telegram ou message privé en lui partageant notre site.
+          </p>
+        </div>
+
+        <div class="p-7 rounded-3xl bg-[#11121C] border border-[#0055D4]/40 text-center shadow-lg">
+          <div class="w-12 h-12 rounded-2xl bg-[#DC2626]/20 text-red-400 font-black text-xl flex items-center justify-center mx-auto mb-4">
+            2
+          </div>
+          <h3 class="text-base font-bold text-white mb-2">Votre Filleul S'abonne</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Votre proche indique votre nom ou numéro lors de sa commande et reçoit immédiatement <strong>10% de remise</strong> de bienvenue.
+          </p>
+        </div>
+
+        <div class="p-7 rounded-3xl bg-[#11121C] border border-white/[0.08] text-center">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 font-black text-xl flex items-center justify-center mx-auto mb-4">
+            3
+          </div>
+          <h3 class="text-base font-bold text-white mb-2">Vous Gagnez +30 Jours</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Nous ajoutons automatiquement 30 jours gratuits à votre compte actif. Cumulez jusqu'à 12 mois offerts !
+          </p>
+        </div>
+      </div>
+
+      <!-- Referral Visual Banner -->
+      <div class="rounded-3xl overflow-hidden border border-emerald-500/30 shadow-2xl mb-12 group">
+        <img 
+          src="/images/programme-parrainage-iptv.webp" 
+          alt="Programme de parrainage Abonnement IPTV France recevez 1 mois gratuit pour chaque ami parrainé" 
+          class="w-full h-auto max-h-[440px] object-cover transition-transform duration-700 group-hover:scale-[1.01]"
+          width="1200"
+          height="675"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+
+      <!-- Referral Calculator & Benefits Card -->
+      <div class="rounded-3xl bg-gradient-to-br from-[#121422] to-[#0A0B14] border border-[#0055D4]/40 p-8 sm:p-12 mb-16 shadow-2xl">
+        <div class="max-w-2xl mx-auto text-center space-y-6">
+          <h3 class="text-2xl font-bold text-white">
+            Partagez dès maintenant sur WhatsApp
+          </h3>
+          <p class="text-sm text-gray-300">
+            Cliquez ci-dessous pour envoyer un message d'invitation pré-rédigé à vos contacts :
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+            <a
+              href={whatsappShareUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-extrabold text-sm uppercase tracking-wider shadow-lg shadow-[#25D366]/30 transition-transform hover:scale-[1.02]"
+            >
+              <MessageCircle class="w-5 h-5" />
+              <span>Partager sur WhatsApp</span>
+            </a>
+
+            <a
+              href="https://wa.me/18036582620?text=Bonjour%21+Je+souhaite+enregistrer+le+parrainage+d%27un+ami."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-white/[0.08] hover:bg-white/[0.14] text-white font-bold text-xs uppercase tracking-wider transition-colors border border-white/[0.1]"
+            >
+              <span>Valider un Parrainage</span>
+            </a>
+          </div>
+
+          <div class="pt-6 border-t border-white/[0.06] flex items-center justify-center gap-6 text-xs text-gray-400">
+            <span class="flex items-center gap-1.5 text-emerald-400 font-semibold">
+              <ShieldCheck class="w-4 h-4" /> Aucun plafond de parrainage
+            </span>
+            <span>•</span>
+            <span>Cumulable avec toutes les formules</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

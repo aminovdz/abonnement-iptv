@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { FileText } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`Conditions Générales de Vente (CGV) — Abonnement IPTV France ${currentYear}`}
+  description="Consultez les Conditions Générales de Vente et d'Utilisation régissant la souscription à nos formules d'abonnement IPTV en France. Services numériques prépayés et sans engagement."
+  canonicalURL="https://abonnement-iptv.cloud/terms"
+>
+  <StickyHeader currentPath="/terms" />
+
+  <main class="flex-1 py-16 sm:py-24 bg-[#090A10]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="mb-12 text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+          <FileText class="w-3.5 h-3.5 text-[#60A5FA]" />
+          <span>Cadre Contractuel Officiel</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+          Conditions Générales de Vente (CGV)
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-400">
+          En vigueur à compter du 1er Janvier {currentYear} · Régissant les prestations de services numériques sur abonnement-iptv.cloud
+        </p>
+      </div>
+
+      <!-- Content Box -->
+      <div class="rounded-3xl bg-[#11121C] border border-white/[0.08] p-8 sm:p-12 space-y-8 text-gray-300 text-sm leading-relaxed">
+        
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">1.</span> Préambule & Objet
+          </h2>
+          <p>
+            Les présentes Conditions Générales de Vente s'appliquent sans restriction ni réserve à l'ensemble des souscriptions conclues par tout utilisateur (« Le Client ») sur le site <strong>abonnement-iptv.cloud</strong> (« Le Vendeur »). Elles définissent les droits et obligations des parties dans le cadre de la fourniture d'accès techniques à des flux multimédias en protocole IPTV.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">2.</span> Description des Services & Livraison
+          </h2>
+          <p class="mb-3">
+            Le service consiste en la délivrance d'un identifiant technique personnel (lien de liste M3U chiffré et identifiants d'API Xtream Codes) permettant au Client de lire des flux audiovisuels sur ses propres équipements compatibles (Smart TV, boîtiers TV, smartphones, ordinateurs).
+          </p>
+          <p>
+            <strong>Délai d'exécution :</strong> La livraison s'effectue par voie électronique instantanée (messagerie WhatsApp ou courrier électronique) dans un délai indicatif de <strong>2 minutes</strong> suivant la validation du règlement, et au plus tard dans les 2 heures en cas de maintenance serveur programmée.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">3.</span> Tarification & Modalités de Paiement
+          </h2>
+          <p class="mb-3">
+            Les tarifs de nos formules sont indiqués en Euros (€) toutes taxes comprises :
+          </p>
+          <ul class="space-y-1.5 pl-4 text-xs sm:text-sm mb-3">
+            <li>• <strong>Formule 12 Mois (Bestseller) :</strong> 55,00 € TTC (incluant la licence du Lecteur Premium offerte)</li>
+            <li>• <strong>Formule 6 Mois (Populaire) :</strong> 30,00 € TTC (incluant la licence du Lecteur Premium offerte)</li>
+            <li>• <strong>Formule 3 Mois (Trimestre) :</strong> 20,00 € TTC</li>
+            <li>• <strong>Formule 1 Mois (Découverte) :</strong> 8,00 € TTC</li>
+          </ul>
+          <p>
+            Le règlement s'effectue en amont de la mise à disposition du service par Carte Bancaire sécurisée, PayPal ou Cryptomonnaies. <strong>Nos formules sont prépayées et ne font l'objet d'aucun prélèvement automatique récurrent à l'insu du Client.</strong>
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">4.</span> Règles d'Usage & Limitation de Connexions
+          </h2>
+          <p class="mb-2">
+            Chaque abonnement standard donne droit à <strong>une (1) connexion active simultanée</strong>. Le Client s'engage à utiliser ses accès pour son usage strictement privé et personnel dans le cercle familial.
+          </p>
+          <p class="text-xs text-amber-300 bg-amber-500/10 p-3 rounded-xl border border-amber-500/20">
+            ⚠️ Est formellement interdite toute tentative de re-diffusion publique, partage massif de codes ou redistribution commerciale des flux sur des serveurs tiers, sous peine de suspension immédiate de la ligne sans indemnité.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">5.</span> Politique de Rétractation & Remboursement (24 Heures)
+          </h2>
+          <p class="mb-2">
+            Conformément à l'article L.221-28 13° du Code de la consommation, le droit de rétractation légal de 14 jours ne peut être exercé pour les contrats de fourniture d'un contenu numérique sans support matériel dont l'exécution a commencé après accord préalable exprès du consommateur.
+          </p>
+          <p>
+            Toutefois, à titre commercial et pour garantir votre entière satisfaction, <strong>Abonnement IPTV France accorde une garantie exclusive de remboursement intégral valable pendant une durée stricte de 24 heures consécutives à compter de l'activation des identifiants</strong>. Passé ce délai de 24h, aucun remboursement ne pourra être consenti.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">6.</span> Responsabilité & Qualité de Connexion
+          </h2>
+          <p>
+            La qualité de diffusion des flux en Ultra Haute Définition 4K/8K dépend intrinsèquement de la qualité de la connexion Internet locale de l'utilisateur (un débit stable d'au moins 20 Mbps est recommandé pour les flux 4K). Le Vendeur ne saurait être tenu responsable des dysfonctionnements imputables au fournisseur d'accès internet du Client ou à des équipements non compatibles.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">7.</span> Droit Applicable & Litiges
+          </h2>
+          <p>
+            Les présentes CGV sont soumises à la législation européenne applicable en matière de commerce électronique. En cas de réclamation, le Client est invité à contacter en priorité notre assistance amiable par email à <a href="mailto:support@castvera.com" class="text-[#60A5FA] hover:underline">support@castvera.com</a> ou par message WhatsApp.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

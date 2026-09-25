@@ -1,0 +1,120 @@
+---
+import { CheckCircle2, X, Zap } from 'lucide-astro';
+---
+
+<aside
+  id="social-proof-toast"
+  aria-live="polite"
+  class="fixed bottom-5 left-5 z-40 max-w-sm w-full transition-all duration-500 ease-out transform translate-y-32 opacity-0 pointer-events-none"
+>
+  <div class="relative overflow-hidden rounded-2xl bg-[#11121C]/95 backdrop-blur-xl border border-white/[0.1] p-4 shadow-2xl shadow-black/80 flex items-start gap-3 pointer-events-auto">
+    <!-- Indicator icon -->
+    <div class="relative shrink-0 mt-0.5">
+      <div class="w-10 h-10 rounded-xl bg-[#0055D4]/20 border border-[#0055D4]/30 flex items-center justify-center text-[#60A5FA]">
+        <Zap class="w-5 h-5 text-[#60A5FA] animate-pulse" />
+      </div>
+      <span class="absolute -bottom-0.5 -right-0.5 flex h-3 w-3">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+      </span>
+    </div>
+
+    <!-- Message Content -->
+    <div class="flex-1 min-w-0 pr-4">
+      <div class="flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
+        <CheckCircle2 class="w-3.5 h-3.5" />
+        <span>Activation en Direct</span>
+      </div>
+      <p id="social-proof-name" class="text-sm font-bold text-white truncate mt-0.5">
+        Alexandre de Marseille
+      </p>
+      <p id="social-proof-action" class="text-xs text-gray-300 mt-0.5">
+        A activé la Formule 12 Mois (55 €)
+      </p>
+      <span id="social-proof-time" class="text-[10px] text-gray-400 mt-1 block font-mono">
+        Il y a 3 minutes
+      </span>
+    </div>
+
+    <!-- Close button -->
+    <button
+      id="close-social-proof"
+      type="button"
+      class="text-gray-400 hover:text-white transition-colors p-1 -mr-1 -mt-1 rounded-lg focus:outline-none"
+      aria-label="Fermer la notification"
+    >
+      <X class="w-4 h-4" />
+    </button>
+  </div>
+</aside>
+
+<script>
+  interface PurchaseNotification {
+    name: string;
+    city: string;
+    action: string;
+    time: string;
+  }
+
+  const notifications: PurchaseNotification[] = [
+    { name: 'Alexandre M.', city: 'Marseille', action: 'A activé la Formule 12 Mois (55 € + Lecteur Premium)', time: 'Il y a 2 minutes' },
+    { name: 'Julien D.', city: 'Paris (15e)', action: 'A souscrit à la Formule 12 Mois', time: 'Il y a 5 minutes' },
+    { name: 'Stéphane R.', city: 'Lyon', action: 'A activé son abonnement 6 Mois (30 €)', time: 'Il y a 8 minutes' },
+    { name: 'Antoine L.', city: 'Toulouse', action: 'A renouvelé pour 12 Mois (Anti-Freeze 9.8™)', time: 'Il y a 12 minutes' },
+    { name: 'Maxime F.', city: 'Lille', action: 'A activé la Formule 12 Mois (Lecteur Inclus)', time: 'Il y a 14 minutes' },
+    { name: 'Romain B.', city: 'Nice', action: 'A activé un essai 24h gratuit sur WhatsApp', time: 'Il y a 18 minutes' },
+    { name: 'Thibault G.', city: 'Bordeaux', action: 'A commandé la Formule 12 Mois (55 €)', time: 'Il y a 22 minutes' },
+    { name: 'Sébastien V.', city: 'Nantes', action: 'A activé son pass trimestriel', time: 'Il y a 25 minutes' }
+  ];
+
+  let currentIndex = 0;
+  let isToastDismissed = false;
+
+  const toast = document.getElementById('social-proof-toast');
+  const nameEl = document.getElementById('social-proof-name');
+  const actionEl = document.getElementById('social-proof-action');
+  const timeEl = document.getElementById('social-proof-time');
+  const closeBtn = document.getElementById('close-social-proof');
+
+  function updateToast(notif: PurchaseNotification) {
+    if (nameEl) nameEl.textContent = `${notif.name} (${notif.city})`;
+    if (actionEl) actionEl.textContent = notif.action;
+    if (timeEl) timeEl.textContent = notif.time;
+  }
+
+  function showToast() {
+    if (isToastDismissed || !toast) return;
+
+    updateToast(notifications[currentIndex]);
+    currentIndex = (currentIndex + 1) % notifications.length;
+
+    toast.classList.remove('translate-y-32', 'opacity-0', 'pointer-events-none');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    // Hide after 6 seconds
+    setTimeout(() => {
+      hideToast();
+    }, 6000);
+  }
+
+  function hideToast() {
+    if (!toast) return;
+    toast.classList.remove('translate-y-0', 'opacity-100');
+    toast.classList.add('translate-y-32', 'opacity-0', 'pointer-events-none');
+  }
+
+  // Initial trigger after 8 seconds, then interval every 22 seconds
+  setTimeout(() => {
+    showToast();
+    setInterval(() => {
+      showToast();
+    }, 22000);
+  }, 8000);
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      isToastDismissed = true;
+      hideToast();
+    });
+  }
+</script>

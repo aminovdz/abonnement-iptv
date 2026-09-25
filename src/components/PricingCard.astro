@@ -1,0 +1,272 @@
+---
+import { Check, Sparkles, ShieldCheck, MessageCircle, Zap } from 'lucide-astro';
+
+interface Plan {
+  id: string;
+  name: string;
+  duration: string;
+  price: string;
+  monthlyEquivalent: string;
+  savings?: string;
+  featured?: boolean;
+  popularBadge?: string;
+  bonus?: string;
+  features: string[];
+  ctaText: string;
+  whatsappMessage: string;
+}
+
+// Strict Rule: Always start the pricing table/cards with the 12-month plan prominently displayed
+const plans: Plan[] = [
+  {
+    id: "12-months",
+    name: "Formule 12 Mois + Lecteur Premium",
+    duration: "12 Mois",
+    price: "55",
+    monthlyEquivalent: "soit seulement ~4,58 € / mois",
+    savings: "OFFERT : Lecteur Premium Inclus · Meilleure Vente",
+    featured: true,
+    popularBadge: "LE CHOIX N°1 EN FRANCE",
+    bonus: "Cadeau exclusif : Activation de l'application Lecteur Premium offerte !",
+    features: [
+      "Lecteur Premium activé gratuitement (valeur 15 €)",
+      "Streaming Ultra HD 4K & 8K fluide à 60 FPS",
+      "Technologie Anti-Freeze 9.8™ anti-coupures",
+      "Grille des programmes (EPG) avec Replay 7 jours",
+      "Accès à tous les directs sportifs et grands événements",
+      "Compatible Smart TV connectées, clés 4K, boîtiers TV & PC",
+      "Activation instantanée en 2 minutes via WhatsApp",
+      "Assistance technique prioritaire 24/7 en français",
+      "Garantie satisfait ou remboursé sous 24 heures"
+    ],
+    ctaText: "Choisir la Formule 12 Mois (55 €)",
+    whatsappMessage: "Bonjour%21+Je+souhaite+commander+la+Formule+12+Mois+Abonnement+IPTV+%C3%A0+55+%E2%82%AC+avec+le+Lecteur+Premium+offert."
+  },
+  {
+    id: "6-months",
+    name: "Formule 6 Mois + Lecteur Premium",
+    duration: "6 Mois",
+    price: "30",
+    monthlyEquivalent: "soit 5,00 € / mois",
+    savings: "OFFERT : Lecteur Premium Inclus",
+    featured: false,
+    popularBadge: "FORMULE POPULAIRE",
+    bonus: "Cadeau exclusif : Application Lecteur Premium incluse !",
+    features: [
+      "Lecteur Premium activé gratuitement",
+      "Qualité d'image 4K Ultra HD & Full HD 60 FPS",
+      "Technologie Anti-Freeze 9.8™ anti-coupures",
+      "Guide électronique des programmes EPG & Replay",
+      "Accès aux championnats sportifs en direct",
+      "Support sur Smart TV connectées, clés 4K et smartphones",
+      "Activation en 2 minutes sur WhatsApp",
+      "Assistance client 24/7 en français",
+      "Garantie satisfait ou remboursé sous 24 heures"
+    ],
+    ctaText: "Choisir la Formule 6 Mois (30 €)",
+    whatsappMessage: "Bonjour%21+Je+souhaite+commander+la+Formule+6+Mois+Abonnement+IPTV+%C3%A0+30+%E2%82%AC+avec+le+Lecteur+Premium+inclus."
+  },
+  {
+    id: "3-months",
+    name: "Formule 3 Mois",
+    duration: "3 Mois",
+    price: "20",
+    monthlyEquivalent: "soit ~6,67 € / mois",
+    savings: "Idéal pour tester sur la durée",
+    featured: false,
+    features: [
+      "Diffusion en haute qualité Full HD et 4K",
+      "Technologie de streaming Anti-Freeze 9.8™",
+      "Accès complet aux flux et au sport en direct",
+      "Guide EPG pour suivre vos émissions",
+      "Installation facile sur toutes vos applications",
+      "Activation rapide par WhatsApp ou email",
+      "Support technique 7j/7 en français",
+      "Garantie satisfait ou remboursé sous 24 heures"
+    ],
+    ctaText: "Choisir la Formule 3 Mois (20 €)",
+    whatsappMessage: "Bonjour%21+Je+souhaite+commander+la+Formule+3+Mois+Abonnement+IPTV+%C3%A0+20+%E2%82%AC."
+  },
+  {
+    id: "1-month",
+    name: "Formule 1 Mois Découverte",
+    duration: "1 Mois",
+    price: "8",
+    monthlyEquivalent: "8,00 € / mois",
+    savings: "Sans aucun engagement",
+    featured: false,
+    features: [
+      "Flux stables en Full HD & 4K",
+      "Anti-Freeze 9.8™ actif",
+      "Diffusion de tous les événements du mois",
+      "Compatible Smart TV, boîtiers et mobiles",
+      "Livraison des codes en 2 minutes",
+      "Renouvellement libre sans prélèvement automatique",
+      "Support technique en direct",
+      "Garantie satisfait ou remboursé sous 24 heures"
+    ],
+    ctaText: "Tester 1 Mois pour 8 €",
+    whatsappMessage: "Bonjour%21+Je+souhaite+tester+la+Formule+1+Mois+Abonnement+IPTV+%C3%A0+8+%E2%82%AC."
+  }
+];
+---
+
+<section id="pricing" class="py-20 md:py-28 relative bg-[#090A10] overflow-hidden" aria-labelledby="pricing-heading">
+  <!-- Ambient Gradients -->
+  <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-gradient-to-b from-[#0055D4]/12 via-[#DC2626]/08 to-transparent rounded-full blur-[150px]"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Heading -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+        <Sparkles class="w-3.5 h-3.5" />
+        <span>Tarifs Clairs & Sans Engagement</span>
+      </div>
+      <h2 id="pricing-heading" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+        Choisissez Votre <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#F87171]">Abonnement IPTV</span>
+      </h2>
+      <p class="text-gray-300 text-base sm:text-lg leading-relaxed font-normal">
+        Activez votre accès en moins de 2 minutes. Tous les forfaits intègrent notre technologie Anti-Freeze 9.8™, l'Ultra HD 4K et une assistance dédiée 7j/7.
+      </p>
+    </div>
+
+    <!-- Comparative Anchor Strip (Traditional Cable/Sat vs Our IPTV) -->
+    <div class="mb-14 p-6 rounded-2xl bg-gradient-to-r from-[#121422] via-[#161828] to-[#121422] border border-[#0055D4]/30 shadow-[0_10px_30px_rgba(0,85,212,0.15)] flex flex-col lg:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-4 text-left">
+        <div class="w-12 h-12 rounded-xl bg-[#DC2626]/20 border border-[#DC2626]/40 flex items-center justify-center text-red-400 shrink-0">
+          <Zap class="w-6 h-6" />
+        </div>
+        <div>
+          <h3 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+            Pourquoi payer plus de 80 €/mois pour vos abonnements cumulés ?
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-300">
+            Abonnements cumulés (sports, cinéma, options) = <span class="line-through text-red-400 font-semibold">960 € / an</span>. Avec notre formule annuelle 12 mois, profitez de tout pour <strong class="text-emerald-400 font-bold">seulement 55 € / an</strong> avec Lecteur Premium inclus.
+          </p>
+        </div>
+      </div>
+      <div class="shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+        <span>Économie de plus de 900 € / an</span>
+      </div>
+    </div>
+
+    <!-- Pricing Grid: 12-month FIRST as required -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 items-stretch">
+      {plans.map((plan) => (
+        <div class={`relative rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 ${
+          plan.featured
+            ? 'bg-gradient-to-b from-[#14182E] via-[#0F1222] to-[#0A0B14] border-2 border-[#0055D4] shadow-[0_0_40px_rgba(0,85,212,0.35)] lg:-translate-y-3'
+            : 'bg-[#11121C]/90 border border-white/[0.08] hover:border-white/[0.2] hover:bg-[#141624] shadow-lg'
+        }`}>
+          
+          <!-- Top Badge for 12 & 6 Months -->
+          {plan.popularBadge && (
+            <div class={`absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-wider shadow-md whitespace-nowrap ${
+              plan.featured
+                ? 'bg-gradient-to-r from-[#0055D4] to-[#DC2626] text-white'
+                : 'bg-white/[0.1] text-gray-200 border border-white/[0.15]'
+            }`}>
+              {plan.popularBadge}
+            </div>
+          )}
+
+          <div>
+            <!-- Plan Header -->
+            <div class="mb-5 pt-1 text-center">
+              <h3 class="text-xl font-bold text-white mb-2 tracking-tight">
+                {plan.name}
+              </h3>
+              {plan.savings && (
+                <span class={`inline-block text-[11px] font-bold px-2.5 py-0.5 rounded-full mb-3 ${
+                  plan.featured
+                    ? 'bg-[#0055D4]/25 text-[#60A5FA] border border-[#0055D4]/40'
+                    : 'bg-white/[0.05] text-gray-300'
+                }`}>
+                  {plan.savings}
+                </span>
+              )}
+
+              <!-- Price Display -->
+              <div class="flex items-baseline justify-center gap-1.5 my-3">
+                <span class="text-5xl font-black text-white tracking-tight">
+                  {plan.price} €
+                </span>
+                <span class="text-xs text-gray-400 font-semibold uppercase">
+                  / {plan.duration}
+                </span>
+              </div>
+              <p class="text-xs text-emerald-400 font-medium">
+                {plan.monthlyEquivalent}
+              </p>
+            </div>
+
+            <!-- Bonus Banner for 12 & 6 Months -->
+            {plan.bonus && (
+              <div class="mb-6 p-3 rounded-xl bg-[#0055D4]/15 border border-[#0055D4]/30 text-center">
+                <p class="text-[11px] font-bold text-[#60A5FA]">
+                  🎁 {plan.bonus}
+                </p>
+              </div>
+            )}
+
+            <!-- Features List -->
+            <div class="pt-5 border-t border-white/[0.06] mb-8">
+              <ul class="space-y-3 text-xs sm:text-[13px] text-gray-300">
+                {plan.features.map((feat) => (
+                  <li class="flex items-start gap-2.5">
+                    <Check class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span class="leading-snug">{feat}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card Action Button -->
+          <div class="pt-4 border-t border-white/[0.06]">
+            <a
+              href={`https://wa.me/18036582620?text=${plan.whatsappMessage}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={`w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-md ${
+                plan.featured
+                  ? 'bg-gradient-to-r from-[#0055D4] via-[#1E40AF] to-[#0055D4] hover:shadow-[0_0_25px_rgba(0,85,212,0.6)] text-white hover:scale-[1.02]'
+                  : 'bg-white/[0.08] hover:bg-white/[0.14] text-white hover:border-white/[0.3] border border-white/[0.1]'
+              }`}
+              aria-label={`Commander le forfait ${plan.name} sur WhatsApp`}
+            >
+              <MessageCircle class="w-4 h-4 text-emerald-300" />
+              <span>{plan.ctaText}</span>
+            </a>
+
+            <div class="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-gray-400">
+              <ShieldCheck class="w-3.5 h-3.5 text-emerald-400" />
+              <span>Garantie de remboursement 24h</span>
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    <!-- Reassurance Footer Strip -->
+    <div class="mt-16 text-center text-xs text-gray-400 flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span>Paiement sécurisé par Carte Bancaire, PayPal & Crypto</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span>Aucun renouvellement automatique forcé</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span>Livraison instantanée 24/7 sur WhatsApp</span>
+      </div>
+    </div>
+
+  </div>
+</section>

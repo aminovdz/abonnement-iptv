@@ -1,0 +1,508 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import PricingCard from '../../components/PricingCard.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import SupportedDevices from '../../components/SupportedDevices.astro';
+import CTASection from '../../components/CTASection.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+import ExitPopup from '../../components/ExitPopup.astro';
+import SocialPopup from '../../components/SocialPopup.astro';
+import GroupsPopup from '../../components/GroupsPopup.astro';
+import { 
+  MapPin, 
+  CheckCircle2, 
+  Zap, 
+  Tv, 
+  Wifi, 
+  Server, 
+  ChevronRight,
+  ArrowRight,
+  HelpCircle
+} from 'lucide-astro';
+
+export async function getStaticPaths() {
+  const citiesData = [
+    {
+      name: "Paris",
+      slug: "paris",
+      region: "Île-de-France",
+      postalCode: "75000",
+      coordinates: { latitude: "48.8566", longitude: "2.3522" },
+      population: "2,1 millions d'habitants",
+      localClub: "Paris Saint-Germain (PSG)",
+      datacenterHub: "Telehouse TH2 Voltaire & Equinix PA4",
+      latency: "6 ms",
+      isps: "Fibre optique ultra-rapide (1 à 8 Gb/s), box internet opérateurs et 4G/5G",
+      localDetails: "À Paris et en petite couronne, profitez d'une interconnexion directe avec les serveurs parisiens. Suivez les soirées de Ligue des Champions et les chocs du PSG au Parc des Princes avec un débit 4K 60FPS sans aucun lag.",
+      metaTitle: "Abonnement IPTV Paris (75) — Streaming 4K Sans Coupure & Anti-Freeze",
+      metaDescription: "Meilleur abonnement IPTV à Paris et en Île-de-France. Chaînes directes 4K UHD 60FPS, Ligue 1, sports et cinéma. Compatible box internet fibre, Smart TV connectées et boîtiers 4K. Test 24h."
+    },
+    {
+      name: "Marseille",
+      slug: "marseille",
+      region: "Provence-Alpes-Côte d'Azur",
+      postalCode: "13000",
+      coordinates: { latitude: "43.2965", longitude: "5.3698" },
+      population: "870 000 habitants",
+      localClub: "Olympique de Marseille (OM)",
+      datacenterHub: "Interxion MRS1 à MRS4 (Hub Méditerranée)",
+      latency: "7 ms",
+      isps: "Fibre optique très haut débit, box internet opérateurs et 4G/5G",
+      localDetails: "Idéal pour les soirs d'ambiance au Vélodrome ! Grâce à nos relais dans les datacenters sous-marins marseillais, les flux des matchs de l'OM restent parfaitement stables même en pleine affluence.",
+      metaTitle: "Abonnement IPTV Marseille (13) — Serveurs Rapides & Ligue 1 en Direct",
+      metaDescription: "Abonnement IPTV à Marseille et région PACA. Zéro coupure pendant les matchs de l'OM, serveurs locaux 10 Gbps, qualité 4K UHD. Assistance WhatsApp 24/7."
+    },
+    {
+      name: "Lyon",
+      slug: "lyon",
+      region: "Auvergne-Rhône-Alpes",
+      postalCode: "69000",
+      coordinates: { latitude: "45.7640", longitude: "4.8357" },
+      population: "520 000 habitants",
+      localClub: "Olympique Lyonnais (OL)",
+      datacenterHub: "Nœud d'échange LyonIX (Villeurbanne & Gerland)",
+      latency: "8 ms",
+      isps: "Fibre optique très haut débit, box internet opérateurs et 4G/5G",
+      localDetails: "Connecté directement au nœud LyonIX, notre réseau garantit aux Lyonnais une qualité d'image exceptionnelle pour les derbys de l'OL et les coupes d'Europe sans bridage aux heures de pointe.",
+      metaTitle: "Abonnement IPTV Lyon (69) — Flux 4K Stable & Anti-Freeze 9.8™",
+      metaDescription: "Découvrez le meilleur abonnement IPTV à Lyon et en Rhône-Alpes. Nœud LyonIX haute vitesse, 4K 60FPS pour la Ligue 1 et vos séries préférées. Activation 2 min."
+    },
+    {
+      name: "Toulouse",
+      slug: "toulouse",
+      region: "Occitanie",
+      postalCode: "31000",
+      coordinates: { latitude: "43.6047", longitude: "1.4442" },
+      population: "500 000 habitants",
+      localClub: "Stade Toulousain (Top 14 Rugby) & Toulouse FC",
+      datacenterHub: "TouIX (Toulouse Internet Exchange)",
+      latency: "9 ms",
+      isps: "Fibre optique très haut débit, box internet opérateurs et 4G/5G",
+      localDetails: "La ville rose vibre pour le rugby ! Ne manquez aucune rencontre du Stade Toulousain en Top 14 ni les matchs du TFC avec nos flux Ultra HD optimisés pour le grand Sud-Ouest.",
+      metaTitle: "Abonnement IPTV Toulouse (31) — Top 14 Rugby & Football 4K",
+      metaDescription: "Profitez de l'IPTV à Toulouse avec une qualité 4K sans coupure. Tous les matchs du Stade Toulousain et Ligue 1 en direct. Compatible Smart TV connectées, clés multimédias 4K et boîtiers."
+    },
+    {
+      name: "Nice",
+      slug: "nice",
+      region: "Provence-Alpes-Côte d'Azur",
+      postalCode: "06000",
+      coordinates: { latitude: "43.7102", longitude: "7.2620" },
+      population: "345 000 habitants",
+      localClub: "OGC Nice",
+      datacenterHub: "Relais Côte d'Azur & Sophia Antipolis",
+      latency: "9 ms",
+      isps: "Fibre optique très haut débit, box internet opérateurs et 4G/5G",
+      localDetails: "De l'Allianz Riviera à la Promenade des Anglais, regardez les chocs de l'OGC Nice, la Formule 1 à Monaco et les plus grands tournois de tennis en 4K UHD avec notre technologie Anti-Freeze 9.8™.",
+      metaTitle: "Abonnement IPTV Nice (06) — Côte d'Azur Streaming 4K Sans Coupure",
+      metaDescription: "Abonnement IPTV à Nice et sur la Côte d'Azur. Technologie Anti-Freeze 9.8™, zapping rapide et assistance 24/7 en français. Essai et activation instantanée."
+    },
+    {
+      name: "Nantes",
+      slug: "nantes",
+      region: "Pays de la Loire",
+      postalCode: "44000",
+      coordinates: { latitude: "47.2184", longitude: "-1.5536" },
+      population: "320 000 habitants",
+      localClub: "FC Nantes (Les Canaris)",
+      datacenterHub: "OuestIX Nantes & Angers",
+      latency: "9 ms",
+      isps: "Fibre optique très haut débit, box internet opérateurs et 4G/5G",
+      localDetails: "Profitez d'un accès ultra-fluide dans tout le bassin nantais et la Loire-Atlantique. Les matchs du FC Nantes et le meilleur du cinéma mondial directement sur votre Smart TV en haute résolution.",
+      metaTitle: "Abonnement IPTV Nantes (44) — Qualité Ultra HD & Anti-Coupure",
+      metaDescription: "Le service IPTV numéro 1 à Nantes et en Loire-Atlantique. Chaînes de sport, cinéma et documentaires en 4K. Replay 7 jours et installation facile."
+    },
+    {
+      name: "Strasbourg",
+      slug: "strasbourg",
+      region: "Grand Est",
+      postalCode: "67000",
+      coordinates: { latitude: "48.5734", longitude: "7.7521" },
+      population: "290 000 habitants",
+      localClub: "Racing Club de Strasbourg (RCSA)",
+      datacenterHub: "Alsace IX & Dorsale Rhénane",
+      latency: "7 ms",
+      isps: "Fibre optique très haut débit, box internet opérateurs et 4G/5G",
+      localDetails: "Grâce à notre proximité immédiate avec les grands carrefours réseau européens, profitez d'une stabilité absolue pour les rencontres du RCSA à la Meinau et toutes les chaînes francophones et européennes.",
+      metaTitle: "Abonnement IPTV Strasbourg (67) — Alsace & Grand Est en 4K UHD",
+      metaDescription: "Abonnement IPTV à Strasbourg et en Alsace. Connexion stable sans lag sur le réseau Grand Est. Vos sports et chaînes en direct à partir de 55 €/an."
+    },
+    {
+      name: "Montpellier",
+      slug: "montpellier",
+      region: "Occitanie",
+      postalCode: "34000",
+      coordinates: { latitude: "43.6108", longitude: "3.8767" },
+      population: "300 000 habitants",
+      localClub: "Montpellier Hérault SC (MHSC) & MHR Rugby",
+      datacenterHub: "Relais Hérault Telecom & Occitanie",
+      latency: "9 ms",
+      isps: "Fibre optique très haut débit, box internet opérateurs et 4G/5G",
+      localDetails: "Que vous suiviez le MHSC à la Mosson ou le MHR en Top 14, nos serveurs dédiés vous assurent un zapping sous la seconde et une clarté d'image 60 FPS sans buffering.",
+      metaTitle: "Abonnement IPTV Montpellier (34) — Streaming Haute Vitesse en Occitanie",
+      metaDescription: "Abonnement IPTV à Montpellier. Débit garanti sur la fibre, Anti-Freeze 9.8™ et support WhatsApp dédié. Regardez tous vos matchs en direct."
+    },
+    {
+      name: "Bordeaux",
+      slug: "bordeaux",
+      region: "Nouvelle-Aquitaine",
+      postalCode: "33000",
+      coordinates: { latitude: "44.8378", longitude: "-0.5792" },
+      population: "260 000 habitants",
+      localClub: "Union Bordeaux Bègles (UBB) & Girondins",
+      datacenterHub: "AquiIX & Nœuds Fibre Métropole",
+      latency: "8 ms",
+      isps: "Fibre optique très haut débit, box internet opérateurs et 4G/5G",
+      localDetails: "Vivez l'émotion du rugby avec l'UBB à Chaban-Delmas et les grandes soirées sportives en direct 4K. Des serveurs optimisés pour les connexions fibre de Nouvelle-Aquitaine.",
+      metaTitle: "Abonnement IPTV Bordeaux (33) — Rugby UBB, Football & 4K Stable",
+      metaDescription: "Abonnement IPTV Premium à Bordeaux et en Gironde. Fluidité 60 FPS, Replay 7 jours et lecteur offert avec le forfait 12 mois à 55 €. Activation immédiate."
+    },
+    {
+      name: "Lille",
+      slug: "lille",
+      region: "Hauts-de-France",
+      postalCode: "59000",
+      coordinates: { latitude: "50.6292", longitude: "3.0573" },
+      population: "235 000 habitants",
+      localClub: "LOSC Lille",
+      datacenterHub: "LilleIX & Hub Nord-Europe",
+      latency: "6 ms",
+      isps: "Fibre optique très haut débit, box internet opérateurs et 4G/5G",
+      localDetails: "Dans la métropole lilloise et les Hauts-de-France, savourez les exploits du LOSC en Ligue 1 et en Europe sans décalage ni coupure grâce à notre liaison directe avec les serveurs du Nord.",
+      metaTitle: "Abonnement IPTV Lille (59) — Streaming LOSC & Ligue 1 4K Hauts-de-France",
+      metaDescription: "Meilleur abonnement IPTV à Lille et dans les Hauts-de-France. Serveurs très haute vitesse, 4K UHD, Anti-Freeze garanti. Essai et assistance 24/7."
+    }
+  ];
+
+  return citiesData.map((city) => ({
+    params: { city: city.slug },
+    props: { city }
+  }));
+}
+
+const { city } = Astro.props;
+
+// LocalBusiness JSON-LD Schema
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": `France IPTV ${city.name} — Service d'Abonnement IPTV Premium`,
+  "image": "https://abonnement-iptv.cloud/images/hero-bg.webp",
+  "url": `https://abonnement-iptv.cloud/locations/${city.slug}`,
+  "telephone": "+18036582620",
+  "priceRange": "8€ - 55€",
+  "description": `Fournisseur d'abonnement IPTV haute performance à ${city.name} (${city.region}). Serveurs locaux fibre 10 Gbps, anti-freeze et support 24/7 en français.`,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": city.name,
+    "addressRegion": city.region,
+    "postalCode": city.postalCode,
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": city.coordinates.latitude,
+    "longitude": city.coordinates.longitude
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": city.name
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": city.region
+    },
+    {
+      "@type": "Country",
+      "name": "France"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.94",
+    "reviewCount": "1840",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Julien Delorme" },
+      "datePublished": "2026-08-28",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "reviewBody": `Excellente qualité de flux à ${city.name}. Zéro coupure pendant la Ligue 1 et activation très rapide.`
+    }
+  ]
+};
+
+const localFaqs = [
+  {
+    q: `Comment fonctionne l'abonnement IPTV à ${city.name} ?`,
+    a: `À ${city.name}, notre service s'appuie sur des serveurs CDN interconnectés aux points d'échange régionaux (${city.datacenterHub}). Dès votre commande validée, vous recevez vos identifiants m3u / Xtream par email et WhatsApp en moins de 2 minutes pour configurer votre Smart TV connectée, clé multimédia TV 4K ou boîtier de salon.`
+  },
+  {
+    q: `L'IPTV fonctionne-t-il bien avec ma box internet à ${city.name} ?`,
+    a: `Oui, absolument. Notre flux est 100% optimisé pour tous les opérateurs français majeurs déployés à ${city.name} (${city.isps}). Notre protocole Anti-Freeze 9.8™ utilise un chiffrement SSL 256 bits qui contourne le bridage vidéo occasionnel des FAI aux heures de forte affluence.`
+  },
+  {
+    q: `Puis-je regarder les matchs de ${city.localClub} et la Ligue 1 en 4K ?`,
+    a: `Parfaitement. Tous les matchs de Ligue 1, de Ligue des Champions et les rencontres de ${city.localClub} sont diffusés en 4K et Full HD 60 images par seconde avec les commentaires en français d'origine, sans aucun délai ni décalage de score.`
+  },
+  {
+    q: `Quel est le prix de l'abonnement IPTV pour les résidents de ${city.name} ?`,
+    a: `Nos tarifs sont transparents : l'abonnement 12 Mois est à 55 € (soit ~4,58 €/mois) avec une application Lecteur Premium offerte. Nous proposons également les formules 6 Mois (30 €), 3 Mois (20 €) et 1 Mois (8 €), toutes sans engagement.`
+  }
+];
+---
+
+<Layout
+  title={city.metaTitle}
+  description={city.metaDescription}
+  canonicalURL={`https://abonnement-iptv.cloud/locations/${city.slug}`}
+  schema={localBusinessSchema}
+>
+  <StickyHeader />
+
+  <main id="main-content">
+    
+    <!-- Local Hero Section -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-[#07080E] overflow-hidden border-b border-white/[0.06]">
+      <!-- Background Ambient Glow -->
+      <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#0055D4]/15 rounded-full blur-[140px]"></div>
+        <div class="absolute top-1/3 right-10 w-[350px] h-[350px] bg-[#DC2626]/10 rounded-full blur-[120px]"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Breadcrumbs -->
+        <nav class="flex items-center gap-2 text-xs text-gray-400 mb-8" aria-label="Fil d'Ariane">
+          <a href="/" class="hover:text-white transition-colors">Accueil</a>
+          <ChevronRight class="w-3.5 h-3.5 text-gray-600" />
+          <a href="/#cities-list" class="hover:text-white transition-colors">France</a>
+          <ChevronRight class="w-3.5 h-3.5 text-gray-600" />
+          <span class="text-[#60A5FA] font-medium" aria-current="page">{city.name}</span>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-7">
+            <!-- Local Hub Badge -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-6">
+              <MapPin class="w-3.5 h-3.5 text-[#DC2626]" />
+              <span>Nœud Régional Dédié : {city.name} ({city.postalCode})</span>
+            </div>
+
+            <!-- Main H1 with exact high-volume keywords -->
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12] mb-6">
+              Abonnement IPTV à <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#F87171]">{city.name}</span> — Streaming 4K Ultra Fluide
+            </h1>
+
+            <p class="text-base sm:text-lg text-gray-300 font-normal leading-relaxed mb-6">
+              Bénéficiez du meilleur service <strong>d'abonnement IPTV à {city.name}</strong> et en {city.region}. 
+              Interconnecté aux datacenters locaux <em>({city.datacenterHub})</em>, profitez d'un zapping ultra-rapide sous la seconde et d'une fluidité 60 FPS sans coupure, même lors des grands matchs de {city.localClub}.
+            </p>
+
+            <!-- Local context highlight card -->
+            <div class="p-4 rounded-xl bg-[#121422] border border-white/[0.08] mb-8">
+              <p class="text-xs text-gray-300 leading-relaxed font-normal">
+                {city.localDetails}
+              </p>
+              <div class="mt-3 pt-3 border-t border-white/[0.06] flex flex-wrap items-center gap-4 text-[11px] text-gray-400">
+                <span class="flex items-center gap-1.5 text-emerald-400 font-semibold">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  Latence mesurée : {city.latency}
+                </span>
+                <span>•</span>
+                <span>Hub : {city.datacenterHub}</span>
+              </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <a
+                href="#pricing"
+                class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-gradient-to-r from-[#0055D4] to-[#2563EB] text-white font-bold text-base hover:shadow-[0_0_25px_rgba(0,85,212,0.45)] transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+              >
+                <span>Voir les Abonnements dès 55 €/an</span>
+                <ArrowRight class="w-4 h-4" />
+              </a>
+
+              <a
+                href="https://wa.me/18036582620?text=Bonjour,%20je%20souhaite%20un%20test%20ou%20un%20abonnement%20IPTV%20pour%20la%20ville%20de%20"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-[#151726] hover:bg-[#1B1E30] text-gray-200 border border-white/10 font-bold text-sm hover:border-[#25D366]/40 transition-all text-center"
+              >
+                <span>Assistance WhatsApp 24/7</span>
+              </a>
+            </div>
+
+            <!-- Reassurance micro-badges -->
+            <div class="mt-8 flex flex-wrap items-center gap-5 text-xs text-gray-400">
+              <span class="flex items-center gap-1.5 text-gray-300">
+                <CheckCircle2 class="w-4 h-4 text-emerald-400" /> Activation sous 2 minutes
+              </span>
+              <span class="flex items-center gap-1.5 text-gray-300">
+                <CheckCircle2 class="w-4 h-4 text-emerald-400" /> Compatible box fibre de tous les opérateurs
+              </span>
+              <span class="flex items-center gap-1.5 text-gray-300">
+                <CheckCircle2 class="w-4 h-4 text-emerald-400" /> Lecteur Premium Offert
+              </span>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Local Performance Card -->
+          <div class="lg:col-span-5">
+            <div class="relative rounded-2xl bg-gradient-to-b from-[#141628] to-[#0D0E1A] p-6 sm:p-8 border border-white/10 shadow-2xl">
+              
+              <div class="flex items-center justify-between pb-5 border-b border-white/[0.08] mb-6">
+                <div>
+                  <span class="text-xs uppercase tracking-wider text-gray-400 font-bold">Réseau Régional</span>
+                  <h2 class="text-xl font-black text-white">{city.name} Métropole</h2>
+                </div>
+                <div class="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                  Opérationnel
+                </div>
+              </div>
+
+              <!-- CDN Network Visual Illustration -->
+              <div class="rounded-xl overflow-hidden mb-6 border border-white/[0.08] shadow-md group">
+                <img 
+                  src="/images/reseau-france-cdn.webp" 
+                  alt={`Réseau CDN haute performance et serveurs locaux à ${city.name}`} 
+                  class="w-full h-36 object-cover transition-transform duration-700 group-hover:scale-105"
+                  width="1200"
+                  height="675"
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+
+              <!-- Metrics -->
+              <div class="space-y-4 mb-6">
+                <div class="p-3.5 rounded-xl bg-[#090A12] border border-white/[0.05] flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <Server class="w-4 h-4 text-[#60A5FA]" />
+                    <span class="text-xs text-gray-300">Serveurs de diffusion</span>
+                  </div>
+                  <span class="text-xs font-bold text-white">Cluster Fibre 10 Gbps</span>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-[#090A12] border border-white/[0.05] flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <Wifi class="w-4 h-4 text-emerald-400" />
+                    <span class="text-xs text-gray-300">Compatibilité FAI {city.name}</span>
+                  </div>
+                  <span class="text-xs font-bold text-emerald-400">100% Sans Bridage</span>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-[#090A12] border border-white/[0.05] flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <Tv class="w-4 h-4 text-[#DC2626]" />
+                    <span class="text-xs text-gray-300">Support Football & Sport</span>
+                  </div>
+                  <span class="text-xs font-bold text-white">Ligue 1 & {city.localClub}</span>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-[#090A12] border border-white/[0.05] flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <Zap class="w-4 h-4 text-amber-400" />
+                    <span class="text-xs text-gray-300">Technologie Anti-Freeze</span>
+                  </div>
+                  <span class="text-xs font-bold text-amber-400">Anti-Freeze 9.8™ Actif</span>
+                </div>
+              </div>
+
+              <!-- Guaranteed Speeds -->
+              <div class="rounded-xl bg-[#0055D4]/10 border border-[#0055D4]/20 p-4">
+                <p class="text-xs text-gray-200 leading-relaxed font-normal">
+                  💡 <strong>Conseil technique pour {city.name} :</strong> Compatible avec toutes les box internet ({city.isps}). Fonctionne également en 4G/5G en déplacement sans VPN requis.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Core Features Grid -->
+    <FeatureGrid />
+
+    <!-- Pricing Card (12 Months 55€ prominently first) -->
+    <PricingCard />
+
+    <!-- Process Steps -->
+    <ProcessSteps />
+
+    <!-- Supported Devices -->
+    <SupportedDevices />
+
+    <!-- Local City FAQs -->
+    <section class="py-20 md:py-28 bg-[#090A14] border-t border-white/[0.06]" aria-labelledby="local-faq-title">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-14">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+            <HelpCircle class="w-3.5 h-3.5" />
+            <span>Foire Aux Questions</span>
+          </div>
+          <h2 id="local-faq-title" class="text-3xl sm:text-4xl font-black text-white tracking-tight mb-4">
+            Questions Fréquentes — Abonnement IPTV à {city.name}
+          </h2>
+          <p class="text-sm sm:text-base text-gray-300 font-normal">
+            Tout ce qu'il faut savoir avant de commander votre abonnement IPTV en région {city.region}.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          {localFaqs.map((faq, index) => (
+            <div class="rounded-2xl bg-[#121422] border border-white/[0.08] p-6 hover:border-[#0055D4]/40 transition-colors">
+              <h3 class="text-lg font-bold text-white mb-3 flex items-start gap-3">
+                <span class="text-[#0055D4] font-black">{index + 1}.</span>
+                <span>{faq.q}</span>
+              </h3>
+              <p class="text-sm text-gray-300 leading-relaxed font-normal pl-7">
+                {faq.a}
+              </p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bottom Conversion CTA -->
+    <CTASection />
+
+  </main>
+
+  <Footer />
+
+  <!-- Floating Engagement Widgets -->
+  <FloatingWhatsApp />
+  <SocialPopup />
+  <ExitPopup />
+  <GroupsPopup />
+
+</Layout>

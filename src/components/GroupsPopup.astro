@@ -1,0 +1,157 @@
+---
+import { Bell, MessageCircle, Send, X, Sparkles, ExternalLink } from 'lucide-astro';
+
+const whatsappChannelUrl = "https://whatsapp.com/channel/0029VayVaLpD8SE3bf8wMY3v";
+const telegramChannelUrl = "https://t.me/castvera_com";
+---
+
+<div
+  id="groups-popup-modal"
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 ease-out"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="groups-popup-title"
+>
+  <div class="relative w-full max-w-md rounded-3xl bg-gradient-to-b from-[#14182E] to-[#0A0B14] border border-[#0055D4]/50 p-6 sm:p-8 shadow-2xl shadow-black/80 transform scale-95 transition-transform duration-300 ease-out text-center">
+    
+    <!-- Close Button -->
+    <button
+      id="close-groups-popup"
+      type="button"
+      class="absolute top-4 right-4 p-2 text-gray-400 hover:text-white rounded-full bg-white/5 hover:bg-white/10 transition-colors focus:outline-none"
+      aria-label="Fermer la fenêtre"
+    >
+      <X class="w-5 h-5" />
+    </button>
+
+    <!-- Header / Icon -->
+    <div class="space-y-3">
+      <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#0055D4] to-[#DC2626] text-white shadow-lg shadow-[#0055D4]/30 mx-auto">
+        <Bell class="w-7 h-7" />
+      </div>
+
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-semibold uppercase tracking-wider">
+        <Sparkles class="w-3.5 h-3.5" />
+        <span>Communauté Sport & Télévision</span>
+      </div>
+
+      <h3 id="groups-popup-title" class="text-xl sm:text-2xl font-black text-white tracking-tight">
+        Rejoignez les Canaux <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#F87171]">Officiels</span>
+      </h3>
+
+      <p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal">
+        Recevez les alertes des grands matchs en direct, les annonces de mise à jour des serveurs et des réductions exclusives réservées aux membres !
+      </p>
+    </div>
+
+    <!-- Channel Links -->
+    <div class="mt-6 space-y-3">
+      <!-- WhatsApp Channel -->
+      <a
+        href={whatsappChannelUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-4 p-3.5 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 hover:bg-emerald-900/50 hover:border-emerald-500/60 transition-all group text-left"
+      >
+        <div class="w-11 h-11 rounded-xl bg-[#25D366] text-white flex items-center justify-center shrink-0 shadow-md shadow-[#25D366]/30 group-hover:scale-105 transition-transform">
+          <MessageCircle class="w-6 h-6" />
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-bold text-white group-hover:text-emerald-300 transition-colors flex items-center justify-between">
+            <span>Chaîne WhatsApp Officielle</span>
+            <ExternalLink class="w-3.5 h-3.5 opacity-60" />
+          </div>
+          <div class="text-xs text-gray-400 truncate">
+            Alertes matchs, compositions & infos direct
+          </div>
+        </div>
+      </a>
+
+      <!-- Telegram Channel -->
+      <a
+        href={telegramChannelUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-4 p-3.5 rounded-2xl bg-blue-950/40 border border-[#0055D4]/40 hover:bg-blue-900/50 hover:border-[#0055D4]/70 transition-all group text-left"
+      >
+        <div class="w-11 h-11 rounded-xl bg-[#0088cc] text-white flex items-center justify-center shrink-0 shadow-md shadow-[#0088cc]/30 group-hover:scale-105 transition-transform">
+          <Send class="w-6 h-6" />
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-bold text-white group-hover:text-[#60A5FA] transition-colors flex items-center justify-between">
+            <span>Canal Telegram Officiel</span>
+            <ExternalLink class="w-3.5 h-3.5 opacity-60" />
+          </div>
+          <div class="text-xs text-gray-400 truncate">
+            Statut des serveurs & promos membres
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Dismiss Button -->
+    <div class="mt-5 pt-3 border-t border-white/[0.06]">
+      <button
+        id="dismiss-groups-popup"
+        type="button"
+        class="text-xs text-gray-400 hover:text-gray-200 transition-colors py-1"
+      >
+        Peut-être plus tard
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'france_iptv_groups_popup_24h_v1';
+  const POPUP_COOLDOWN_MS = 24 * 60 * 60 * 1000; // Strictly once per 24 hours per user
+
+  const modal = document.getElementById('groups-popup-modal');
+  const closeBtn = document.getElementById('close-groups-popup');
+  const dismissBtn = document.getElementById('dismiss-groups-popup');
+
+  function isEligibleToShow(): boolean {
+    const lastShown = localStorage.getItem(STORAGE_KEY);
+    if (lastShown) {
+      const timePassed = Date.now() - parseInt(lastShown, 10);
+      if (timePassed < POPUP_COOLDOWN_MS) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function showModal() {
+    if (!isEligibleToShow() || !modal) return;
+
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+    modal.classList.add('opacity-100', 'pointer-events-auto');
+    const inner = modal.querySelector('div');
+    if (inner) {
+      inner.classList.remove('scale-95');
+      inner.classList.add('scale-100');
+    }
+    localStorage.setItem(STORAGE_KEY, Date.now().toString());
+  }
+
+  function hideModal() {
+    if (!modal) return;
+    modal.classList.remove('opacity-100', 'pointer-events-auto');
+    modal.classList.add('opacity-0', 'pointer-events-none');
+    const inner = modal.querySelector('div');
+    if (inner) {
+      inner.classList.remove('scale-100');
+      inner.classList.add('scale-95');
+    }
+    localStorage.setItem(STORAGE_KEY, Date.now().toString());
+  }
+
+  // Trigger after 18 seconds of page visit
+  setTimeout(() => {
+    showModal();
+  }, 18000);
+
+  if (closeBtn) closeBtn.addEventListener('click', hideModal);
+  if (dismissBtn) dismissBtn.addEventListener('click', hideModal);
+</script>

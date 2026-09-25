@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Hero from '../components/Hero.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import PricingCard from '../components/PricingCard.astro';
+import ReferralBanner from '../components/ReferralBanner.astro';
+import UserReviewsSection from '../components/UserReviewsSection.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import SupportedDevices from '../components/SupportedDevices.astro';
+import LiveScores from '../components/LiveScores.astro';
+import CitiesList from '../components/CitiesList.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FAQSection from '../components/FAQSection.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+
+// Interactive Conversion & Retention Popups
+import ExitPopup from '../components/ExitPopup.astro';
+import SocialPopup from '../components/SocialPopup.astro';
+import GroupsPopup from '../components/GroupsPopup.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`Abonnement IPTV Sport & Ligue 1 ${currentYear} — Streaming 4K Sans Coupure`}
+  description="Regardez tous les matchs de Ligue 1, compétitions européennes et rugby en direct sans surcoût. Streaming 4K Ultra HD avec Anti-Freeze 9.8™ et activation en 2 minutes."
+  keywords={[
+    'iptv ligue 1',
+    'abonnement iptv sport',
+    'ligue 1 streaming 4k',
+    'iptv sans coupure',
+    'iptv 4k 60fps',
+    'abonnement iptv 12 mois',
+    'iptv direct foot',
+    'iptv streaming france'
+  ]}
+  canonicalURL="https://abonnement-iptv.cloud/landing-v2"
+>
+  <!-- Sticky Global Navigation -->
+  <StickyHeader currentPath="/landing-v2" />
+
+  <!-- Main Content Sequence (Strict Required Order) -->
+  <main id="main-content" class="flex-1 flex flex-col">
+    <!-- 1. Hero Conversion Section (Tuned for French Football & Sports) -->
+    <Hero
+      headline="Abonnement IPTV Sport — Tous les Matchs en 4K au Meilleur Prix"
+      subheadline="Fatigué de devoir payer plus de 80 € par mois en cumulant de multiples abonnements sportifs payants pour suivre votre club de cœur ? Notre abonnement IPTV officiel regroupe tous les directs sportifs en 4K Ultra HD à 60 FPS avec l'Anti-Freeze 9.8™ pour seulement 55 € par an."
+    />
+
+    <!-- Dedicated Sports Visual Showcase Banner -->
+    <section class="py-8 bg-[#090A10] border-b border-white/[0.06]">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-3xl overflow-hidden border border-[#0055D4]/30 shadow-2xl relative group">
+          <img 
+            src="/images/sports-streaming-4k.webp" 
+            alt="Dispositif spécial retransmission football Ligue 1 et sport en direct 4K UHD 60 FPS" 
+            class="w-full h-auto max-h-[480px] object-cover transition-transform duration-700 group-hover:scale-[1.01]"
+            width="1200"
+            height="675"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Features Grid & Technological Edge -->
+    <FeatureGrid />
+
+    <!-- 3. Pricing Cards (12 Months Displayed First) -->
+    <PricingCard />
+
+    <!-- 4. Viral Growth & Referral Rewards Banner -->
+    <ReferralBanner />
+
+    <!-- 5. Real French Testimonials & User Reviews -->
+    <UserReviewsSection />
+
+    <!-- 6. 3-Step Setup Process -->
+    <ProcessSteps />
+
+    <!-- 7. Supported Devices & Compatibility -->
+    <SupportedDevices />
+
+    <!-- 8. Real Sports Match Center & Broadcast Status -->
+    <LiveScores />
+
+    <!-- 9. Programmatic Local SEO (10 French Metropolises) -->
+    <CitiesList />
+
+    <!-- 10. Direct Contact Channels & Interactive Form -->
+    <ContactForm />
+
+    <!-- 11. FAQ Section with Google FAQPage Schema -->
+    <FAQSection />
+
+    <!-- 12. Bottom High-Urgency Call to Action -->
+    <CTASection
+      title="Prêt à Vivre la Prochaine Journée de Championnat en 4K ?"
+      subtitle="Rejoignez les milliers de passionnés de football et de rugby en France qui ont déjà choisi notre formule 12 mois à 55 € avec Lecteur Premium offert. Zéro coupure et activation immédiate."
+    />
+  </main>
+
+  <!-- Global Footer -->
+  <Footer />
+
+  <!-- Engagement Popups & Widgets (24h LocalStorage Capped) -->
+  <ExitPopup />
+  <SocialPopup />
+  <GroupsPopup />
+  <FloatingWhatsApp />
+</Layout>

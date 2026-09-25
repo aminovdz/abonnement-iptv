@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { Home, ArrowRight, AlertTriangle } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`Erreur 404 : Page Introuvable — Abonnement IPTV France ${currentYear}`}
+  description="La page demandée est introuvable ou a été déplacée. Retrouvez nos offres d'abonnement IPTV en France et notre support client en direct."
+  noindex={true}
+>
+  <StickyHeader currentPath="/404" />
+
+  <main class="flex-1 flex items-center justify-center py-20 sm:py-32 bg-[#090A10] relative overflow-hidden">
+    <!-- Ambient Red Glow -->
+    <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#DC2626]/12 rounded-full blur-[160px]"></div>
+    </div>
+
+    <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <!-- 404 Big Code -->
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-[#DC2626]/15 border border-[#DC2626]/30 text-red-400 mb-6 shadow-[0_0_30px_rgba(220,38,38,0.3)]">
+        <AlertTriangle class="w-10 h-10" />
+      </div>
+
+      <div class="text-7xl sm:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-red-400 tracking-tighter mb-4">
+        404
+      </div>
+
+      <h1 class="text-2xl sm:text-3xl font-black text-white tracking-tight mb-4">
+        Oups ! Cette Page Est Introuvable
+      </h1>
+
+      <p class="text-sm sm:text-base text-gray-300 leading-relaxed mb-8 max-w-md mx-auto">
+        L'adresse demandée n'existe pas ou a été déplacée. Vous pouvez retourner à la page d'accueil ou explorer nos formules d'abonnement IPTV.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#0055D4] to-[#1E40AF] text-white font-extrabold text-sm uppercase tracking-wider shadow-lg shadow-[#0055D4]/30 hover:scale-[1.02] transition-transform"
+        >
+          <Home class="w-4 h-4" />
+          <span>Retour à l'Accueil</span>
+        </a>
+
+        <a
+          href="/#pricing"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-[#11121C] hover:bg-[#161826] text-white font-bold text-sm tracking-wide border border-white/[0.1] hover:border-[#0055D4]/50 transition-colors"
+        >
+          <span>Voir les Tarifs (dès 8 €)</span>
+          <ArrowRight class="w-4 h-4" />
+        </a>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-white/[0.06] text-xs text-gray-400">
+        Besoin d'aide ? Contactez notre support 24/7 sur <a href="https://wa.me/18036582620" class="text-emerald-400 hover:underline font-semibold">WhatsApp : +1 803 658 2620</a>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

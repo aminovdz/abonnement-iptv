@@ -1,0 +1,143 @@
+---
+import { Zap, Tv, Clock, Headphones, Wifi, Film, Sparkles, Lock, Smartphone, ShieldCheck } from 'lucide-astro';
+
+const features = [
+  {
+    icon: Zap,
+    title: "Technologie Anti-Freeze 9.8™",
+    description: "Notre architecture serveur en France et en Europe élimine les interruptions et les ralentissements de mise en mémoire tampon, garantissant un streaming IPTV sans coupure lors des matchs cruciaux.",
+    badge: "99.9% Uptime",
+    color: "blue"
+  },
+  {
+    icon: Tv,
+    title: "Flux 4K & 8K Ultra HD (60 FPS)",
+    description: "Vivez une immersion totale avec une fréquence d'images native à 60 images par seconde, des couleurs éclatantes et une clarté sonore optimale sur vos écrans compatibles.",
+    badge: "Natif 60 FPS",
+    color: "red"
+  },
+  {
+    icon: Wifi,
+    title: "Bande Passante Dédiée Fibre 10 Gbps",
+    description: "Des liaisons directes haute capacité contournent les congestions et le bridage de bande passante par les fournisseurs d'accès internet, même aux heures de forte affluence en soirée.",
+    badge: "Zéro Bridage",
+    color: "blue"
+  },
+  {
+    icon: Clock,
+    title: "Activation Instantanée en 2 Minutes",
+    description: "Dès validation de votre commande, vous recevez votre lien M3U et vos identifiants Xtream Codes directement par message WhatsApp ou par email.",
+    badge: "Livraison Immédiate",
+    color: "red"
+  },
+  {
+    icon: Film,
+    title: "Guide des Programmes (EPG) & Replay",
+    description: "Consultez la grille électronique complète des émissions et profitez de la fonction Replay (Catch-Up TV) jusqu'à 7 jours pour ne jamais manquer vos programmes favoris.",
+    badge: "Replay 7 Jours",
+    color: "blue"
+  },
+  {
+    icon: Lock,
+    title: "Connexion Chiffrée & Confidentialité",
+    description: "Navigation sécurisée sous chiffrement 256 bits sans conservation de journaux d'activité. Compatible avec tous vos VPN si vous souhaitez une anonymisation supplémentaire.",
+    badge: "Chiffrement 256-bit",
+    color: "red"
+  },
+  {
+    icon: Smartphone,
+    title: "Compatibilité Multi-Appareils & Lecteur Offert",
+    description: "Fonctionne sur Smart TV connectées, clés HDMI multimédias 4K, boîtiers TV de salon, PC/Mac, tablettes et smartphones avec les meilleurs lecteurs du marché.",
+    badge: "Lecteur Offert (6/12M)",
+    color: "blue"
+  },
+  {
+    icon: Headphones,
+    title: "Assistance Technique 7j/7 en Français",
+    description: "Pas de réponses génériques ni de barrière linguistique. Notre équipe technique francophone vous accompagne pas à pas pour la configuration de vos appareils.",
+    badge: "Support WhatsApp",
+    color: "red"
+  }
+];
+---
+
+<section id="features" class="py-20 md:py-28 relative bg-[#090A10]" aria-labelledby="features-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Heading -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+        <Sparkles class="w-3.5 h-3.5" />
+        <span>Pourquoi Choisir Notre Abonnement IPTV</span>
+      </div>
+      <h2 id="features-heading" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+        Une Expérience <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] to-[#F87171]">IPTV Premium</span> Sans Compromis
+      </h2>
+      <p class="text-gray-300 text-base sm:text-lg leading-relaxed font-normal">
+        Découvrez les atouts technologiques qui font la réputation de notre service en France. Zéro freeze, serveurs sécurisés et qualité cinéma sur tous vos écrans.
+      </p>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {features.map((item) => (
+        <div class="group relative rounded-2xl bg-[#11121C]/80 hover:bg-[#151724] border border-white/[0.08] hover:border-[#0055D4]/50 p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1.5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex flex-col justify-between">
+          
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <div class={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ${
+                item.color === 'blue'
+                  ? 'bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA]'
+                  : 'bg-[#DC2626]/15 border border-[#DC2626]/30 text-red-400'
+              }`}>
+                <item.icon class="w-6 h-6" />
+              </div>
+
+              <span class={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${
+                item.color === 'blue'
+                  ? 'bg-[#0055D4]/15 text-[#60A5FA] border border-[#0055D4]/30'
+                  : 'bg-[#DC2626]/15 text-red-300 border border-[#DC2626]/30'
+              }`}>
+                {item.badge}
+              </span>
+            </div>
+
+            <h3 class="text-lg font-bold text-white mb-2.5 tracking-tight group-hover:text-[#60A5FA] transition-colors">
+              {item.title}
+            </h3>
+
+            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal">
+              {item.description}
+            </p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-white/[0.06] flex items-center gap-1.5 text-xs text-gray-400">
+            <ShieldCheck class="w-3.5 h-3.5 text-[#10B981]" />
+            <span>Inclus dans toutes les formules</span>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    <!-- Feature Trust Note -->
+    <div class="mt-14 p-6 rounded-2xl bg-gradient-to-r from-[#11121C] via-[#141624] to-[#11121C] border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0">
+          <Zap class="w-6 h-6" />
+        </div>
+        <div>
+          <h4 class="text-sm font-bold text-white">Technologie de routage dynamique CDN France</h4>
+          <p class="text-xs text-gray-400">Connexion automatique au serveur le plus proche de votre région pour une latence minimale.</p>
+        </div>
+      </div>
+      <a
+        href="/#pricing"
+        class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#0055D4] hover:bg-[#1E40AF] text-white text-xs font-bold uppercase tracking-wider transition-colors shrink-0 shadow-[0_0_20px_rgba(0,85,212,0.3)]"
+      >
+        <span>Comparer les Tarifs</span>
+      </a>
+    </div>
+
+  </div>
+</section>

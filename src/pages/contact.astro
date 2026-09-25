@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`Contact & Support Client — Abonnement IPTV France ${currentYear}`}
+  description="Contactez le support officiel d'Abonnement IPTV France. Assistance 24/7 en français sur WhatsApp (+1 803 658 2620), par email et via nos canaux officiels."
+  canonicalURL="https://abonnement-iptv.cloud/contact"
+>
+  <StickyHeader currentPath="/contact" />
+
+  <main class="flex-1 bg-[#090A10]">
+    <!-- Top Hero Banner for Contact -->
+    <div class="relative py-12 sm:py-16 bg-gradient-to-b from-[#11121C] to-[#090A10] border-b border-white/[0.06] text-center">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+          Centre d'Assistance & Contact Direct
+        </h1>
+        <p class="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto mb-8">
+          Besoin d'aide pour configurer votre Smart TV, obtenir un test de 24h ou poser une question sur votre formule ? Nous vous répondons en direct en français.
+        </p>
+
+        <!-- Support Illustration Banner -->
+        <div class="rounded-3xl overflow-hidden border border-[#0055D4]/30 shadow-2xl max-w-3xl mx-auto group">
+          <img 
+            src="/images/support-technique-france.webp" 
+            alt="Support technique officiel Abonnement IPTV France disponible 24/7 sur WhatsApp" 
+            class="w-full h-auto max-h-[400px] object-cover transition-transform duration-700 group-hover:scale-[1.01]"
+            width="1200"
+            height="675"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Form & Channels Component -->
+    <ContactForm />
+
+    <!-- FAQ Quick Help Strip -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div class="p-8 rounded-3xl bg-[#11121C] border border-[#0055D4]/30 text-center">
+        <h3 class="text-xl font-bold text-white mb-2">Vous préférez consulter nos réponses immédiates ?</h3>
+        <p class="text-xs sm:text-sm text-gray-400 max-w-xl mx-auto mb-6">
+          La plupart des questions courantes sur l'activation en 2 minutes, la technologie Anti-Freeze et les appareils compatibles sont traitées dans notre foire aux questions.
+        </p>
+        <a
+          href="/#faq"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-white text-xs font-bold uppercase tracking-wider transition-colors border border-white/[0.1]"
+        >
+          <span>Consulter la FAQ Complète</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

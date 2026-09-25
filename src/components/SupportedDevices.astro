@@ -1,0 +1,129 @@
+---
+import { Tv, Smartphone, Laptop, Box, Sparkles, CheckCircle2 } from 'lucide-astro';
+
+const deviceCategories = [
+  {
+    title: "Smart TV",
+    subtitle: "Téléviseurs connectés nouvelle génération",
+    icon: Tv,
+    description: "Fonctionne directement sur votre télévision sans décodeur encombrant ni fil supplémentaire.",
+    items: [
+      "Téléviseurs Smart TV connectés (Tizen, webOS)",
+      "Smart TV sous systèmes Android TV et Google TV",
+      "Écrans connectés et téléviseurs 4K UHD",
+      "Téléviseurs connectés de toutes marques récentes"
+    ],
+    recommendedApp: "Applications recommandées : IBO Player, TiviMate, Smart IPTV"
+  },
+  {
+    title: "Boîtiers & Clés TV Streaming",
+    subtitle: "Lecteurs multimédias HDMI 4K",
+    icon: Box,
+    description: "La solution la plus rapide et la plus fluide pour une expérience optimale en 4K 60 FPS.",
+    items: [
+      "Clés multimédias HDMI 4K & clés TV de streaming",
+      "Boîtiers multimédias de salon et passerelles TV 4K",
+      "Passerelles multimédias haute performance (4K HDR)",
+      "Lecteurs multimédias connectés haute définition"
+    ],
+    recommendedApp: "Applications recommandées : TiviMate Premium, IPTV Smarters Pro"
+  },
+  {
+    title: "Smartphones & Tablettes",
+    subtitle: "Télévision nomade en déplacement",
+    icon: Smartphone,
+    description: "Emportez vos programmes partout avec vous, en déplacement, en vacances ou au travail.",
+    items: [
+      "Smartphones et tablettes sous Android",
+      "Smartphones et tablettes sous iOS",
+      "Diffusion sans fil vers écran TV (protocoles Cast & partage d'écran)",
+      "Fonctionne en Wi-Fi, 4G et 5G sans interruption"
+    ],
+    recommendedApp: "Applications recommandées : GSE Smart IPTV, IPTV Smarters Pro"
+  },
+  {
+    title: "Ordinateurs PC & Portables",
+    subtitle: "Lecture sur ordinateur de bureau et portable",
+    icon: Laptop,
+    description: "Visionnage simple par lecteur multimédia ou directement via navigateur web.",
+    items: [
+      "Ordinateurs sous Windows 10 & Windows 11",
+      "Ordinateurs de bureau et portables macOS",
+      "Systèmes Linux et stations de travail",
+      "Lecteurs multimédias universels (VLC, Web Player)"
+    ],
+    recommendedApp: "Applications recommandées : IPTV Smarters Pro Desktop, VLC Player"
+  }
+];
+---
+
+<section id="devices" class="py-20 md:py-28 relative bg-[#090A10] overflow-hidden" aria-labelledby="devices-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+        <Sparkles class="w-3.5 h-3.5" />
+        <span>Compatibilité Universelle</span>
+      </div>
+      <h2 id="devices-heading" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+        Compatible avec Tous Vos <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#F87171]">Écrans & Appareils</span>
+      </h2>
+      <p class="text-base sm:text-lg text-gray-300 font-normal leading-relaxed">
+        Quel que soit votre équipement, notre abonnement IPTV s'installe en quelques instants sans matériel propriétaire ni configuration complexe.
+      </p>
+    </div>
+
+    <!-- Device Categories Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {deviceCategories.map((cat) => (
+        <div class="rounded-3xl bg-[#11121C]/80 border border-white/[0.08] hover:border-[#0055D4]/40 p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-lg group">
+          
+          <div>
+            <!-- Header Icon -->
+            <div class="w-14 h-14 rounded-2xl bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <cat.icon class="w-7 h-7" />
+            </div>
+
+            <h3 class="text-xl font-bold text-white mb-1 tracking-tight">
+              {cat.title}
+            </h3>
+            <p class="text-xs text-[#60A5FA] font-semibold mb-3">
+              {cat.subtitle}
+            </p>
+            <p class="text-xs text-gray-400 mb-6 leading-relaxed">
+              {cat.description}
+            </p>
+
+            <!-- Items Check -->
+            <ul class="space-y-2.5 text-xs text-gray-300 mb-6">
+              {cat.items.map((item) => (
+                <li class="flex items-start gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <span class="leading-tight">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Recommended App Footnote -->
+          <div class="pt-4 border-t border-white/[0.06] text-[11px] text-gray-400">
+            <span class="text-gray-300 font-medium">{cat.recommendedApp}</span>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom App Compatibility Banner -->
+    <div class="mt-14 p-6 rounded-2xl bg-[#0D0F1B] border border-white/[0.08] text-center">
+      <h4 class="text-sm font-bold text-white mb-2">
+        Vous possédez déjà une application IPTV préférée ?
+      </h4>
+      <p class="text-xs text-gray-300 max-w-2xl mx-auto">
+        Nos flux fonctionnent avec toutes les applications du marché : <strong>TiviMate, IBO Player, IPTV Smarters Pro, XCIPTV, GSE Smart IPTV, SS IPTV, Smart IPTV</strong> et tout lecteur acceptant les liens M3U et API Xtream Codes.
+      </p>
+    </div>
+
+  </div>
+</section>

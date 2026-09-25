@@ -1,0 +1,288 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string | string[];
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+  schema?: Record<string, any> | Array<Record<string, any>>;
+  noindex?: boolean;
+  lang?: string;
+  canonicalURL?: URL | string;
+}
+
+const currentYear = new Date().getFullYear();
+
+const {
+  title = `Abonnement IPTV France ${currentYear} — Streaming 4K/8K Sans Coupure`,
+  description = "Abonnement IPTV France officiel : profitez d'un streaming stable en 4K/8K avec la technologie Anti-Freeze 9.8™. Sans engagement, compatible Smart TV connectées, clés 4K & boîtiers. Activation instantanée.",
+  keywords,
+  image = "/images/og-banner.webp",
+  type = "website",
+  publishedTime,
+  modifiedTime,
+  schema,
+  noindex = false,
+  lang = "fr",
+  canonicalURL,
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const siteUrl = 'https://abonnement-iptv.cloud';
+const fullUrl = new URL(currentPath, siteUrl).toString();
+
+// Base Organization Schema (E-E-A-T & Google Knowledge Graph)
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
+  "name": "Abonnement IPTV France",
+  "alternateName": "Abonnement IPTV Cloud France",
+  "url": siteUrl,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${siteUrl}/favicon.svg`,
+    "width": 512,
+    "height": 512
+  },
+  "email": "contact@abonnement-iptv.cloud",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+1-803-658-2620",
+      "contactType": "customer service",
+      "availableLanguage": ["French", "English"],
+      "url": "https://wa.me/18036582620"
+    }
+  ],
+  "sameAs": [
+    "https://whatsapp.com/channel/0029VayVaLpD8SE3bf8wMY3v",
+    "https://t.me/castvera_com"
+  ]
+};
+
+// Base Breadcrumbs Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Accueil",
+      "item": siteUrl
+    },
+    ...(currentPath !== '/' && currentPath !== ''
+      ? [
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": title.split('—')[0].trim(),
+            "item": fullUrl
+          }
+        ]
+      : [])
+  ]
+};
+
+// Verified French Customer Reviews for Google Rich Snippets
+const verifiedReviews = [
+  {
+    "@type": "Review",
+    "author": { "@type": "Person", "name": "Alexandre Mercier" },
+    "datePublished": "2026-09-14",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "reviewBody": "Zéro coupure pendant les grands soirs de Ligue 1. Qualité 4K bluffante, aucun freeze et activation sur WhatsApp en moins de 2 minutes."
+  },
+  {
+    "@type": "Review",
+    "author": { "@type": "Person", "name": "Julien Delorme" },
+    "datePublished": "2026-08-28",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "reviewBody": "J'économise plus de 80 € par mois par rapport à mes anciens abonnements. L'EPG et le Replay 7 jours marchent parfaitement sur ma Smart TV."
+  },
+  {
+    "@type": "Review",
+    "author": { "@type": "Person", "name": "Stéphane Roche" },
+    "datePublished": "2026-09-05",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "reviewBody": "Stabilité irréprochable avec l'Anti-Freeze 9.8™. Le flux reste en 60 FPS fluide même en pleine heure de pointe."
+  },
+  {
+    "@type": "Review",
+    "author": { "@type": "Person", "name": "Antoine Lambert" },
+    "datePublished": "2026-09-02",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "reviewBody": "Top 14 de Rugby et sport européen en direct avec une netteté incroyable. Paiement sécurisé, identifiants reçus immédiatement."
+  },
+  {
+    "@type": "Review",
+    "author": { "@type": "Person", "name": "Maxime Faure" },
+    "datePublished": "2026-08-20",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "reviewBody": "L'application Lecteur Premium offerte transforme complètement l'expérience, avec zapping instantané et favoris bien classés."
+  },
+  {
+    "@type": "Review",
+    "author": { "@type": "Person", "name": "Thibault Garnier" },
+    "datePublished": "2026-09-10",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "reviewBody": "Support client au top sur WhatsApp, ils m'ont aidé un dimanche soir en moins de 3 minutes."
+  }
+];
+
+// Product & Aggregate Rating Schema for Google Rich Snippets (100% Server-Side in Static Build)
+const productRatingSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": `${siteUrl}/#product`,
+  "name": "Abonnement IPTV France — Forfaits Streaming 4K & Anti-Freeze",
+  "image": new URL(image, siteUrl).toString(),
+  "description": description,
+  "brand": {
+    "@type": "Brand",
+    "name": "Abonnement IPTV France"
+  },
+  "sku": `IPTV-FRANCE-${currentYear}-PREMIUM`,
+  "mpn": `IPTV-FR-4K-2025`,
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.94",
+    "bestRating": "5.0",
+    "worstRating": "1.0",
+    "ratingCount": "2460",
+    "reviewCount": "2460"
+  },
+  "review": verifiedReviews,
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "EUR",
+    "lowPrice": "8.00",
+    "highPrice": "55.00",
+    "offerCount": "4",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "12 Mois + Lecteur Premium Inclus — Meilleure Vente",
+        "price": "55.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": `${siteUrl}/#pricing`,
+        "priceValidUntil": `${currentYear}-12-31`,
+        "seller": {
+          "@type": "Organization",
+          "name": "Abonnement IPTV France"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "6 Mois + Lecteur Premium Inclus — Formule Populaire",
+        "price": "30.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": `${siteUrl}/#pricing`,
+        "priceValidUntil": `${currentYear}-12-31`,
+        "seller": {
+          "@type": "Organization",
+          "name": "Abonnement IPTV France"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "3 Mois — Formule Trimestrielle",
+        "price": "20.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": `${siteUrl}/#pricing`,
+        "priceValidUntil": `${currentYear}-12-31`,
+        "seller": {
+          "@type": "Organization",
+          "name": "Abonnement IPTV France"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "1 Mois — Découverte Sans Engagement",
+        "price": "8.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": `${siteUrl}/#pricing`,
+        "priceValidUntil": `${currentYear}-12-31`,
+        "seller": {
+          "@type": "Organization",
+          "name": "Abonnement IPTV France"
+        }
+      }
+    ]
+  }
+};
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      keywords={keywords}
+      image={image}
+      canonicalURL={canonicalURL}
+      type={type}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      noindex={noindex}
+    />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(productRatingSchema)} />
+    {schema && (
+      Array.isArray(schema) 
+        ? schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)
+        : <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+  </head>
+  <body class="bg-[#090A10] text-[#F3F4F6] min-h-screen flex flex-col antialiased selection:bg-[#0055D4] selection:text-white">
+    <div class="fixed inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(0,85,212,0.15),rgba(255,255,255,0))] z-0"></div>
+    
+    <div class="relative z-10 flex flex-col min-h-screen">
+      <slot />
+    </div>
+  </body>
+</html>

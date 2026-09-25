@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { ShieldCheck, CheckCircle2 } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`Politique de Confidentialité (RGPD) — Abonnement IPTV France ${currentYear}`}
+  description="Consultez notre politique de confidentialité conforme au RGPD et à la CNIL. Protection de vos données personnelles, chiffrement 256 bits et politique stricte sans enregistrement de journaux."
+  canonicalURL="https://abonnement-iptv.cloud/privacy"
+>
+  <StickyHeader currentPath="/privacy" />
+
+  <main class="flex-1 py-16 sm:py-24 bg-[#090A10]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="mb-12 text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+          <ShieldCheck class="w-3.5 h-3.5 text-emerald-400" />
+          <span>Protection des Données & RGPD</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+          Politique de Confidentialité
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-400">
+          Dernière mise à jour : Janvier {currentYear} · Conforme au Règlement Général sur la Protection des Données (RGPD 2016/679) et aux recommandations de la CNIL
+        </p>
+      </div>
+
+      <!-- Content Box -->
+      <div class="rounded-3xl bg-[#11121C] border border-white/[0.08] p-8 sm:p-12 space-y-8 text-gray-300 text-sm leading-relaxed">
+        
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">1.</span> Responsable du Traitement
+          </h2>
+          <p>
+            Le site <strong>abonnement-iptv.cloud</strong> (« Abonnement IPTV France ») et ses services associés sont exploités en tant que plateforme de distribution de technologies de streaming numérique. Le responsable de la protection des données peut être contacté directement par courrier électronique aux adresses officielles : <a href="mailto:contact@abonnement-iptv.cloud" class="text-[#60A5FA] hover:underline">contact@abonnement-iptv.cloud</a> et <a href="mailto:support@castvera.com" class="text-[#60A5FA] hover:underline">support@castvera.com</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">2.</span> Données Personnelles Collectées
+          </h2>
+          <p class="mb-3">
+            Nous limitons la collecte de données au strict minimum nécessaire à l'activation et à la gestion technique de votre formule d'abonnement :
+          </p>
+          <ul class="space-y-2 pl-4">
+            <li class="flex items-start gap-2">
+              <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <span><strong>Données de commande :</strong> Adresse email, identifiant de transaction financière (fourni par la passerelle de paiement sécurisée).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <span><strong>Données de communication :</strong> Numéro de téléphone mobile si vous optez pour la livraison de vos accès via WhatsApp.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <span><strong>Données techniques de connexion :</strong> Adresse IP temporaire transmise lors de l'établissement du flux (uniquement aux fins de routage vers le serveur CDN le plus rapide).</span>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">3.</span> Engagement Strict « Zéro Journal de Visionnage » (No-Logs Policy)
+          </h2>
+          <p>
+            Nous attachons une importance primordiale à votre sphère privée. Notre infrastructure applique une politique stricte d'absence de journaux d'activité : <strong>nous ne stockons, n'analysons, ni ne transmettons aucun historique des flux, émissions ou chaînes consultés par nos utilisateurs</strong>. Votre consommation audiovisuelle personnelle demeure strictement confidentielle.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">4.</span> Chiffrement & Sécurité des Transactions
+          </h2>
+          <p>
+            Toutes les connexions vers notre site web ainsi que les flux de transmission sont sécurisés par un protocole de chiffrement <strong>SSL/TLS 256 bits</strong> géré sur le réseau Cloudflare Edge. Nous ne stockons jamais vos numéros complets de cartes bancaires sur nos serveurs : les transactions sont traitées directement par des prestataires de paiement certifiés PCI-DSS (Stripe, PayPal ou réseaux bancaires européens).
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">5.</span> Vos Droits Selon le RGPD
+          </h2>
+          <p class="mb-3">
+            Conformément aux articles 15 à 22 du RGPD, chaque utilisateur résidant en France ou dans l'Union Européenne dispose des droits suivants :
+          </p>
+          <ul class="space-y-1.5 pl-4 text-xs sm:text-sm">
+            <li>• <strong>Droit d'accès :</strong> Obtenir la confirmation que des données vous concernant sont traitées.</li>
+            <li>• <strong>Droit de rectification :</strong> Demander la mise à jour de vos identifiants ou de votre adresse email.</li>
+            <li>• <strong>Droit à l'effacement (« Droit à l'oubli ») :</strong> Demander la suppression totale de vos coordonnées après expiration de votre abonnement.</li>
+            <li>• <strong>Droit à la limitation et d'opposition :</strong> Vous opposer à toute sollicitation promotionnelle.</li>
+          </ul>
+          <p class="mt-3">
+            Pour exercer l'un de ces droits, il vous suffit de nous adresser un courriel à <a href="mailto:contact@abonnement-iptv.cloud" class="text-[#60A5FA] hover:underline">contact@abonnement-iptv.cloud</a>. Une réponse vous sera apportée sous 48 heures ouvrées.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">6.</span> Gestion des Cookies et Session
+          </h2>
+          <p>
+            Notre site utilise exclusivement des cookies techniques et des variables locales de session (ex. <code>localStorage</code>) nécessaires à l'ergonomie (mémorisation de vos préférences linguistiques, bridage de fréquence des fenêtres d'information à 1 affichage par 24h). Aucun cookie publicitaire invasif de ciblage tiers n'est implanté.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

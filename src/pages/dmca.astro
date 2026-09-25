@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { ShieldAlert, CheckCircle2 } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+  title={`Notification DMCA & Droits d'Auteur — Abonnement IPTV France ${currentYear}`}
+  description="Procédure de notification DMCA et respect de la propriété intellectuelle conforme à la LCEN. Déclaration d'intermédiation technique et formulaire de retrait."
+  canonicalURL="https://abonnement-iptv.cloud/dmca"
+>
+  <StickyHeader currentPath="/dmca" />
+
+  <main class="flex-1 py-16 sm:py-24 bg-[#090A10]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="mb-12 text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider mb-4">
+          <ShieldAlert class="w-3.5 h-3.5" />
+          <span>Propriété Intellectuelle & LCEN</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+          Notification DMCA & Droits d'Auteur
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-400">
+          Procédure de signalement conforme au Digital Millennium Copyright Act (17 U.S.C. § 512) et à la Loi française n° 2004-575 du 21 juin 2004 (LCEN)
+        </p>
+      </div>
+
+      <!-- Content Box -->
+      <div class="rounded-3xl bg-[#11121C] border border-white/[0.08] p-8 sm:p-12 space-y-8 text-gray-300 text-sm leading-relaxed">
+        
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">1.</span> Déclaration de Statut d'Intermédiaire Technique
+          </h2>
+          <p class="mb-3">
+            Le site web <strong>abonnement-iptv.cloud</strong> opère strictement en qualité d'intermédiaire technique, d'indexeur et de revendeur de protocoles de connectivité réseau.
+          </p>
+          <p class="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] text-xs sm:text-sm">
+            📌 <strong>Déclaration d'absence d'hébergement :</strong> Nous n'hébergeons, ne stockons, ne diffusons, ni ne transmettons aucun contenu audiovisuel protégé par le droit d'auteur sur nos propres serveurs web. Les flux vidéo sont hébergés et diffusés par des réseaux de serveurs tiers sur lesquels nous n'exerçons aucun contrôle éditorial direct.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">2.</span> Respect des Titulaires de Droits (Notice and Takedown)
+          </h2>
+          <p>
+            Abonnement IPTV France respecte scrupuleusement la propriété intellectuelle des créateurs, diffuseurs et ayant-droits. Conformément à la réglementation internationale et européenne, nous répondons promptement à toute notification motivée de violation de droits d'auteur afin de désactiver l'accès technique aux flux litigieux.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">3.</span> Éléments Requis pour Valider une Notification
+          </h2>
+          <p class="mb-3">
+            Pour que votre notification de retrait soit traitée de manière recevable et prioritaire, veuillez nous adresser un courrier électronique contenant l'intégralité des informations ci-dessous :
+          </p>
+          <ul class="space-y-2 pl-4 text-xs sm:text-sm">
+            <li class="flex items-start gap-2">
+              <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <span>La signature physique ou électronique d'une personne autorisée à agir pour le compte du titulaire du droit exclusif prétendument enfreint.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <span>L'identification précise de l'œuvre protégée par le droit d'auteur revendiquée comme ayant été violée.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <span>L'indication exacte du lien, URL ou flux concerné devant être neutralisé.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <span>Vos coordonnées complètes (nom officiel, société, adresse physique, téléphone et email professionnel).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <span>Une déclaration sur l'honneur certifiant de votre croyance de bonne foi que l'utilisation contestée n'est pas autorisée par le titulaire du droit d'auteur ou par la loi.</span>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span class="text-[#0055D4]">4.</span> Agent Désigné pour la Réception des Notifications
+          </h2>
+          <p class="mb-4">
+            Toutes les demandes relatives aux droits d'auteur doivent être envoyées à notre agent désigné à l'adresse suivante :
+          </p>
+          <div class="p-5 rounded-2xl bg-black/40 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <div class="text-xs text-gray-400">Agent de Conformité Propriété Intellectuelle</div>
+              <div class="text-base font-bold text-white">contact@abonnement-iptv.cloud</div>
+              <div class="text-xs text-purple-400">Copie : support@castvera.com</div>
+            </div>
+            <a
+              href="mailto:contact@abonnement-iptv.cloud?subject=DMCA%20Notice%20and%20Takedown"
+              class="px-5 py-2.5 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-300 border border-red-500/40 text-xs font-bold uppercase tracking-wider transition-colors"
+            >
+              Notifier un Retrait
+            </a>
+          </div>
+          <p class="text-xs text-gray-400 mt-3">
+            Délai moyen de prise en compte : 24 à 48 heures ouvrées après réception de la notification complète.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

@@ -1,0 +1,262 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import CTASection from '../../components/CTASection.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+import ExitPopup from '../../components/ExitPopup.astro';
+import SocialPopup from '../../components/SocialPopup.astro';
+import GroupsPopup from '../../components/GroupsPopup.astro';
+import { getCollection } from 'astro:content';
+import { 
+  BookOpen, 
+  Calendar, 
+  Clock, 
+  ArrowRight, 
+  User, 
+  ChevronRight,
+  Sparkles
+} from 'lucide-astro';
+
+// Fetch all guide posts sorted by publication date
+const allGuides = await getCollection('guides');
+const sortedGuides = allGuides.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const featuredGuide = sortedGuides.find((g) => g.data.featured) || sortedGuides[0];
+const regularGuides = sortedGuides.filter((g) => g.slug !== featuredGuide?.slug);
+
+const blogCollectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Guides, Actualités & Tutoriels IPTV France",
+  "description": "Retrouvez tous nos guides d'experts, tutoriels de configuration (Smart TV connectées, clés 4K), analyses juridiques et astuces streaming sportif en France.",
+  "url": "https://abonnement-iptv.cloud/guides",
+  "blogPost": sortedGuides.map((guide) => ({
+    "@type": "BlogPosting",
+    "headline": guide.data.title,
+    "description": guide.data.description,
+    "datePublished": guide.data.pubDate.toISOString(),
+    "url": `https://abonnement-iptv.cloud/guides/${guide.slug}`
+  }))
+};
+---
+
+<Layout
+  title="Guides & Tutoriels IPTV France 2025 — Actualités, Sport & Légalité"
+  description="Consultez nos guides et tutoriels complets : comment regarder la Ligue 1 en streaming 4K, légalité de l'IPTV en France, configuration des applications et Smart TV."
+  canonicalURL="https://abonnement-iptv.cloud/guides"
+  schema={blogCollectionSchema}
+>
+  <StickyHeader />
+
+  <main id="main-content">
+    
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-16 md:pt-40 md:pb-24 bg-[#07080E] overflow-hidden border-b border-white/[0.06]">
+      <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[#0055D4]/15 rounded-full blur-[140px]"></div>
+      </div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <!-- Breadcrumb -->
+        <nav class="inline-flex items-center gap-2 text-xs text-gray-400 mb-6" aria-label="Fil d'Ariane">
+          <a href="/" class="hover:text-white transition-colors">Accueil</a>
+          <ChevronRight class="w-3.5 h-3.5 text-gray-600" />
+          <span class="text-[#60A5FA] font-medium" aria-current="page">Guides & Tutoriels</span>
+        </nav>
+
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-6">
+          <BookOpen class="w-3.5 h-3.5 text-[#DC2626]" />
+          <span>Centre de Connaissances & Conseils Experts</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-6">
+          Guides, Tutoriels & <br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#F87171]">Actualités Streaming en France</span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-gray-300 font-normal max-w-3xl mx-auto leading-relaxed">
+          Toutes les clés pour tirer le meilleur parti de votre télévision connectée, comprendre l'évolution des droits audiovisuels et configurer vos appareils en quelques minutes.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="py-16 md:py-24 bg-[#0A0B14]">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Featured Article Hero Card */}
+        {featuredGuide && (
+          <div class="mb-16">
+            <div class="text-xs font-bold text-[#60A5FA] uppercase tracking-wider mb-4 flex items-center gap-2">
+              <Sparkles class="w-4 h-4 text-amber-400" />
+              <span>À la Une — Dossier Spécial</span>
+            </div>
+
+            <div class="rounded-3xl bg-gradient-to-b from-[#141830] to-[#0E1122] border border-[#0055D4]/30 p-6 sm:p-10 shadow-2xl relative overflow-hidden group">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <div class="lg:col-span-8">
+                  <div class="flex flex-wrap items-center gap-3 text-xs text-gray-400 mb-4">
+                    <span class="px-3 py-1 rounded-full bg-[#0055D4]/20 border border-[#0055D4]/30 text-[#60A5FA] font-bold">
+                      {featuredGuide.data.category}
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <Clock class="w-3.5 h-3.5 text-gray-400" /> {featuredGuide.data.readingTime}
+                    </span>
+                    <span>•</span>
+                    <span class="flex items-center gap-1">
+                      <Calendar class="w-3.5 h-3.5 text-gray-400" /> 
+                      {featuredGuide.data.pubDate.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </span>
+                  </div>
+
+                  <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4 group-hover:text-[#60A5FA] transition-colors leading-tight">
+                    <a href={`/guides/${featuredGuide.slug}`}>
+                      {featuredGuide.data.title}
+                    </a>
+                  </h2>
+
+                  <p class="text-sm sm:text-base text-gray-300 leading-relaxed font-normal mb-6">
+                    {featuredGuide.data.description}
+                  </p>
+
+                  <div class="flex items-center justify-between pt-4 border-t border-white/[0.08]">
+                    <span class="text-xs text-gray-400 flex items-center gap-1.5 font-medium">
+                      <User class="w-3.5 h-3.5 text-[#60A5FA]" /> {featuredGuide.data.author}
+                    </span>
+
+                    <a
+                      href={`/guides/${featuredGuide.slug}`}
+                      class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0055D4] to-[#2563EB] text-white font-bold text-xs hover:shadow-[0_0_20px_rgba(0,85,212,0.4)] transition-all"
+                    >
+                      <span>Lire l'article complet</span>
+                      <ArrowRight class="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+
+                <div class="lg:col-span-4 hidden lg:flex flex-col items-center justify-center rounded-2xl overflow-hidden border border-white/[0.08] shadow-lg group-hover:border-[#0055D4]/40 transition-colors">
+                  <img 
+                    src={featuredGuide.data.image} 
+                    alt={featuredGuide.data.imageAlt} 
+                    class="w-full h-48 object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
+                    width="600"
+                    height="338"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </div>
+
+              </div>
+            </div>
+          </div>
+        )}
+
+        <!-- Articles Grid Section -->
+        <div>
+          <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/[0.08]">
+            <h2 class="text-2xl font-black text-white">Tous nos Articles et Guides</h2>
+            <span class="text-xs text-gray-400 font-medium">{sortedGuides.length} articles disponibles</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {regularGuides.map((guide) => (
+              <article class="rounded-2xl bg-[#111322] border border-white/[0.08] hover:border-[#0055D4]/40 p-5 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 shadow-lg group">
+                <div>
+                  <div class="overflow-hidden rounded-xl mb-4 border border-white/[0.06]">
+                    <img 
+                      src={guide.data.image} 
+                      alt={guide.data.imageAlt} 
+                      class="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-105"
+                      width="600"
+                      height="338"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+
+                  <div class="flex items-center justify-between mb-2.5 text-xs text-gray-400">
+                    <span class="px-2.5 py-0.5 rounded bg-white/[0.05] border border-white/10 text-gray-300 font-medium text-[11px]">
+                      {guide.data.category}
+                    </span>
+                    <span class="flex items-center gap-1 text-[11px]">
+                      <Clock class="w-3 h-3 text-gray-400" /> {guide.data.readingTime}
+                    </span>
+                  </div>
+
+                  <h3 class="text-base font-black text-white mb-2.5 group-hover:text-[#60A5FA] transition-colors leading-snug">
+                    <a href={`/guides/${guide.slug}`}>
+                      {guide.data.title}
+                    </a>
+                  </h3>
+
+                  <p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal mb-5 line-clamp-2">
+                    {guide.data.description}
+                  </p>
+                </div>
+
+                <div class="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs text-gray-400">
+                  <span class="text-[11px] text-gray-400">
+                    {guide.data.pubDate.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })}
+                  </span>
+                  
+                  <a
+                    href={`/guides/${guide.slug}`}
+                    class="inline-flex items-center gap-1 text-[#60A5FA] font-bold group-hover:underline"
+                  >
+                    <span>Consulter</span>
+                    <ArrowRight class="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <!-- Fast Conversion Anchor -->
+        <div class="mt-16 rounded-2xl bg-gradient-to-r from-[#0055D4]/20 via-[#0A0D1F] to-[#DC2626]/10 border border-white/10 p-8 text-center max-w-3xl mx-auto">
+          <h3 class="text-xl sm:text-2xl font-black text-white mb-3">
+            Prêt à Profiter du Meilleur Streaming en France ?
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-300 mb-6 font-normal">
+            Bénéficiez de la formule 12 Mois à seulement <strong>55 € par an</strong> avec un Lecteur Premium offert et la garantie Anti-Freeze 9.8™.
+          </p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="/#pricing"
+              class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#0055D4] to-[#2563EB] text-white font-bold text-xs sm:text-sm shadow-md hover:scale-105 transition-transform"
+            >
+              <span>Découvrir la formule 12 Mois</span>
+              <ArrowRight class="w-4 h-4" />
+            </a>
+            <a
+              href="https://wa.me/18036582620?text=Bonjour,%20j'ai%20lu%20vos%20guides%20et%20je%20souhaite%20m'abonner"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#151726] hover:bg-[#1B1E30] text-gray-200 border border-white/10 text-xs font-bold transition-colors"
+            >
+              <span>Commander sur WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <CTASection />
+
+  </main>
+
+  <Footer />
+
+  <FloatingWhatsApp />
+  <SocialPopup />
+  <ExitPopup />
+  <GroupsPopup />
+
+</Layout>
