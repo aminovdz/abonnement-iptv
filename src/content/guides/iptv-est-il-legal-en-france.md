@@ -1,8 +1,8 @@
 ---
-title: "L'IPTV est-il Légal en France ? Le Guide Juridique et Pratique 2025"
+title: "L'IPTV est-il Légal en France ? Le Guide Juridique et Pratique 2026"
 description: "Comprendre le cadre légal de l'IPTV en France : rôle de l'Arcom, différence entre flux légaux et non autorisés, sécurité des données et protection de la vie privée."
-pubDate: 2025-01-20
-updatedDate: 2025-02-12
+pubDate: 2026-01-20
+updatedDate: 2026-02-12
 author: "Marc Delaunay — Juriste en Droit Numérique & Médias"
 image: "/images/iptv-legal-france.webp"
 imageAlt: "Légalité de l'IPTV en France cadre juridique et réglementation de l'Arcom"
@@ -33,7 +33,7 @@ La légalité ne réside donc jamais dans le protocole de communication utilisé
 
 ---
 
-## 2. Le Cadre Juridique Français en 2025 : Code Pénal et Propriété Intellectuelle
+## 2. Le Cadre Juridique Français en 2026 : Code Pénal et Propriété Intellectuelle
 
 En France, la diffusion d'œuvres cinématographiques et d'événements sportifs en direct est régie par des textes législatifs précis :
 

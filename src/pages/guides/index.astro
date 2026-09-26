@@ -41,10 +41,12 @@ const blogCollectionSchema = {
     "url": `https://abonnement-iptv.cloud/guides/${guide.slug}`
   }))
 };
+
+const currentYear = new Date().getFullYear();
 ---
 
 <Layout
-  title="Guides & Tutoriels IPTV France 2025 — Actualités, Sport & Légalité"
+  title={`Guides & Tutoriels IPTV France ${currentYear} — Actualités, Sport & Légalité`}
   description="Consultez nos guides et tutoriels complets : comment regarder la Ligue 1 en streaming 4K, légalité de l'IPTV en France, configuration des applications et Smart TV."
   canonicalURL="https://abonnement-iptv.cloud/guides"
   schema={blogCollectionSchema}

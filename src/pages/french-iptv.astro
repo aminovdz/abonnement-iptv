@@ -21,18 +21,20 @@ import {
   Radio
 } from 'lucide-astro';
 
+const currentYear = new Date().getFullYear();
+
 // Dedicated French IPTV Schema (Server-side rendered)
 const frenchIptvSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": "French IPTV — Premium French TV & Sports Streaming Service 4K",
+  "name": `French IPTV — Premium French TV & Sports Streaming Service ${currentYear} 4K`,
   "image": "https://abonnement-iptv.cloud/images/french-iptv-hero.webp",
   "description": "Premium French IPTV subscription with stable 4K 60FPS streaming, Anti-Freeze 9.8™ technology, French sports networks, cinema, VOD and instant 2-minute WhatsApp activation worldwide.",
   "brand": {
     "@type": "Brand",
     "name": "France IPTV"
   },
-  "sku": "FRENCH-IPTV-2025",
+  "sku": `FRENCH-IPTV-${currentYear}`,
   "mpn": "FRENCH-IPTV-PRO",
   "aggregateRating": {
     "@type": "AggregateRating",
@@ -71,14 +73,14 @@ const frenchIptvSchema = {
     {
       "@type": "Review",
       "author": { "@type": "Person", "name": "Julien D. (London, UK)" },
-      "datePublished": "2025-02-18",
+      "datePublished": "2026-02-18",
       "reviewRating": { "@type": "Rating", "ratingValue": "5" },
       "reviewBody": "As an expat living in the UK, finding reliable French IPTV with French commentary on Ligue 1 was tough until I discovered this service. 4K quality with zero lag!"
     },
     {
       "@type": "Review",
       "author": { "@type": "Person", "name": "Sophie L. (Montreal, Canada)" },
-      "datePublished": "2025-02-12",
+      "datePublished": "2026-02-12",
       "reviewRating": { "@type": "Rating", "ratingValue": "5" },
       "reviewBody": "The best French IPTV service hands down. Fast WhatsApp delivery in 2 minutes, crystal clear 4K picture and great French news and cinema channels."
     }

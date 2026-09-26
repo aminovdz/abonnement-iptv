@@ -23,18 +23,20 @@ import {
 } from 'lucide-astro';
 
 
+const currentYear = new Date().getFullYear();
+
 // Dedicated 12-Month Schema (Server-side rendered)
 const product12mSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": "Abonnement IPTV 12 Mois — Forfait Annuel Recommandé 4K UHD",
+  "name": `Abonnement IPTV 12 Mois — Forfait Annuel Recommandé ${currentYear} 4K UHD`,
   "image": "https://abonnement-iptv.cloud/images/abonnement-iptv-12-mois.webp",
   "description": "Formule annuelle 12 mois d'abonnement IPTV en France à 55 € (soit ~4,16 €/mois) incluant la licence Lecteur Premium offerte. Streaming stable 4K 60 FPS Anti-Freeze 9.8™.",
   "brand": {
     "@type": "Brand",
     "name": "France IPTV"
   },
-  "sku": "IPTV-12M-2025",
+  "sku": `IPTV-12M-${currentYear}`,
   "mpn": "IPTV-FR-12M-55",
   "aggregateRating": {
     "@type": "AggregateRating",
@@ -49,7 +51,7 @@ const product12mSchema = {
     "url": "https://abonnement-iptv.cloud/abonnement-iptv-12-mois",
     "priceCurrency": "EUR",
     "price": "55.00",
-    "priceValidUntil": "2026-12-31",
+    "priceValidUntil": `${currentYear}-12-31`,
     "itemCondition": "https://schema.org/NewCondition",
     "availability": "https://schema.org/InStock",
     "seller": {
@@ -69,14 +71,14 @@ const product12mSchema = {
     {
       "@type": "Review",
       "author": { "@type": "Person", "name": "Guillaume V." },
-      "datePublished": "2025-02-14",
+      "datePublished": "2026-02-14",
       "reviewRating": { "@type": "Rating", "ratingValue": "5" },
       "reviewBody": "J'ai pris la formule 12 mois pour 55 € avec le lecteur offert. Zéro coupure pendant la Ligue 1 et le zapping est ultra rapide sur ma Smart TV !"
     },
     {
       "@type": "Review",
       "author": { "@type": "Person", "name": "Frédéric M." },
-      "datePublished": "2025-02-10",
+      "datePublished": "2026-02-10",
       "reviewRating": { "@type": "Rating", "ratingValue": "5" },
       "reviewBody": "Excellent rapport qualité/prix. 4,16 € par mois avec un support WhatsApp disponible dans la minute. Le meilleur choix en France."
     }

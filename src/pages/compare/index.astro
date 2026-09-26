@@ -66,18 +66,20 @@ const checklist = [
   }
 ];
 
+const currentYear = new Date().getFullYear();
+
 const meilleurIptvSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Meilleur IPTV 2025 — Comparatif des Meilleurs Abonnements IPTV en France",
-  "description": "Comparatif indépendant et classement 2025 des meilleurs services d'abonnement IPTV en France. Stabilité, prix, serveurs et qualité d'image.",
+  "name": `Meilleur IPTV ${currentYear} — Comparatif des Meilleurs Abonnements IPTV en France`,
+  "description": `Comparatif indépendant et classement ${currentYear} des meilleurs services d'abonnement IPTV en France. Stabilité, prix, serveurs et qualité d'image.`,
   "url": "https://abonnement-iptv.cloud/compare"
 };
 ---
 
 <Layout
-  title="Meilleur IPTV 2025 — Comparatif Complet des Services IPTV en France"
-  description="Quel est le meilleur abonnement IPTV en France en 2025 ? Comparatif des offres, prix, stabilité anti-freeze et avis vérifiés. Guide d'achat complet."
+  title={`Meilleur IPTV ${currentYear} — Comparatif Complet des Services IPTV en France`}
+  description={`Quel est le meilleur abonnement IPTV en France en ${currentYear} ? Comparatif des offres, prix, stabilité anti-freeze et avis vérifiés. Guide d'achat complet.`}
   canonicalURL="https://abonnement-iptv.cloud/compare"
   schema={meilleurIptvSchema}
 >
@@ -95,11 +97,11 @@ const meilleurIptvSchema = {
         
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-6">
           <Trophy class="w-3.5 h-3.5 text-amber-400" />
-          <span>Baromètre des Services IPTV France 2025</span>
+          <span>Baromètre des Services IPTV France {currentYear}</span>
         </div>
 
         <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-6">
-          Meilleur Abonnement IPTV 2025 : <br />
+          Meilleur Abonnement IPTV {currentYear} : <br />
           <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#F87171]">Le Grand Comparatif Indépendant</span>
         </h1>
 
@@ -110,7 +112,7 @@ const meilleurIptvSchema = {
         <!-- Quick Winner Banner -->
         <div class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs sm:text-sm font-bold shadow-lg">
           <Sparkles class="w-4 h-4 text-emerald-400 shrink-0" />
-          <span>Vainqueur du test 2026 : Abonnement IPTV France (Note 4.94 / 5 — Prix 55 €/an tout compris)</span>
+          <span>Vainqueur du test {currentYear} : Abonnement IPTV France (Note 4.94 / 5 — Prix 55 €/an tout compris)</span>
         </div>
 
       </div>

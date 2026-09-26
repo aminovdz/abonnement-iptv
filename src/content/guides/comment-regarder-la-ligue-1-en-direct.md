@@ -1,8 +1,8 @@
 ---
-title: "Comment Regarder la Ligue 1 en Direct en Streaming 4K en 2025"
+title: "Comment Regarder la Ligue 1 en Direct en Streaming 4K en 2026"
 description: "Face à l'inflation des abonnements sportifs à 40 €/mois, découvrez comment suivre 100% des matchs de Ligue 1 (PSG, OM, OL, Monaco) en direct 4K UHD pour seulement 55 € par an."
-pubDate: 2025-01-15
-updatedDate: 2025-02-10
+pubDate: 2026-01-15
+updatedDate: 2026-02-10
 author: "Thomas Laurent — Rédacteur Sport & Streaming"
 image: "/images/ligue-1-streaming-4k.webp"
 imageAlt: "Comment regarder la Ligue 1 en direct 4K streaming au meilleur prix sur Smart TV"

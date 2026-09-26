@@ -18,12 +18,13 @@ import {
 } from 'lucide-astro';
 
 export async function getStaticPaths() {
+  const currentYear = new Date().getFullYear();
   const comparisons = [
     {
       brandSlug: "abonnement-iptv",
       competitorSlug: "acheteriptvpro",
       competitorName: "AcheterIPTVPro",
-      title: "Abonnement IPTV vs AcheterIPTVPro : Le Grand Comparatif 2025",
+      title: `Abonnement IPTV vs AcheterIPTVPro : Le Grand Comparatif ${currentYear}`,
       metaDescription: "Comparatif complet entre Abonnement IPTV et AcheterIPTVPro. Stabilité Anti-Freeze, prix annuel (55€ vs 75€+), qualité 4K et support WhatsApp. Qui choisir ?",
       headline: "Abonnement IPTV vs AcheterIPTVPro",
       subtitle: "Découvrez pourquoi notre service offre une stabilité supérieure, un prix plus juste (55 €/an) et une assistance client réactive 24/7 en français.",
@@ -81,7 +82,7 @@ export async function getStaticPaths() {
       brandSlug: "abonnement-iptv",
       competitorSlug: "iptv-premiumfrance",
       competitorName: "IPTV Premium France",
-      title: "Abonnement IPTV vs IPTV Premium France : Comparateur 2025",
+      title: `Abonnement IPTV vs IPTV Premium France : Comparateur ${currentYear}`,
       metaDescription: "Comparatif indépendant entre Abonnement IPTV et IPTV Premium France. Anti-Freeze, diffusion 4K 60FPS, prix et avis clients vérifiés.",
       headline: "Abonnement IPTV vs IPTV Premium France",
       subtitle: "Comparez les débits réels, la clarté des flux et le service après-vente pour faire le bon choix.",
@@ -144,6 +145,7 @@ export async function getStaticPaths() {
 }
 
 const { comp } = Astro.props;
+const currentYear = new Date().getFullYear();
 
 // Comparison Schema
 const comparisonSchema = {
@@ -193,7 +195,7 @@ const comparisonSchema = {
 
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-6">
           <Trophy class="w-3.5 h-3.5 text-amber-400" />
-          <span>Comparatif Objectif 2025</span>
+          <span>Comparatif Objectif {currentYear}</span>
         </div>
 
         <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-6">
