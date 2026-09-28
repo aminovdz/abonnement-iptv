@@ -1,0 +1,679 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import ExitPopup from '../components/ExitPopup.astro';
+import SocialPopup from '../components/SocialPopup.astro';
+import GroupsPopup from '../components/GroupsPopup.astro';
+import { 
+  Radio, 
+  PlayCircle, 
+  Clock, 
+  Zap, 
+  Trophy, 
+  ShieldCheck, 
+  ChevronRight, 
+  Search, 
+  Tv, 
+  Sparkles
+} from 'lucide-astro';
+
+interface MatchItem {
+  id: string;
+  league: string;
+  leagueKey: string;
+  sport: string;
+  homeTeam: string;
+  homeLogo: string;
+  homeScore: string;
+  awayTeam: string;
+  awayLogo: string;
+  awayScore: string;
+  status: string;
+  isLive: boolean;
+  quality: string;
+  broadcastChannels: string[];
+  kickoffTime?: string;
+}
+
+const fallbackMatches: MatchItem[] = [
+  {
+    id: "401876449",
+    league: "Ligue 1 France",
+    leagueKey: "ligue1",
+    sport: "Football",
+    homeTeam: "Marseille",
+    homeLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/176.png",
+    homeScore: "1",
+    awayTeam: "Paris Saint-Germain",
+    awayLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
+    awayScore: "2",
+    status: "Score Final (FT)",
+    isLive: false,
+    quality: "4K UHD · 60 FPS",
+    broadcastChannels: ["Canal+ Sport", "DAZN 1", "RMC Sport Live 4K"]
+  },
+  {
+    id: "401876452",
+    league: "Ligue 1 France",
+    leagueKey: "ligue1",
+    sport: "Football",
+    homeTeam: "Nice",
+    homeLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/2502.png",
+    homeScore: "2",
+    awayTeam: "Lille",
+    awayLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/166.png",
+    awayScore: "1",
+    status: "Score Final (FT)",
+    isLive: false,
+    quality: "4K UHD · 60 FPS",
+    broadcastChannels: ["DAZN 1", "Canal+ Foot"]
+  },
+  {
+    id: "401876456",
+    league: "Ligue 1 France",
+    leagueKey: "ligue1",
+    sport: "Football",
+    homeTeam: "AJ Auxerre",
+    homeLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/172.png",
+    homeScore: "2",
+    awayTeam: "Brest",
+    awayLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/6997.png",
+    awayScore: "1",
+    status: "Score Final (FT)",
+    isLive: false,
+    quality: "4K UHD · 60 FPS",
+    broadcastChannels: ["DAZN 2", "Canal+ Sport"]
+  },
+  {
+    id: "ucl-1",
+    league: "UEFA Champions League",
+    leagueKey: "ucl",
+    sport: "Football",
+    homeTeam: "Real Madrid",
+    homeLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
+    homeScore: "3",
+    awayTeam: "Manchester City",
+    awayLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/382.png",
+    awayScore: "2",
+    status: "Score Final (FT)",
+    isLive: false,
+    quality: "4K UHD · 60 FPS",
+    broadcastChannels: ["Canal+", "RMC Sport 1 4K", "BeIN Sports 1"]
+  },
+  {
+    id: "ucl-2",
+    league: "UEFA Champions League",
+    leagueKey: "ucl",
+    sport: "Football",
+    homeTeam: "Bayern Munich",
+    homeLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/132.png",
+    homeScore: "5",
+    awayTeam: "Bodo/Glimt",
+    awayLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/4094.png",
+    awayScore: "0",
+    status: "Score Final (FT)",
+    isLive: false,
+    quality: "4K UHD · 60 FPS",
+    broadcastChannels: ["BeIN Sports 2", "Canal+ Live"]
+  },
+  {
+    id: "ucl-3",
+    league: "UEFA Champions League",
+    leagueKey: "ucl",
+    sport: "Football",
+    homeTeam: "Sporting CP",
+    homeLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/499.png",
+    homeScore: "2",
+    awayTeam: "Lens",
+    awayLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/165.png",
+    awayScore: "1",
+    status: "Score Final (FT)",
+    isLive: false,
+    quality: "4K UHD · 60 FPS",
+    broadcastChannels: ["Canal+ Foot", "RMC Sport 2"]
+  },
+  {
+    id: "epl-1",
+    league: "Premier League Anglaise",
+    leagueKey: "epl",
+    sport: "Football",
+    homeTeam: "Liverpool",
+    homeLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/364.png",
+    homeScore: "3",
+    awayTeam: "AFC Bournemouth",
+    awayLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/349.png",
+    awayScore: "0",
+    status: "Score Final (FT)",
+    isLive: false,
+    quality: "4K UHD · 60 FPS",
+    broadcastChannels: ["Canal+ Premier", "RMC Sport 1"]
+  },
+  {
+    id: "epl-2",
+    league: "Premier League Anglaise",
+    leagueKey: "epl",
+    sport: "Football",
+    homeTeam: "Arsenal",
+    homeLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/359.png",
+    homeScore: "2",
+    awayTeam: "Chelsea",
+    awayLogo: "https://a.espncdn.com/i/teamlogos/soccer/500/363.png",
+    awayScore: "2",
+    status: "Score Final (FT)",
+    isLive: false,
+    quality: "4K UHD · 60 FPS",
+    broadcastChannels: ["Canal+ Sport 360", "Sky Sports Main Event"]
+  }
+];
+
+let allMatches: MatchItem[] = fallbackMatches;
+
+try {
+  const [resL1, resUCL, resEPL] = await Promise.allSettled([
+    fetch("https://site.api.espn.com/apis/site/v2/sports/soccer/fra.1/scoreboard", { signal: AbortSignal.timeout(3500) }).then(r => r.json()),
+    fetch("https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard", { signal: AbortSignal.timeout(3500) }).then(r => r.json()),
+    fetch("https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard", { signal: AbortSignal.timeout(3500) }).then(r => r.json())
+  ]);
+
+  const parseEvents = (data: any, leagueName: string, leagueKey: string): MatchItem[] => {
+    if (!data?.events || !Array.isArray(data.events)) return [];
+    return data.events.map((event: any) => {
+      const comp = event.competitions?.[0];
+      const home = comp?.competitors?.find((c: any) => c.homeAway === "home");
+      const away = comp?.competitors?.find((c: any) => c.homeAway === "away");
+      const isLive = event.status?.type?.state === "in";
+      const isPost = event.status?.type?.state === "post";
+      let statusText = event.status?.type?.detail || "À venir";
+      if (isLive) {
+        statusText = `${event.status?.displayClock || ''} En Direct`.trim();
+      } else if (isPost) {
+        statusText = `Score Final (${event.status?.type?.shortDetail || 'FT'})`;
+      }
+      return {
+        id: String(event.id),
+        league: leagueName,
+        leagueKey,
+        sport: "Football",
+        homeTeam: home?.team?.displayName || home?.team?.name || "Équipe Domicile",
+        homeLogo: home?.team?.logo || "https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo-500.png",
+        homeScore: home?.score || "0",
+        awayTeam: away?.team?.displayName || away?.team?.name || "Équipe Extérieure",
+        awayLogo: away?.team?.logo || "https://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo-500.png",
+        awayScore: away?.score || "0",
+        status: statusText,
+        isLive,
+        quality: "4K UHD · 60 FPS",
+        broadcastChannels: ["Canal+ Sport", "BeIN Sports", "RMC Sport 4K", "DAZN"]
+      };
+    });
+  };
+
+  const l1 = resL1.status === "fulfilled" ? parseEvents(resL1.value, "Ligue 1 France", "ligue1") : [];
+  const ucl = resUCL.status === "fulfilled" ? parseEvents(resUCL.value, "UEFA Champions League", "ucl") : [];
+  const epl = resEPL.status === "fulfilled" ? parseEvents(resEPL.value, "Premier League Anglaise", "epl") : [];
+  
+  const combined = [...l1, ...ucl, ...epl];
+  if (combined.length >= 4) {
+    allMatches = combined;
+  }
+} catch {
+  allMatches = fallbackMatches;
+}
+
+const currentYear = new Date().getFullYear();
+
+// JSON-LD SportsEvent Schema for SEO
+const matchCenterSchema = {
+  "@context": "https://schema.org",
+  "@type": "SportsEvent",
+  "name": `Match Center en Direct ${currentYear} — Scores, Calendrier & Retransmissions 4K`,
+  "description": "Suivez les scores officiels en direct de Ligue 1, UEFA Champions League et grands championnats européens. Retransmission 4K 60FPS sans coupure sur Abonnement IPTV France.",
+  "url": "https://abonnement-iptv.cloud/livescore",
+  "subEvent": allMatches.map((m) => ({
+    "@type": "SportsEvent",
+    "name": `${m.homeTeam} vs ${m.awayTeam}`,
+    "homeTeam": { "@type": "SportsTeam", "name": m.homeTeam },
+    "awayTeam": { "@type": "SportsTeam", "name": m.awayTeam },
+    "sport": m.sport,
+    "description": `Rencontre ${m.league} — ${m.homeTeam} contre ${m.awayTeam}. Score en direct : ${m.homeScore} - ${m.awayScore}.`
+  }))
+};
+---
+
+<Layout
+  title={`Match Center en Direct ${currentYear} — Scores Ligue 1, Champions League & Retransmission 4K`}
+  description="Accédez au Match Center en direct : scores temps réel, résultats officiels de Ligue 1, UEFA Champions League et calendrier des diffusions en streaming 4K 60 FPS sans coupure."
+  canonicalURL="https://abonnement-iptv.cloud/livescore"
+  schema={matchCenterSchema}
+>
+  <StickyHeader currentPath="/livescore" />
+
+  <main id="main-content" class="bg-[#090A12] min-h-screen">
+    
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-16 md:pt-40 md:pb-24 bg-[#07080E] border-b border-white/[0.06] overflow-hidden">
+      <!-- Ambient Lighting -->
+      <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[#DC2626]/15 rounded-full blur-[160px]"></div>
+        <div class="absolute top-1/3 right-1/4 w-[400px] h-[250px] bg-[#0055D4]/15 rounded-full blur-[140px]"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <!-- Breadcrumb -->
+        <nav class="inline-flex items-center gap-2 text-xs text-gray-400 mb-6" aria-label="Fil d'Ariane">
+          <a href="/" class="hover:text-white transition-colors">Accueil</a>
+          <ChevronRight class="w-3.5 h-3.5 text-gray-600" />
+          <span class="text-[#60A5FA] font-medium" aria-current="page">Match Center en Direct</span>
+        </nav>
+
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DC2626]/15 border border-[#DC2626]/30 text-red-400 text-xs font-bold uppercase tracking-wider mb-6">
+          <Radio class="w-3.5 h-3.5 animate-pulse" />
+          <span>Scores & Résultats Officiels en Direct</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-6">
+          Match Center en Direct : <br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#F87171]">
+            Ligue 1 & Coupes d'Europe en 4K UHD
+          </span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-gray-300 font-normal max-w-3xl mx-auto leading-relaxed mb-8">
+          Consultez tous les scores en direct, les horaires de coup d'envoi et les chaînes de retransmission disponibles sur notre <a href="/#pricing" class="text-[#60A5FA] underline font-semibold hover:text-white">Abonnement IPTV France</a> en 4K 60 FPS sans décalage.
+        </p>
+
+        <!-- Live Sync Pill & Action -->
+        <div class="inline-flex flex-wrap items-center justify-center gap-4 p-2 pl-4 rounded-2xl bg-[#111322] border border-white/10 shadow-xl max-w-xl mx-auto">
+          <div class="flex items-center gap-2 text-xs text-gray-300">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+            <span id="matchcenter-refresh-status" class="font-medium">Flux direct actualisé en continu</span>
+          </div>
+
+          <a 
+            href="https://wa.me/18036582620?text=Bonjour%21+Je+souhaite+tester+le+streaming+sport+en+direct+4K." 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="px-4 py-2 rounded-xl bg-gradient-to-r from-[#0055D4] to-[#2563EB] text-white font-bold text-xs hover:shadow-[0_0_20px_rgba(0,85,212,0.4)] transition-all"
+          >
+            Tester en Direct (Essai 24h)
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Match Center Container -->
+    <section class="py-12 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Interactive Filter & Search Toolbar -->
+      <div class="mb-10 flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-[#111322] border border-white/[0.08]">
+        
+        <!-- League Filter Tabs -->
+        <div class="flex flex-wrap items-center gap-2 w-full md:w-auto" id="filter-tabs">
+          <button 
+            data-filter="all"
+            class="filter-tab active px-4 py-2 rounded-xl text-xs font-bold transition-all bg-[#0055D4] text-white shadow-md"
+          >
+            Tous les Matchs ({allMatches.length})
+          </button>
+          <button 
+            data-filter="ligue1"
+            class="filter-tab px-4 py-2 rounded-xl text-xs font-medium text-gray-300 hover:text-white hover:bg-white/[0.05] transition-all"
+          >
+            Ligue 1 France
+          </button>
+          <button 
+            data-filter="ucl"
+            class="filter-tab px-4 py-2 rounded-xl text-xs font-medium text-gray-300 hover:text-white hover:bg-white/[0.05] transition-all"
+          >
+            Champions League
+          </button>
+          <button 
+            data-filter="epl"
+            class="filter-tab px-4 py-2 rounded-xl text-xs font-medium text-gray-300 hover:text-white hover:bg-white/[0.05] transition-all"
+          >
+            Premier League
+          </button>
+        </div>
+
+        <!-- Team Search Input -->
+        <div class="relative w-full md:w-72">
+          <Search class="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <input 
+            type="text" 
+            id="team-search-input"
+            placeholder="Rechercher un club (PSG, OM, Real...)"
+            class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#090A12] border border-white/10 text-white text-xs placeholder:text-gray-500 focus:outline-none focus:border-[#0055D4] transition-colors"
+          />
+        </div>
+
+      </div>
+
+      <!-- Match Cards Grid -->
+      <div id="matches-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {allMatches.map((match) => (
+          <div 
+            class="match-card rounded-3xl bg-[#121424] border border-white/[0.08] hover:border-[#0055D4]/50 p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl group"
+            data-league={match.leagueKey}
+            data-home={match.homeTeam.toLowerCase()}
+            data-away={match.awayTeam.toLowerCase()}
+            data-match-id={match.id}
+          >
+            <div>
+              <!-- League & Status Header -->
+              <div class="flex items-center justify-between mb-5">
+                <span class="text-xs font-bold text-[#60A5FA] flex items-center gap-1.5">
+                  <Trophy class="w-3.5 h-3.5" />
+                  {match.league}
+                </span>
+
+                {match.isLive ? (
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-500/20 border border-red-500/40 text-red-400 text-[10px] font-black uppercase tracking-wider animate-pulse">
+                    <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span>
+                    <span class="status-label">{match.status}</span>
+                  </span>
+                ) : (
+                  <span class="text-[10px] font-bold text-gray-300 bg-white/[0.05] px-2.5 py-1 rounded-full border border-white/[0.06]">
+                    <span class="status-label">{match.status}</span>
+                  </span>
+                )}
+              </div>
+
+              <!-- Scoreboard -->
+              <div class="space-y-4 my-5 bg-[#0A0C16] p-4 rounded-2xl border border-white/[0.04]">
+                <!-- Home Team -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img 
+                      src={match.homeLogo} 
+                      alt={`Logo officiel club ${match.homeTeam}`} 
+                      class="w-7 h-7 object-contain rounded-full bg-white/5 p-0.5"
+                      width="28"
+                      height="28"
+                      loading="lazy"
+                      decoding="async"
+                      onerror="this.style.display='none'"
+                    />
+                    <span class="text-sm font-bold text-white group-hover:text-[#60A5FA] transition-colors">
+                      {match.homeTeam}
+                    </span>
+                  </div>
+                  <span class="text-2xl font-black text-white font-mono px-3.5 py-1 rounded-xl bg-black/60 border border-white/10 home-score-val">
+                    {match.homeScore}
+                  </span>
+                </div>
+
+                <!-- Away Team -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img 
+                      src={match.awayLogo} 
+                      alt={`Logo officiel club ${match.awayTeam}`} 
+                      class="w-7 h-7 object-contain rounded-full bg-white/5 p-0.5"
+                      width="28"
+                      height="28"
+                      loading="lazy"
+                      decoding="async"
+                      onerror="this.style.display='none'"
+                    />
+                    <span class="text-sm font-bold text-white group-hover:text-[#60A5FA] transition-colors">
+                      {match.awayTeam}
+                    </span>
+                  </div>
+                  <span class="text-2xl font-black text-white font-mono px-3.5 py-1 rounded-xl bg-black/60 border border-white/10 away-score-val">
+                    {match.awayScore}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Channels Badge -->
+              <div class="mb-4">
+                <div class="text-[11px] text-gray-400 mb-1.5 flex items-center gap-1 font-medium">
+                  <Tv class="w-3 h-3 text-[#60A5FA]" /> Chaînes disponibles sur notre bouquet :
+                </div>
+                <div class="flex flex-wrap gap-1.5">
+                  {match.broadcastChannels.map((ch) => (
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/10 text-[10px] text-gray-300 font-medium">
+                      {ch}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Bottom CTA -->
+            <div class="pt-4 border-t border-white/[0.06] flex items-center justify-between">
+              <span class="text-[11px] font-semibold text-emerald-400 flex items-center gap-1">
+                <Zap class="w-3 h-3" /> {match.quality}
+              </span>
+
+              <a
+                href="https://wa.me/18036582620?text=Bonjour%21+Je+souhaite+regarder+le+match+en+direct+4K."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-[#0055D4] to-[#2563EB] text-white text-xs font-bold hover:shadow-[0_0_15px_rgba(0,85,212,0.4)] transition-all"
+              >
+                <span>Regarder</span>
+                <PlayCircle class="w-3.5 h-3.5" />
+              </a>
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+      <!-- No Results Message (Hidden by default) -->
+      <div id="no-results-msg" class="hidden text-center py-16 bg-[#111322] rounded-3xl border border-white/[0.08] my-8">
+        <Trophy class="w-12 h-12 text-gray-600 mx-auto mb-3" />
+        <h3 class="text-lg font-bold text-white mb-1">Aucun match trouvé pour cette recherche</h3>
+        <p class="text-xs text-gray-400">Essayez un autre mot-clé ou réinitialisez les filtres.</p>
+      </div>
+
+      <!-- Reassurance Banner -->
+      <div class="mt-16 p-8 rounded-3xl bg-gradient-to-r from-[#0055D4]/15 via-[#101428] to-[#DC2626]/10 border border-[#0055D4]/30 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-bold mb-3">
+            <Sparkles class="w-3.5 h-3.5" /> Technologie Anti-Freeze 9.8™
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white mb-2">
+            Ne Ratez Plus Aucun But : La Formule 12 Mois à 55 €
+          </h2>
+          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal">
+            Bénéficiez de 100% de la Ligue 1, des soirées de Ligue des Champions, du Top 14 et de la Formule 1 en 4K 60 FPS. Lecteur Premium offert avec activation instantanée sous 2 minutes par WhatsApp.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center gap-4 shrink-0 w-full sm:w-auto">
+          <a
+            href="/abonnement-iptv-12-mois"
+            class="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#0055D4] to-[#2563EB] text-white font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_25px_rgba(0,85,212,0.5)] transition-all"
+          >
+            Découvrir l'Offre 55 €
+          </a>
+          <a
+            href="/#pricing"
+            class="w-full sm:w-auto text-center px-5 py-3.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-white font-bold text-xs uppercase tracking-wider transition-colors"
+          >
+            Toutes les Formules (dès 8 €)
+          </a>
+        </div>
+      </div>
+
+      <!-- FAQ Match Center Section -->
+      <div class="mt-20 border-t border-white/[0.08] pt-14">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <h2 class="text-2xl sm:text-3xl font-black text-white mb-2">
+            Questions Fréquentes sur le Match Center & Streaming Sport
+          </h2>
+          <p class="text-xs sm:text-sm text-gray-400">
+            Tout savoir sur les retransmissions en direct, la latence et la compatibilité de notre service.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div class="p-6 rounded-2xl bg-[#111322] border border-white/[0.06]">
+            <h3 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+              <Zap class="w-4 h-4 text-[#60A5FA]" /> Y a-t-il un décalage par rapport à la TNT hertzienne ?
+            </h3>
+            <p class="text-xs text-gray-300 leading-relaxed">
+              Non. Nos serveurs CDN sont directement interconnectés aux points d'échange français (Paris TH2, LyonIX, Marseille Interxion), ramenant la latence à un niveau imperceptible. Vous célébrez les buts au même moment que vos voisins.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#111322] border border-white/[0.06]">
+            <h3 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+              <Clock class="w-4 h-4 text-emerald-400" /> Est-il possible de revoir un match manqué ?
+            </h3>
+            <p class="text-xs text-gray-300 leading-relaxed">
+              Oui, notre fonction Replay 7 jours (Catch-Up) vous permet de revoir n'importe quelle rencontre diffusée lors de la semaine écoulée d'un simple clic sur votre télécommande.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#111322] border border-white/[0.06]">
+            <h3 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+              <Tv class="w-4 h-4 text-purple-400" /> Puis-je regarder le multiplex et un match individuel ?
+            </h3>
+            <p class="text-xs text-gray-300 leading-relaxed">
+              Tout à fait. Nous proposons à la fois le flux multiplex général et tous les canaux événementiels individuels pour chaque rencontre simultanée.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#111322] border border-white/[0.06]">
+            <h3 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+              <ShieldCheck class="w-4 h-4 text-amber-400" /> Que se passe-t-il si un serveur sature ?
+            </h3>
+            <p class="text-xs text-gray-300 leading-relaxed">
+              Notre technologie Anti-Freeze 9.8™ effectue un routage automatique de secours en moins de 10 millisecondes sur un serveur miroir haute capacité, garantissant zéro coupure pendant les chocs sportifs.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <Footer />
+
+  <FloatingWhatsApp />
+  <SocialPopup />
+  <ExitPopup />
+  <GroupsPopup />
+
+</Layout>
+
+<!-- Client Script for Live Filtering, Search, and Auto-Refresh -->
+<script is:inline>
+  (function initMatchCenter() {
+    // 1. Filter by League
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const matchCards = document.querySelectorAll('.match-card');
+    const noResultsMsg = document.getElementById('no-results-msg');
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    function applyFilterAndSearch() {
+      let visibleCount = 0;
+      matchCards.forEach(card => {
+        const league = card.getAttribute('data-league') || '';
+        const home = card.getAttribute('data-home') || '';
+        const away = card.getAttribute('data-away') || '';
+
+        const matchesFilter = currentFilter === 'all' || league === currentFilter;
+        const matchesSearch = !currentSearch || home.includes(currentSearch) || away.includes(currentSearch);
+
+        if (matchesFilter && matchesSearch) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (noResultsMsg) {
+        noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    }
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => {
+          t.classList.remove('active', 'bg-[#0055D4]', 'text-white', 'shadow-md');
+          t.classList.add('text-gray-300');
+        });
+        tab.classList.add('active', 'bg-[#0055D4]', 'text-white', 'shadow-md');
+        tab.classList.remove('text-gray-300');
+        currentFilter = tab.getAttribute('data-filter') || 'all';
+        applyFilterAndSearch();
+      });
+    });
+
+    // 2. Search by Team
+    const searchInput = document.getElementById('team-search-input');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        currentSearch = e.target.value.toLowerCase().trim();
+        applyFilterAndSearch();
+      });
+    }
+
+    // 3. Auto-Refresh Real-Time Scores
+    async function updateMatchCenterScores() {
+      try {
+        const [resL1, resUCL, resEPL] = await Promise.allSettled([
+          fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/fra.1/scoreboard').then(r => r.json()),
+          fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard').then(r => r.json()),
+          fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard').then(r => r.json())
+        ]);
+
+        const allEvents = [];
+        if (resL1.status === 'fulfilled' && resL1.value?.events) allEvents.push(...resL1.value.events);
+        if (resUCL.status === 'fulfilled' && resUCL.value?.events) allEvents.push(...resUCL.value.events);
+        if (resEPL.status === 'fulfilled' && resEPL.value?.events) allEvents.push(...resEPL.value.events);
+
+        allEvents.forEach(event => {
+          const comp = event.competitions?.[0];
+          const home = comp?.competitors?.find(c => c.homeAway === 'home');
+          const away = comp?.competitors?.find(c => c.homeAway === 'away');
+          if (!home || !away) return;
+
+          const card = document.querySelector(`[data-match-id="${event.id}"]`);
+          if (card) {
+            const homeScoreEl = card.querySelector('.home-score-val');
+            const awayScoreEl = card.querySelector('.away-score-val');
+            const statusLabelEl = card.querySelector('.status-label');
+
+            if (homeScoreEl) homeScoreEl.textContent = home.score || '0';
+            if (awayScoreEl) awayScoreEl.textContent = away.score || '0';
+
+            if (statusLabelEl) {
+              const isLive = event.status?.type?.state === 'in';
+              const isPost = event.status?.type?.state === 'post';
+              if (isLive) {
+                statusLabelEl.textContent = `${event.status?.displayClock || ''} En Direct`.trim();
+              } else if (isPost) {
+                statusLabelEl.textContent = `Score Final (${event.status?.type?.shortDetail || 'FT'})`;
+              } else {
+                statusLabelEl.textContent = event.status?.type?.detail || 'À venir';
+              }
+            }
+          }
+        });
+
+        const statusEl = document.getElementById('matchcenter-refresh-status');
+        if (statusEl) {
+          const now = new Date();
+          statusEl.textContent = `Actualisé à ${now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })} (Direct)`;
+        }
+      } catch (e) {
+        // Silently preserve state on fetch error
+      }
+    }
+
+    // Auto-poll every 30 seconds
+    setInterval(updateMatchCenterScores, 30000);
+  })();
+</script>
