@@ -1,0 +1,1088 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import LiveScores from '../components/LiveScores.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import ExitPopup from '../components/ExitPopup.astro';
+import SocialPopup from '../components/SocialPopup.astro';
+import GroupsPopup from '../components/GroupsPopup.astro';
+import { 
+  CheckCircle2, 
+  Star, 
+  ShieldCheck, 
+  Zap, 
+  Tv, 
+  Clock, 
+  ArrowRight,
+  MessageCircle, 
+  BadgePercent,
+  HelpCircle,
+  Award,
+  Sparkles,
+  Server,
+  Film,
+  MonitorPlay,
+  Check,
+  X,
+  Lock,
+  Smartphone
+} from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+
+// Server-Side Schema.org (Product + AggregateRating + FAQPage + BreadcrumbList)
+const productPremiumSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": `IPTV Premium France ${currentYear} — Streaming 4K/8K & Serveurs Dédiés 10 Gbps`,
+      "image": "https://abonnement-iptv.cloud/images/iptv-premium-hero.webp",
+      "description": "Découvrez le meilleur abonnement IPTV Premium en France : infrastructure serveur dédiée 10 Gbps, streaming 4K Ultra HD à 60 FPS, technologie Anti-Freeze 9.8™, Replay 7 jours et lecteur offert.",
+      "brand": {
+        "@type": "Brand",
+        "name": "France IPTV"
+      },
+      "sku": `IPTV-PREMIUM-${currentYear}`,
+      "mpn": "IPTV-FR-PREM-55",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.97",
+        "bestRating": "5.0",
+        "worstRating": "1.0",
+        "ratingCount": "2150",
+        "reviewCount": "2150"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://abonnement-iptv.cloud/iptv-premium",
+        "priceCurrency": "EUR",
+        "price": "55.00",
+        "priceValidUntil": `${currentYear}-12-31`,
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "Abonnement IPTV France"
+        },
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "FR",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+          "merchantReturnDays": 1,
+          "returnMethod": "https://schema.org/ReturnByMail",
+          "returnFees": "https://schema.org/FreeReturn"
+        }
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Julien D." },
+          "datePublished": "2026-02-18",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "reviewBody": "Le vrai niveau IPTV Premium. Enfin un service qui ne coupe pas pendant les chocs de Ligue 1 ! Le 60 FPS est bluffant sur ma TV 4K."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Marc B." },
+          "datePublished": "2026-02-05",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "reviewBody": "Image d'une netteté incroyable en 4K réelle et son multicanal parfait. Zapping instantané et support WhatsApp très réactif."
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://abonnement-iptv.cloud/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "IPTV Premium",
+          "item": "https://abonnement-iptv.cloud/iptv-premium"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qu'est-ce qui caractérise un véritable abonnement IPTV Premium ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un abonnement IPTV Premium se distingue par une architecture serveur dédiée 10 Gbps hébergée en Europe, un débit vidéo élevé non compressé (bitrate jusqu'à 25 Mbps), une fréquence native à 60 FPS pour les retransmissions sportives, et un protocole Anti-Freeze intelligent garantissant zéro mise en mémoire tampon."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelle connexion internet est requise pour profiter de l'IPTV Premium en 4K ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Une connexion fibre optique, VDSL ou 4G/5G stable d'au moins 25 à 30 Mb/s est recommandée pour apprécier pleinement le flux 4K Ultra HD à 60 FPS sans aucune latence. Pour les flux Full HD, une vitesse de 10 Mb/s est suffisante."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Le service subit-il des ralentissements pendant les grands matchs de football ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. Contrairement aux services bas de gamme qui partagent un même serveur surchargé, notre infrastructure IPTV Premium déploie un réseau CDN à répartition de charge dynamique avec bascule automatique instantanée en cas de pic de trafic lors des affiches de Ligue 1 ou de coupe d'Europe."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quels équipements sont compatibles avec l'offre IPTV Premium ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "L'offre est universellement compatible : Smart TV connectées récentes, boîtiers TV de salon, clés multimédias 4K, ordinateurs (PC Windows et Mac), smartphones et tablettes (Android & iOS). Vous recevez un lien M3U chiffré et des accès Xtream Codes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "L'application ou lecteur IPTV est-il inclus dans la formule ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui ! Pour toute souscription à la formule annuelle 12 mois à 55 €, la licence d'activation du Lecteur Premium vous est offerte sans aucun supplément (valeur habituelle 15 €), incluant l'EPG interactif et le contrôle du direct."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment fonctionne la garantie satisfait ou remboursé 24h ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vous disposez de 24 heures complètes après l'activation pour tester l'ensemble des chaînes et de la VOD. Si vous n'êtes pas totalement convaincu de la qualité ou de la fluidité, un simple message sur notre support WhatsApp suffit pour obtenir un remboursement intégral immédiat."
+          }
+        }
+      ]
+    }
+  ]
+};
+
+const comparisonPoints = [
+  {
+    feature: "Bande Passante & Serveurs",
+    standard: "Serveurs partagés saturés (1 Gbps partagé entre des milliers d'utilisateurs)",
+    premium: "Clusters CDN dédiés 10 Gbps à haute tolérance de panne",
+    isWin: true
+  },
+  {
+    feature: "Stabilité Grands Événements",
+    standard: "Gels d'image fréquents et coupures lors des chocs de football en soirée",
+    premium: "Technologie Anti-Freeze 9.8™ avec redondance automatique de flux",
+    isWin: true
+  },
+  {
+    feature: "Qualité Vidéo Réelle",
+    standard: "Flux 1080p compressé à 25/30 FPS (flou de mouvement prononcé)",
+    premium: "Véritable 4K UHD & 60 FPS natif avec bitrate élevé (jusqu'à 25 Mb/s)",
+    isWin: true
+  },
+  {
+    feature: "Zapping & Latence",
+    standard: "Délai de chargement de 5 à 10 secondes entre les chaînes",
+    premium: "Zapping instantané en moins d'une seconde",
+    isWin: true
+  },
+  {
+    feature: "Catalogue VOD Cinéma & Séries",
+    standard: "Vidéos compressées avec sous-titres décalés et mises à jour rares",
+    premium: "85 000+ films et séries 4K HDR avec son Dolby et pistes françaises",
+    isWin: true
+  },
+  {
+    feature: "Lecteur d'Application Offert",
+    standard: "Application non incluse (licence payante obligatoire à vos frais)",
+    premium: "Licence Lecteur Premium offerte avec la formule 12 mois (valeur 15 €)",
+    isWin: true
+  },
+  {
+    feature: "Support & Assistance",
+    standard: "Support inexistant ou réponses robotisées par email sous 48h",
+    premium: "Support client dédié en français sur WhatsApp disponible 7j/7 en < 3 min",
+    isWin: true
+  },
+  {
+    feature: "Garantie Remboursement",
+    standard: "Aucun recours en cas d'insatisfaction ou d'interruption",
+    premium: "Garantie intégrale satisfait ou remboursé sous 24 heures sans condition",
+    isWin: true
+  }
+];
+
+const technicalSpecs = [
+  {
+    icon: Server,
+    title: "Réseau Dédié 10 Gbps",
+    desc: "Infrastructure européenne avec bande passante garantie. Zéro saturation aux heures de pointe.",
+    badge: "10 Gbps Fibre"
+  },
+  {
+    icon: Tv,
+    title: "Flux Natif 60 Images/Sec",
+    desc: "Une fluidité totale sur les retransmissions sportives. Élimination complète des saccades.",
+    badge: "Natif 60 FPS"
+  },
+  {
+    icon: Zap,
+    title: "Anti-Freeze 9.8™",
+    desc: "Algorithme propriétaire de pré-mise en mémoire tampon et bascule transparente de flux.",
+    badge: "99.98% Uptime"
+  },
+  {
+    icon: Film,
+    title: "VOD 4K HDR & Dolby",
+    desc: "Plus de 85 000 titres cinéma et séries récentes avec qualité studio et son multicanal.",
+    badge: "4K HDR"
+  },
+  {
+    icon: Clock,
+    title: "Replay 7 Jours & EPG",
+    desc: "Guide électronique des programmes à jour et possibilité de revoir vos émissions à la demande.",
+    badge: "Replay 7J"
+  },
+  {
+    icon: ShieldCheck,
+    title: "Sécurité & Chiffrement SSL",
+    desc: "Liaisons protégées par chiffrement 256 bits garantissant une confidentialité totale.",
+    badge: "SSL 256-bit"
+  }
+];
+
+const plans = [
+  {
+    name: "12 Mois Premium",
+    badge: "Meilleure Vente · Recommandé",
+    popular: true,
+    price: "55",
+    period: "par an",
+    equivalent: "soit ~4,58 € / mois",
+    save: "Économisez 41 €",
+    features: [
+      "Qualité 4K UHD & 8K à 60 FPS",
+      "Technologie Anti-Freeze 9.8™ active",
+      "Serveurs Dédiés Fibre 10 Gbps",
+      "Lecteur Premium Offert (Valeur 15 €)",
+      "Toutes les chaînes direct & sport",
+      "Catalogue VOD 85 000+ films & séries",
+      "Replay 7 jours & Guide EPG",
+      "Support VIP WhatsApp 7j/7",
+      "Garantie Remboursement 24h"
+    ],
+    whatsappMsg: "Bonjour ! Je souhaite commander la formule IPTV Premium 12 Mois à 55 € avec le Lecteur Premium offert."
+  },
+  {
+    name: "6 Mois Premium",
+    badge: "Semestriel",
+    popular: false,
+    price: "30",
+    period: "pour 6 mois",
+    equivalent: "soit 5,00 € / mois",
+    save: "Économisez 18 €",
+    features: [
+      "Qualité 4K UHD & 60 FPS",
+      "Technologie Anti-Freeze 9.8™",
+      "Bande passante prioritaire",
+      "Toutes les chaînes direct & sport",
+      "Catalogue VOD films & séries",
+      "Replay 7 jours & Guide EPG",
+      "Support WhatsApp 7j/7",
+      "Garantie Remboursement 24h"
+    ],
+    whatsappMsg: "Bonjour ! Je souhaite commander la formule IPTV Premium 6 Mois à 30 €."
+  },
+  {
+    name: "3 Mois Premium",
+    badge: "Trimestriel",
+    popular: false,
+    price: "20",
+    period: "pour 3 mois",
+    equivalent: "soit 6,66 € / mois",
+    save: "Formule flexibilité",
+    features: [
+      "Qualité 4K UHD & 60 FPS",
+      "Technologie Anti-Freeze 9.8™",
+      "Toutes les chaînes direct & sport",
+      "Catalogue VOD films & séries",
+      "Replay 7 jours & EPG",
+      "Support WhatsApp 7j/7",
+      "Garantie Remboursement 24h"
+    ],
+    whatsappMsg: "Bonjour ! Je souhaite commander la formule IPTV Premium 3 Mois à 20 €."
+  },
+  {
+    name: "1 Mois Découverte",
+    badge: "Essai",
+    popular: false,
+    price: "8",
+    period: "pour 1 mois",
+    equivalent: "Sans engagement",
+    save: "Accès immédiat",
+    features: [
+      "Qualité 4K UHD & 60 FPS",
+      "Technologie Anti-Freeze 9.8™",
+      "Toutes les chaînes direct & sport",
+      "Catalogue VOD films & séries",
+      "Support WhatsApp 7j/7",
+      "Garantie Remboursement 24h"
+    ],
+    whatsappMsg: "Bonjour ! Je souhaite tester la formule IPTV Premium 1 Mois à 8 €."
+  }
+];
+
+const whatsappOrderUrl = "https://wa.me/18036582620?text=Bonjour%20!%20Je%20souhaite%20souscrire%20%C3%A0%20votre%20offre%20IPTV%20Premium%2012%20Mois%20%C3%A0%2055%20%E2%82%AC%20avec%20le%20Lecteur%20inclus.";
+const whatsappTestUrl = "https://wa.me/18036582620?text=Bonjour%20!%20Je%20souhaite%20b%C3%A9n%C3%A9ficier%20d%27un%20test%20IPTV%20Premium%20pendant%2024h.";
+---
+
+<Layout
+  title={`IPTV Premium France ${currentYear} — Serveurs Dédiés 10 Gbps & 4K 60 FPS`}
+  description="Découvrez l'expérience IPTV Premium n°1 en France : infrastructure 10 Gbps dédiée, streaming 4K Ultra HD à 60 FPS, technologie Anti-Freeze 9.8™ et lecteur offert."
+  canonicalURL="https://abonnement-iptv.cloud/iptv-premium"
+  schema={productPremiumSchema}
+  keywords={[
+    'iptv premium',
+    'abonnement iptv premium',
+    'meilleur iptv premium',
+    'iptv premium france',
+    'serveur iptv premium 4k',
+    'iptv premium sans coupure',
+    'code iptv premium',
+    'iptv premium 60 fps'
+  ]}
+>
+  <!-- Sticky Global Navigation -->
+  <StickyHeader currentPath="/iptv-premium" />
+
+  <main id="main-content" class="flex-1">
+    
+    <!-- 1. Hero Conversion Section -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-[#07080E] overflow-hidden border-b border-white/[0.06]">
+      <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[400px] bg-gradient-to-b from-[#0055D4]/25 via-[#60A5FA]/10 to-transparent rounded-full blur-[150px]"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Left Column: Copy & Value Proposition -->
+          <div class="lg:col-span-7 text-left">
+            
+            <!-- Badges -->
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider">
+                <Sparkles class="w-3.5 h-3.5" />
+                Norme Supérieure IPTV Premium
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                <Zap class="w-3.5 h-3.5" />
+                Anti-Freeze 9.8™ · 60 FPS
+              </span>
+            </div>
+
+            <!-- Main H1 with exact keyword focus -->
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15] mb-6">
+              Abonnement <br />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#34D399]">
+                IPTV Premium
+              </span> en 4K UHD Réelle
+            </h1>
+
+            <!-- Primary Keyword within First 75 Words -->
+            <p class="text-base sm:text-lg text-gray-300 font-normal leading-relaxed mb-8">
+              Découvrez la référence de l'<strong>IPTV premium</strong> en France, conçue pour les téléspectateurs qui refusent les compromis. Profitez d'une architecture serveur européenne dédiée 10 Gbps, d'une diffusion native à 60 images par seconde sans aucun temps de chargement, et d'un zapping ultra-rapide sur tous vos écrans.
+            </p>
+
+            <!-- Feature Checklist Bullets -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8">
+              <div class="flex items-center gap-2.5 text-sm text-gray-200">
+                <CheckCircle2 class="w-5 h-5 text-emerald-400 shrink-0" />
+                <span>Flux direct 4K & 8K natif à 60 FPS</span>
+              </div>
+              <div class="flex items-center gap-2.5 text-sm text-gray-200">
+                <CheckCircle2 class="w-5 h-5 text-emerald-400 shrink-0" />
+                <span>Technologie Anti-Freeze 9.8™ anti-saturation</span>
+              </div>
+              <div class="flex items-center gap-2.5 text-sm text-gray-200">
+                <CheckCircle2 class="w-5 h-5 text-emerald-400 shrink-0" />
+                <span>Lecteur Premium offert avec le forfait 12 mois</span>
+              </div>
+              <div class="flex items-center gap-2.5 text-sm text-gray-200">
+                <CheckCircle2 class="w-5 h-5 text-emerald-400 shrink-0" />
+                <span>Activation instantanée en 2 min & garantie 24h</span>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <a
+                href={whatsappOrderUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#0055D4] via-[#2563EB] to-[#10B981] text-white font-extrabold text-sm uppercase tracking-wider shadow-[0_0_30px_rgba(0,85,212,0.4)] hover:scale-[1.03] transition-all"
+              >
+                <MessageCircle class="w-5 h-5 text-emerald-200" />
+                <span>Commander l'IPTV Premium (55 €/an)</span>
+                <ArrowRight class="w-4 h-4" />
+              </a>
+
+              <a
+                href={whatsappTestUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-[#11121C] hover:bg-[#161826] text-white font-bold text-sm border border-white/10 hover:border-emerald-500/40 transition-colors"
+              >
+                <Tv class="w-4 h-4 text-[#60A5FA]" />
+                <span>Tester 24h sur WhatsApp</span>
+              </a>
+            </div>
+
+            <!-- Rating & Trust Badge -->
+            <div class="flex items-center gap-4 mt-8 pt-4 border-t border-white/[0.08] text-xs text-gray-300">
+              <div class="flex text-amber-400">
+                {[...Array(5)].map(() => (
+                  <Star class="w-4 h-4 fill-amber-400" />
+                ))}
+              </div>
+              <span class="font-bold text-white">4.97 / 5.0</span>
+              <span>•</span>
+              <span>2 150+ abonnés actifs ont choisi l'expérience Premium</span>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Visual Product Showcase -->
+          <div class="lg:col-span-5">
+            <div class="rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.8)] bg-[#111322] relative group">
+              <img 
+                src="/images/iptv-premium-hero.webp" 
+                alt="Abonnement IPTV Premium France 2026 flux 4K UHD 60 FPS sans coupure sur Smart TV"
+                class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                width="1200"
+                height="675"
+                loading="eager"
+                decoding="async"
+              />
+              <div class="p-6 bg-gradient-to-b from-[#111322] to-[#0A0B14]">
+                <div class="flex items-center justify-between text-xs text-gray-400 mb-2">
+                  <span class="font-mono text-[#60A5FA]">STANDARD QUALITÉ SUPÉRIEURE</span>
+                  <span class="text-emerald-400 font-bold">4K UHD · 60 FPS NATIF</span>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Clarté d'Image Cinéma & Sport en Direct</h3>
+                <p class="text-xs text-gray-300">Serveurs fibre redondants avec élimination des micro-coupures et du buffering.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Live Scores Carousel Section (Directly Under Hero) -->
+    <LiveScores />
+
+    <!-- 3. Technical Edge: The 6 Pillars of IPTV Premium -->
+    <section class="py-20 md:py-28 bg-[#090A12] border-b border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+            <Award class="w-3.5 h-3.5" />
+            <span>Excellence Technologique</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            Pourquoi Choisir notre Service <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#34D399]">IPTV Premium</span> ?
+          </h2>
+          <p class="text-base text-gray-300 leading-relaxed">
+            Chaque paramètre technique de notre réseau est optimisé pour reproduire la qualité d'une liaison satellite ou câble directe sans les contraintes de matériel lourd.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {technicalSpecs.map((spec) => (
+            <div class="rounded-2xl bg-[#11121C] border border-white/[0.08] hover:border-[#0055D4]/50 p-7 transition-all duration-300 hover:-translate-y-1 group">
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-[#0055D4]/15 border border-[#0055D4]/30 flex items-center justify-center text-[#60A5FA] group-hover:scale-110 transition-transform">
+                  <spec.icon class="w-6 h-6" />
+                </div>
+                <span class="text-[11px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                  {spec.badge}
+                </span>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2">{spec.title}</h3>
+              <p class="text-sm text-gray-400 leading-relaxed">{spec.desc}</p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. Exclusive Comparison: IPTV Standard vs IPTV Premium -->
+    <section class="py-20 md:py-28 bg-[#07080E] border-b border-white/[0.06]">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DC2626]/15 border border-[#DC2626]/30 text-red-400 text-xs font-bold uppercase tracking-wider mb-4">
+            <ShieldCheck class="w-3.5 h-3.5" />
+            <span>Comparatif Technique Objectif</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            IPTV Standard vs <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#34D399]">IPTV Premium</span>
+          </h2>
+          <p class="text-base text-gray-300 leading-relaxed">
+            Comprenez pourquoi les offres bon marché coupent systématiquement pendant les grands matchs et comment notre infrastructure premium résout ce problème.
+          </p>
+        </div>
+
+        <!-- Table Container -->
+        <div class="overflow-x-auto rounded-3xl border border-white/[0.1] bg-[#11121C] shadow-2xl">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-white/[0.08] bg-[#161826]">
+                <th class="py-5 px-6 text-sm font-bold text-white uppercase tracking-wider">Critères & Fonctionnalités</th>
+                <th class="py-5 px-6 text-sm font-bold text-gray-400 uppercase tracking-wider">Abonnement IPTV Standard</th>
+                <th class="py-5 px-6 text-sm font-bold text-[#60A5FA] uppercase tracking-wider bg-[#0055D4]/15 border-x border-[#0055D4]/30">Notre IPTV Premium</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/[0.06] text-sm">
+              {comparisonPoints.map((row) => (
+                <tr class="hover:bg-white/[0.02] transition-colors">
+                  <td class="py-5 px-6 font-semibold text-white whitespace-nowrap">
+                    {row.feature}
+                  </td>
+                  <td class="py-5 px-6 text-gray-400">
+                    <div class="flex items-start gap-2.5">
+                      <X class="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                      <span>{row.standard}</span>
+                    </div>
+                  </td>
+                  <td class="py-5 px-6 text-gray-200 bg-[#0055D4]/5 border-x border-[#0055D4]/20 font-medium">
+                    <div class="flex items-start gap-2.5">
+                      <Check class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <span>{row.premium}</span>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. Cinematic VOD Showcase Section -->
+    <section class="py-20 md:py-28 bg-[#090A12] border-b border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-6">
+            <div class="rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative group">
+              <img 
+                src="/images/iptv-premium-cinema.webp" 
+                alt="Catalogue VOD cinéma et séries streaming 4K HDR son Dolby Digital abonnement IPTV Premium"
+                class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                width="1200"
+                height="675"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div class="absolute bottom-6 left-6 right-6">
+                <span class="inline-block px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold uppercase tracking-wider mb-2">
+                  Qualité Studio HDR
+                </span>
+                <p class="text-white font-bold text-lg">Plus de 85 000 Films & Séries en 4K Ultra HD</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+              <Film class="w-3.5 h-3.5" />
+              <span>Divertissement Illimité</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight mb-6">
+              Une Médiathèque Cinéma & Séries au <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#34D399]">Format 4K HDR</span>
+            </h2>
+            <p class="text-base text-gray-300 leading-relaxed mb-6">
+              Votre abonnement IPTV Premium ne se limite pas à la diffusion en direct. Accédez à un catalogue VOD constamment renouvelé comprenant les dernières sorties cinéma et l'intégralité des séries actuelles.
+            </p>
+
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start gap-3">
+                <CheckCircle2 class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                <div>
+                  <h4 class="text-sm font-bold text-white">Versions Françaises (VF & VOSTFR)</h4>
+                  <p class="text-xs text-gray-400">Pistes audio françaises et sous-titres fidèlement synchronisés.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <CheckCircle2 class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                <div>
+                  <h4 class="text-sm font-bold text-white">Son Multicanal Dolby Digital</h4>
+                  <p class="text-xs text-gray-400">Son spatialisé 5.1 et Dolby pour une expérience home cinéma saisissante.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <CheckCircle2 class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                <div>
+                  <h4 class="text-sm font-bold text-white">Ajouts Quotidiens Automatiques</h4>
+                  <p class="text-xs text-gray-400">Les nouveaux épisodes et blockbusters sont ajoutés dès leur disponibilité.</p>
+                </div>
+              </div>
+            </div>
+
+            <a
+              href={whatsappOrderUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#0055D4] to-[#2563EB] text-white font-bold text-sm hover:scale-[1.02] transition-transform"
+            >
+              <span>Accéder au Catalogue VOD Complet</span>
+              <ArrowRight class="w-4 h-4" />
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. Transparent Pricing Plans (12M Highlighted) -->
+    <section id="pricing" class="py-20 md:py-28 bg-[#07080E] border-b border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-4">
+            <BadgePercent class="w-3.5 h-3.5" />
+            <span>Tarifs Clairs & Sans Engagement</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            Choisissez Votre Formule <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#34D399]">IPTV Premium</span>
+          </h2>
+          <p class="text-base text-gray-300 leading-relaxed">
+            La formule 12 Mois à 55 € inclut l'application Lecteur Premium offerte. Toutes nos formules bénéficient de la garantie de remboursement intégral 24h.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+          {plans.map((plan) => (
+            <div class={`rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 relative ${
+              plan.popular 
+                ? 'bg-gradient-to-b from-[#141829] to-[#0E101A] border-2 border-[#0055D4] shadow-[0_0_40px_rgba(0,85,212,0.3)] md:-translate-y-2' 
+                : 'bg-[#11121C] border border-white/[0.08] hover:border-white/[0.2]'
+            }`}>
+              {plan.popular && (
+                <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#0055D4] to-[#10B981] text-white text-[11px] font-black uppercase tracking-wider shadow-lg whitespace-nowrap">
+                  {plan.badge}
+                </div>
+              )}
+
+              <div>
+                <div class="mb-4">
+                  <h3 class="text-xl font-bold text-white">{plan.name}</h3>
+                  <span class="text-xs text-emerald-400 font-semibold">{plan.save}</span>
+                </div>
+
+                <div class="mb-6">
+                  <div class="flex items-baseline gap-1">
+                    <span class="text-4xl sm:text-5xl font-black text-white tracking-tight">{plan.price} €</span>
+                    <span class="text-xs text-gray-400 font-medium">/{plan.period}</span>
+                  </div>
+                  <p class="text-xs text-gray-300 mt-1">{plan.equivalent}</p>
+                </div>
+
+                <ul class="space-y-3 pt-6 border-t border-white/[0.08] mb-8 text-xs text-gray-300">
+                  {plan.features.map((feat) => (
+                    <li class="flex items-center gap-2.5">
+                      <Check class="w-4 h-4 text-emerald-400 shrink-0" />
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <a
+                href={`https://wa.me/18036582620?text=${encodeURIComponent(plan.whatsappMsg)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={`w-full py-4 rounded-xl text-center font-bold text-sm tracking-wide transition-all ${
+                  plan.popular
+                    ? 'bg-gradient-to-r from-[#0055D4] via-[#2563EB] to-[#10B981] text-white hover:scale-[1.02] shadow-[0_0_20px_rgba(0,85,212,0.4)]'
+                    : 'bg-[#181B2B] text-white hover:bg-[#202438] border border-white/10'
+                }`}
+              >
+                Commander sur WhatsApp
+              </a>
+
+            </div>
+          ))}
+        </div>
+
+        <!-- 24h Risk-Free Guarantee Strip -->
+        <div class="mt-12 p-6 rounded-2xl bg-[#11121C] border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 max-w-4xl mx-auto text-center sm:text-left">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+              <ShieldCheck class="w-6 h-6" />
+            </div>
+            <div>
+              <h4 class="text-base font-bold text-white">Garantie Satisfait ou Remboursé 24h</h4>
+              <p class="text-xs text-gray-400">Testez le service sans engagement. Si la fluidité ne vous convient pas, remboursement direct sur WhatsApp.</p>
+            </div>
+          </div>
+          <span class="px-4 py-2 rounded-xl bg-white/[0.05] border border-white/10 text-xs font-bold text-white shrink-0">
+            100% Sans Risque
+          </span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. Supported Hardware & Universal Compatibility -->
+    <section class="py-20 md:py-28 bg-[#090A12] border-b border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+            <MonitorPlay class="w-3.5 h-3.5" />
+            <span>Compatibilité Universelle</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            Fonctionne sur Tous Vos <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#34D399]">Appareils Connectés</span>
+          </h2>
+          <p class="text-base text-gray-300 leading-relaxed">
+            Votre abonnement IPTV Premium est livré avec vos identifiants API Xtream Codes et votre lien M3U sécurisé, prêts à être configurés en 2 minutes sur votre application préférée.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <div class="p-6 rounded-2xl bg-[#11121C] border border-white/[0.08] text-center hover:border-[#0055D4]/40 transition-colors">
+            <div class="w-12 h-12 rounded-xl bg-[#0055D4]/15 border border-[#0055D4]/30 flex items-center justify-center text-[#60A5FA] mx-auto mb-4">
+              <Tv class="w-6 h-6" />
+            </div>
+            <h3 class="text-base font-bold text-white mb-1">Smart TV Récentes</h3>
+            <p class="text-xs text-gray-400">Compatible avec tous les téléviseurs connectés récents.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#11121C] border border-white/[0.08] text-center hover:border-[#0055D4]/40 transition-colors">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mx-auto mb-4">
+              <Server class="w-6 h-6" />
+            </div>
+            <h3 class="text-base font-bold text-white mb-1">Boîtiers TV & Clés 4K</h3>
+            <p class="text-xs text-gray-400">Boîtiers multimédias de salon et clés de streaming 4K.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#11121C] border border-white/[0.08] text-center hover:border-[#0055D4]/40 transition-colors">
+            <div class="w-12 h-12 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400 mx-auto mb-4">
+              <Smartphone class="w-6 h-6" />
+            </div>
+            <h3 class="text-base font-bold text-white mb-1">Smartphones & Tablettes</h3>
+            <p class="text-xs text-gray-400">Applications mobiles dédiées pour Android et iOS.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#11121C] border border-white/[0.08] text-center hover:border-[#0055D4]/40 transition-colors">
+            <div class="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 mx-auto mb-4">
+              <MonitorPlay class="w-6 h-6" />
+            </div>
+            <h3 class="text-base font-bold text-white mb-1">PC Windows & Mac</h3>
+            <p class="text-xs text-gray-400">Lecteur Web ou logiciels de lecture multimédia de bureau.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 8. Easy 3-Step Setup Process -->
+    <section class="py-20 md:py-28 bg-[#07080E] border-b border-white/[0.06]">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-4">
+            <Clock class="w-3.5 h-3.5" />
+            <span>Installation Éclair</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            Activer Votre <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#34D399]">IPTV Premium</span> en 3 Étapes
+          </h2>
+          <p class="text-base text-gray-300 leading-relaxed">
+            Pas besoin de compétences techniques avancées. Notre équipe vous accompagne en direct sur WhatsApp pour une mise en route en moins de 2 minutes.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <div class="relative p-8 rounded-3xl bg-[#11121C] border border-white/[0.08] text-center">
+            <div class="w-14 h-14 rounded-2xl bg-[#0055D4]/20 border border-[#0055D4]/40 text-[#60A5FA] font-black text-xl flex items-center justify-center mx-auto mb-6">
+              1
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Choisissez Votre Formule</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Sélectionnez la durée souhaitée (la formule 12 mois à 55 € inclut la licence lecteur offerte).</p>
+          </div>
+
+          <div class="relative p-8 rounded-3xl bg-[#11121C] border border-white/[0.08] text-center">
+            <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 font-black text-xl flex items-center justify-center mx-auto mb-6">
+              2
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Réception des Codes en 2 min</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Vous recevez vos identifiants sécurisés (Xtream Codes & lien M3U chiffré) directement sur WhatsApp.</p>
+          </div>
+
+          <div class="relative p-8 rounded-3xl bg-[#11121C] border border-white/[0.08] text-center">
+            <div class="w-14 h-14 rounded-2xl bg-purple-500/20 border border-purple-500/40 text-purple-400 font-black text-xl flex items-center justify-center mx-auto mb-6">
+              3
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Visionnez en 4K UHD</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Entrez vos identifiants sur votre application et profitez immédiatement de vos chaînes à 60 FPS.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 9. Real French Testimonials (4.97/5) -->
+    <section class="py-20 md:py-28 bg-[#090A12] border-b border-white/[0.06]">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4">
+            <Star class="w-3.5 h-3.5 fill-amber-400" />
+            <span>Retours d'Expérience Réels</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+            Ce que Disent nos Abonnés <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#34D399]">IPTV Premium</span>
+          </h2>
+          <p class="text-base text-gray-300 leading-relaxed">
+            Note moyenne vérifiée de 4.97 / 5 calculée sur plus de 2 150 avis de téléspectateurs en France.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <div class="p-7 rounded-2xl bg-[#11121C] border border-white/[0.08] flex flex-col justify-between">
+            <div>
+              <div class="flex text-amber-400 mb-4">
+                {[...Array(5)].map(() => (
+                  <Star class="w-4 h-4 fill-amber-400" />
+                ))}
+              </div>
+              <p class="text-sm text-gray-300 italic mb-6 leading-relaxed">
+                "J'ai testé au moins 4 fournisseurs différents avant celui-ci. Pour la première fois, j'ai pu regarder tout le clasico de Ligue 1 en 4K 60 FPS sans un seul freeze ! Le zapping est ultra rapide."
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/[0.08] flex items-center justify-between">
+              <div>
+                <h4 class="text-sm font-bold text-white">Julien D.</h4>
+                <span class="text-[11px] text-gray-400">Lyon · Formule 12 Mois</span>
+              </div>
+              <span class="text-[11px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded">Client Vérifié</span>
+            </div>
+          </div>
+
+          <div class="p-7 rounded-2xl bg-[#11121C] border border-white/[0.08] flex flex-col justify-between">
+            <div>
+              <div class="flex text-amber-400 mb-4">
+                {[...Array(5)].map(() => (
+                  <Star class="w-4 h-4 fill-amber-400" />
+                ))}
+              </div>
+              <p class="text-sm text-gray-300 italic mb-6 leading-relaxed">
+                "Le catalogue VOD est impressionnant. Tous les derniers films en 4K HDR avec le son multicanal qui passe parfaitement sur mon home cinéma. Et pour 55 € l'année avec le lecteur offert, c'est imbattable."
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/[0.08] flex items-center justify-between">
+              <div>
+                <h4 class="text-sm font-bold text-white">Marc B.</h4>
+                <span class="text-[11px] text-gray-400">Paris · Formule 12 Mois</span>
+              </div>
+              <span class="text-[11px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded">Client Vérifié</span>
+            </div>
+          </div>
+
+          <div class="p-7 rounded-2xl bg-[#11121C] border border-white/[0.08] flex flex-col justify-between">
+            <div>
+              <div class="flex text-amber-400 mb-4">
+                {[...Array(5)].map(() => (
+                  <Star class="w-4 h-4 fill-amber-400" />
+                ))}
+              </div>
+              <p class="text-sm text-gray-300 italic mb-6 leading-relaxed">
+                "Support WhatsApp exceptionnel. J'ai eu un doute pour configurer mon boîtier de salon, ils m'ont envoyé un tutoriel en vidéo et j'étais connecté en moins de 3 minutes. Service 5 étoiles."
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/[0.08] flex items-center justify-between">
+              <div>
+                <h4 class="text-sm font-bold text-white">Sophie T.</h4>
+                <span class="text-[11px] text-gray-400">Bordeaux · Formule 12 Mois</span>
+              </div>
+              <span class="text-[11px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded">Client Vérifié</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 10. FAQ Section (Search Intent Optimization) -->
+    <section class="py-20 md:py-28 bg-[#07080E] border-b border-white/[0.06]">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0055D4]/15 border border-[#0055D4]/30 text-[#60A5FA] text-xs font-bold uppercase tracking-wider mb-4">
+            <HelpCircle class="w-3.5 h-3.5" />
+            <span>Foire Aux Questions</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight mb-4">
+            Questions Fréquentes sur l'IPTV Premium
+          </h2>
+          <p class="text-base text-gray-300 leading-relaxed">
+            Tout ce que vous devez savoir avant de commander votre abonnement streaming haute définition.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          
+          <details class="group p-6 rounded-2xl bg-[#11121C] border border-white/[0.08] open:border-[#0055D4]/40 transition-colors">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-base text-white list-none">
+              <span>Qu'est-ce qui caractérise un véritable abonnement IPTV Premium ?</span>
+              <span class="ml-4 text-[#60A5FA] transition-transform group-open:rotate-180">▼</span>
+            </summary>
+            <p class="mt-4 text-sm text-gray-300 leading-relaxed">
+              Un abonnement IPTV Premium se distingue par une architecture serveur dédiée 10 Gbps hébergée en Europe, un débit vidéo élevé non compressé (bitrate jusqu'à 25 Mbps), une fréquence native à 60 FPS pour les retransmissions sportives, et un protocole Anti-Freeze intelligent garantissant zéro mise en mémoire tampon.
+            </p>
+          </details>
+
+          <details class="group p-6 rounded-2xl bg-[#11121C] border border-white/[0.08] open:border-[#0055D4]/40 transition-colors">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-base text-white list-none">
+              <span>Quelle connexion internet est requise pour profiter de l'IPTV Premium en 4K ?</span>
+              <span class="ml-4 text-[#60A5FA] transition-transform group-open:rotate-180">▼</span>
+            </summary>
+            <p class="mt-4 text-sm text-gray-300 leading-relaxed">
+              Une connexion fibre optique, VDSL ou 4G/5G stable d'au moins 25 à 30 Mb/s est recommandée pour apprécier pleinement le flux 4K Ultra HD à 60 FPS sans aucune latence. Pour les flux Full HD, une vitesse de 10 Mb/s est suffisante.
+            </p>
+          </details>
+
+          <details class="group p-6 rounded-2xl bg-[#11121C] border border-white/[0.08] open:border-[#0055D4]/40 transition-colors">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-base text-white list-none">
+              <span>Le service subit-il des ralentissements pendant les grands matchs de football ?</span>
+              <span class="ml-4 text-[#60A5FA] transition-transform group-open:rotate-180">▼</span>
+            </summary>
+            <p class="mt-4 text-sm text-gray-300 leading-relaxed">
+              Non. Contrairement aux services bas de gamme qui partagent un même serveur surchargé, notre infrastructure IPTV Premium déploie un réseau CDN à répartition de charge dynamique avec bascule automatique instantanée en cas de pic de trafic lors des affiches de Ligue 1 ou de coupe d'Europe.
+            </p>
+          </details>
+
+          <details class="group p-6 rounded-2xl bg-[#11121C] border border-white/[0.08] open:border-[#0055D4]/40 transition-colors">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-base text-white list-none">
+              <span>Quels équipements sont compatibles avec l'offre IPTV Premium ?</span>
+              <span class="ml-4 text-[#60A5FA] transition-transform group-open:rotate-180">▼</span>
+            </summary>
+            <p class="mt-4 text-sm text-gray-300 leading-relaxed">
+              L'offre est universellement compatible : Smart TV connectées récentes, boîtiers TV de salon, clés multimédias 4K, ordinateurs (PC Windows et Mac), smartphones et tablettes (Android & iOS). Vous recevez un lien M3U chiffré et des accès Xtream Codes.
+            </p>
+          </details>
+
+          <details class="group p-6 rounded-2xl bg-[#11121C] border border-white/[0.08] open:border-[#0055D4]/40 transition-colors">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-base text-white list-none">
+              <span>L'application ou lecteur IPTV est-il inclus dans la formule ?</span>
+              <span class="ml-4 text-[#60A5FA] transition-transform group-open:rotate-180">▼</span>
+            </summary>
+            <p class="mt-4 text-sm text-gray-300 leading-relaxed">
+              Oui ! Pour toute souscription à la formule annuelle 12 mois à 55 €, la licence d'activation du Lecteur Premium vous est offerte sans aucun supplément (valeur habituelle 15 €), incluant l'EPG interactif et le contrôle du direct.
+            </p>
+          </details>
+
+          <details class="group p-6 rounded-2xl bg-[#11121C] border border-white/[0.08] open:border-[#0055D4]/40 transition-colors">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-base text-white list-none">
+              <span>Comment fonctionne la garantie satisfait ou remboursé 24h ?</span>
+              <span class="ml-4 text-[#60A5FA] transition-transform group-open:rotate-180">▼</span>
+            </summary>
+            <p class="mt-4 text-sm text-gray-300 leading-relaxed">
+              Vous disposez de 24 heures complètes après l'activation pour tester l'ensemble des chaînes et de la VOD. Si vous n'êtes pas totalement convaincu de la qualité ou de la fluidité, un simple message sur notre support WhatsApp suffit pour obtenir un remboursement intégral immédiat.
+            </p>
+          </details>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 11. Final High-Urgency Call to Action Banner -->
+    <section class="py-20 bg-gradient-to-b from-[#090A12] to-[#05060A] relative overflow-hidden">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-6">
+          <Sparkles class="w-3.5 h-3.5" />
+          <span>Activation Immédiate 24/7</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-6">
+          Passez au Streaming <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-[#FFFFFF] to-[#34D399]">IPTV Premium</span> Dès Aujourd'hui
+        </h2>
+
+        <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+          Rejoignez plus de 2 150 abonnés satisfaits en France. Formule 12 Mois à seulement 55 € avec le Lecteur Premium offert et la garantie satisfait ou remboursé 24h.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
+          <a
+            href={whatsappOrderUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#0055D4] via-[#2563EB] to-[#10B981] text-white font-black text-sm uppercase tracking-wider shadow-[0_0_30px_rgba(0,85,212,0.5)] hover:scale-105 transition-all"
+          >
+            <MessageCircle class="w-5 h-5 text-emerald-200" />
+            <span>Commander 12 Mois (55 €)</span>
+            <ArrowRight class="w-4 h-4" />
+          </a>
+
+          <a
+            href={whatsappTestUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-[#11121C] text-white font-bold text-sm border border-white/10 hover:border-emerald-500/40 transition-colors"
+          >
+            <span>Demander un Test 24h</span>
+          </a>
+        </div>
+
+        <div class="mt-8 flex items-center justify-center gap-6 text-xs text-gray-400">
+          <span class="flex items-center gap-1.5">
+            <Lock class="w-3.5 h-3.5 text-emerald-400" /> Paiement Sécurisé
+          </span>
+          <span>•</span>
+          <span class="flex items-center gap-1.5">
+            <ShieldCheck class="w-3.5 h-3.5 text-emerald-400" /> Garantie 24h Remboursé
+          </span>
+          <span>•</span>
+          <span class="flex items-center gap-1.5">
+            <Zap class="w-3.5 h-3.5 text-[#60A5FA]" /> Activation &lt; 2 minutes
+          </span>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <Footer />
+
+  <!-- Engagement Popups & Widgets -->
+  <ExitPopup />
+  <SocialPopup />
+  <GroupsPopup />
+  <FloatingWhatsApp />
+</Layout>
