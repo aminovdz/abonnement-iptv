@@ -166,6 +166,43 @@ const verifiedReviews = [
   }
 ];
 
+const defaultShippingDetails = {
+  "@type": "OfferShippingDetails",
+  "shippingRate": {
+    "@type": "MonetaryAmount",
+    "value": "0.00",
+    "currency": "EUR"
+  },
+  "shippingDestination": {
+    "@type": "DefinedRegion",
+    "addressCountry": "FR"
+  },
+  "deliveryTime": {
+    "@type": "ShippingDeliveryTime",
+    "handlingTime": {
+      "@type": "QuantitativeValue",
+      "minValue": 0,
+      "maxValue": 0,
+      "unitCode": "DAY"
+    },
+    "transitTime": {
+      "@type": "QuantitativeValue",
+      "minValue": 0,
+      "maxValue": 0,
+      "unitCode": "DAY"
+    }
+  }
+};
+
+const defaultReturnPolicy = {
+  "@type": "MerchantReturnPolicy",
+  "applicableCountry": "FR",
+  "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+  "merchantReturnDays": 1,
+  "returnMethod": "https://schema.org/ReturnByMail",
+  "returnFees": "https://schema.org/FreeReturn"
+};
+
 // Product & Aggregate Rating Schema for Google Rich Snippets (100% Server-Side in Static Build)
 const productRatingSchema = {
   "@context": "https://schema.org",
@@ -201,9 +238,12 @@ const productRatingSchema = {
         "name": "12 Mois + Lecteur Premium Inclus — Meilleure Vente",
         "price": "55.00",
         "priceCurrency": "EUR",
+        "validFrom": `${currentYear}-01-01`,
+        "priceValidUntil": `${currentYear}-12-31`,
         "availability": "https://schema.org/InStock",
         "url": `${siteUrl}/#pricing`,
-        "priceValidUntil": `${currentYear}-12-31`,
+        "shippingDetails": defaultShippingDetails,
+        "hasMerchantReturnPolicy": defaultReturnPolicy,
         "seller": {
           "@type": "Organization",
           "name": "Abonnement IPTV France"
@@ -214,9 +254,12 @@ const productRatingSchema = {
         "name": "6 Mois + Lecteur Premium Inclus — Formule Populaire",
         "price": "30.00",
         "priceCurrency": "EUR",
+        "validFrom": `${currentYear}-01-01`,
+        "priceValidUntil": `${currentYear}-12-31`,
         "availability": "https://schema.org/InStock",
         "url": `${siteUrl}/#pricing`,
-        "priceValidUntil": `${currentYear}-12-31`,
+        "shippingDetails": defaultShippingDetails,
+        "hasMerchantReturnPolicy": defaultReturnPolicy,
         "seller": {
           "@type": "Organization",
           "name": "Abonnement IPTV France"
@@ -227,9 +270,12 @@ const productRatingSchema = {
         "name": "3 Mois — Formule Trimestrielle",
         "price": "20.00",
         "priceCurrency": "EUR",
+        "validFrom": `${currentYear}-01-01`,
+        "priceValidUntil": `${currentYear}-12-31`,
         "availability": "https://schema.org/InStock",
         "url": `${siteUrl}/#pricing`,
-        "priceValidUntil": `${currentYear}-12-31`,
+        "shippingDetails": defaultShippingDetails,
+        "hasMerchantReturnPolicy": defaultReturnPolicy,
         "seller": {
           "@type": "Organization",
           "name": "Abonnement IPTV France"
@@ -240,9 +286,12 @@ const productRatingSchema = {
         "name": "1 Mois — Découverte Sans Engagement",
         "price": "8.00",
         "priceCurrency": "EUR",
+        "validFrom": `${currentYear}-01-01`,
+        "priceValidUntil": `${currentYear}-12-31`,
         "availability": "https://schema.org/InStock",
         "url": `${siteUrl}/#pricing`,
-        "priceValidUntil": `${currentYear}-12-31`,
+        "shippingDetails": defaultShippingDetails,
+        "hasMerchantReturnPolicy": defaultReturnPolicy,
         "seller": {
           "@type": "Organization",
           "name": "Abonnement IPTV France"
@@ -271,7 +320,9 @@ const productRatingSchema = {
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(productRatingSchema)} />
+    {!schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(productRatingSchema)} />
+    )}
     {schema && (
       Array.isArray(schema) 
         ? schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)

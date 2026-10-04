@@ -52,12 +52,40 @@ const product12mSchema = {
     "url": "https://abonnement-iptv.cloud/abonnement-iptv-12-mois",
     "priceCurrency": "EUR",
     "price": "55.00",
+    "validFrom": `${currentYear}-01-01`,
     "priceValidUntil": `${currentYear}-12-31`,
     "itemCondition": "https://schema.org/NewCondition",
     "availability": "https://schema.org/InStock",
     "seller": {
       "@type": "Organization",
       "name": "Abonnement IPTV France"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0.00",
+        "currency": "EUR"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "FR"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 0,
+          "unitCode": "DAY"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 0,
+          "unitCode": "DAY"
+        }
+      }
     },
     "hasMerchantReturnPolicy": {
       "@type": "MerchantReturnPolicy",
