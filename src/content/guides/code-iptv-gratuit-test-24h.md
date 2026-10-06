@@ -95,7 +95,7 @@ Après avoir activé votre ligne personnelle, suivez ces 3 recommandations simpl
 
 1. **Ne partagez pas vos identifiants :** Votre ligne est calibrée pour un flux simultané haute définition. Tout partage risque d'activer la protection anti-conflit du serveur.
 2. **Activez l'actualisation automatique du guide :** Dans les réglages de votre application, programmez la mise à jour de la liste des chaînes toutes les 24 heures pour intégrer automatiquement les nouveaux canaux et les flux de secours.
-3. **Contactez notre support en cas de besoin :** Si vous changez de téléviseur ou réinitialisez votre boîtier, notre [équipe d'assistance WhatsApp](https://wa.me/18036582620) réinitialise votre session en quelques instants.
+3. **Contactez notre support en cas de besoin :** Si vous changez de téléviseur ou réinitialisez votre boîtier, notre [équipe d'assistance WhatsApp](https://wa.me/213550592200) réinitialise votre session en quelques instants.
 
 ---
 

@@ -111,7 +111,7 @@ En choisissant notre formule annuelle, vous débloquez un accès illimité à l'
 ## 6. Foire Aux Questions : Ligue 1 en Streaming 4K
 
 ### Est-il possible d'essayer le service avant le coup d'envoi ?
-Absolument. Vous pouvez démarrer avec notre formule découverte 1 Mois à 8 € sans engagement, ou échanger directement avec notre équipe technique sur [WhatsApp au +1 803 658 2620](https://wa.me/18036582620).
+Absolument. Vous pouvez démarrer avec notre formule découverte 1 Mois à 8 € sans engagement, ou échanger directement avec notre équipe technique sur [WhatsApp au +213 550 59 22 00](https://wa.me/213550592200).
 
 ### Que se passe-t-il si deux affiches se jouent au même horaire ?
 Notre service diffuse chaque rencontre sur son propre canal événementiel dédié, en plus du canal multiplex classique. Vous choisissez librement le match de votre équipe favorite.

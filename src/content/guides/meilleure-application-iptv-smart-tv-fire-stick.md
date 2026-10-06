@@ -121,7 +121,7 @@ Si vous possédez un téléviseur connecté récent de marque Samsung ou LG :
 3. À l'ouverture de l'application, repérez vos deux informations système :
    - L'adresse **Device MAC Address** (ex: `00:1a:79:xx:xx:xx`)
    - La clé de sécurité **Device Key** (un code à 6 chiffres)
-4. Envoyez simplement ces deux codes à notre [équipe technique sur WhatsApp](https://wa.me/18036582620).
+4. Envoyez simplement ces deux codes à notre [équipe technique sur WhatsApp](https://wa.me/213550592200).
 5. Nos techniciens activent votre licence et connectent votre playlist à distance. Vous n'avez plus qu'à profiter de votre écran !
 
 ---

@@ -85,7 +85,7 @@ L'association d'un VPN à votre lecteur IPTV permet de dissimuler votre adresse 
 
 Sur Internet et les réseaux sociaux, de nombreuses offres frauduleuses tentent d'abuser les internautes. Voici 4 critères stricts pour choisir un fournisseur sérieux :
 
-1. **Exigez un support client réactif en français :** Un prestataire digne de confiance met à disposition une ligne directe (comme notre [support WhatsApp 24/7](https://wa.me/18036582620)) capable d'intervenir en moins de 3 minutes.
+1. **Exigez un support client réactif en français :** Un prestataire digne de confiance met à disposition une ligne directe (comme notre [support WhatsApp 24/7](https://wa.me/213550592200)) capable d'intervenir en moins de 3 minutes.
 2. **Fuyez les promesses d'accès « à vie » pour 20 € :** De telles offres disparaissent systématiquement au bout de quelques semaines. Une infrastructure de serveurs 10 Gbps nécessite des coûts d'exploitation réguliers et transparents.
 3. **Vérifiez la politique de remboursement :** Notre engagement [Satisfait ou Remboursé sous 24h](/refund) vous garantit de tester la fluidité du service sans aucun risque financier.
 4. **Vérifiez la compatibilité matérielle :** Le service doit être nativement compatible avec TiviMate, IBO Player et les principales marques de Smart TV.
