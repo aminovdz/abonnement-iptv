@@ -65,11 +65,11 @@ const articleSchema = {
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": `https://abonnement-iptv.cloud/guides/${guide.slug}`
+    "@id": `https://abonnement-iptv.cloud/guides/${guide.slug}/`
   }
 };
 
-const currentUrl = `https://abonnement-iptv.cloud/guides/${guide.slug}`;
+const currentUrl = `https://abonnement-iptv.cloud/guides/${guide.slug}/`;
 const shareText = encodeURIComponent(`${guide.data.title} — À lire absolument : `);
 const shareUrl = encodeURIComponent(currentUrl);
 ---
@@ -99,7 +99,7 @@ const shareUrl = encodeURIComponent(currentUrl);
         <nav class="flex items-center gap-2 text-xs text-gray-400 mb-6" aria-label="Fil d'Ariane">
           <a href="/" class="hover:text-white transition-colors">Accueil</a>
           <ChevronRight class="w-3.5 h-3.5 text-gray-600" />
-          <a href="/guides" class="hover:text-white transition-colors">Guides</a>
+          <a href="/guides/" class="hover:text-white transition-colors">Guides</a>
           <ChevronRight class="w-3.5 h-3.5 text-gray-600" />
           <span class="text-[#60A5FA] font-medium truncate max-w-[260px] sm:max-w-none">{guide.data.title}</span>
         </nav>
@@ -287,7 +287,7 @@ const shareUrl = encodeURIComponent(currentUrl);
         <!-- Back to Guides / Navigation -->
         <div class="mt-12 flex items-center justify-between">
           <a
-            href="/guides"
+            href="/guides/"
             class="inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-white transition-colors"
           >
             <ArrowLeft class="w-4 h-4" />
@@ -313,7 +313,7 @@ const shareUrl = encodeURIComponent(currentUrl);
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {relatedGuides.map((rel) => (
               <a
-                href={`/guides/${rel.slug}`}
+                href={`/guides/${rel.slug}/`}
                 class="rounded-2xl bg-[#111322] border border-white/[0.08] hover:border-[#0055D4]/40 p-5 flex flex-col justify-between transition-all group"
               >
                 <div>

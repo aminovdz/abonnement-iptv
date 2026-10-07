@@ -32,13 +32,13 @@ const blogCollectionSchema = {
   "@type": "Blog",
   "name": "Guides, Actualités & Tutoriels IPTV France",
   "description": "Retrouvez tous nos guides d'experts, tutoriels de configuration (Smart TV connectées, clés 4K), analyses juridiques et astuces streaming sportif en France.",
-  "url": "https://abonnement-iptv.cloud/guides",
+  "url": "https://abonnement-iptv.cloud/guides/",
   "blogPost": sortedGuides.map((guide) => ({
     "@type": "BlogPosting",
     "headline": guide.data.title,
     "description": guide.data.description,
     "datePublished": guide.data.pubDate.toISOString(),
-    "url": `https://abonnement-iptv.cloud/guides/${guide.slug}`
+    "url": `https://abonnement-iptv.cloud/guides/${guide.slug}/`
   }))
 };
 
@@ -48,7 +48,7 @@ const currentYear = new Date().getFullYear();
 <Layout
   title={`Guides & Tutoriels IPTV France ${currentYear} — Actualités, Sport & Légalité`}
   description="Consultez nos guides et tutoriels complets : comment regarder la Ligue 1 en streaming 4K, légalité de l'IPTV en France, configuration des applications et Smart TV."
-  canonicalURL="https://abonnement-iptv.cloud/guides"
+  canonicalURL="https://abonnement-iptv.cloud/guides/"
   schema={blogCollectionSchema}
 >
   <StickyHeader />
@@ -117,7 +117,7 @@ const currentYear = new Date().getFullYear();
                   </div>
 
                   <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4 group-hover:text-[#60A5FA] transition-colors leading-tight">
-                    <a href={`/guides/${featuredGuide.slug}`}>
+                    <a href={`/guides/${featuredGuide.slug}/`}>
                       {featuredGuide.data.title}
                     </a>
                   </h2>
@@ -132,7 +132,7 @@ const currentYear = new Date().getFullYear();
                     </span>
 
                     <a
-                      href={`/guides/${featuredGuide.slug}`}
+                      href={`/guides/${featuredGuide.slug}/`}
                       class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0055D4] to-[#2563EB] text-white font-bold text-xs hover:shadow-[0_0_20px_rgba(0,85,212,0.4)] transition-all"
                     >
                       <span>Lire l'article complet</span>
@@ -191,7 +191,7 @@ const currentYear = new Date().getFullYear();
                   </div>
 
                   <h3 class="text-base font-black text-white mb-2.5 group-hover:text-[#60A5FA] transition-colors leading-snug">
-                    <a href={`/guides/${guide.slug}`}>
+                    <a href={`/guides/${guide.slug}/`}>
                       {guide.data.title}
                     </a>
                   </h3>
@@ -207,7 +207,7 @@ const currentYear = new Date().getFullYear();
                   </span>
                   
                   <a
-                    href={`/guides/${guide.slug}`}
+                    href={`/guides/${guide.slug}/`}
                     class="inline-flex items-center gap-1 text-[#60A5FA] font-bold group-hover:underline"
                   >
                     <span>Consulter</span>

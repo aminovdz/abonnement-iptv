@@ -73,14 +73,14 @@ const meilleurIptvSchema = {
   "@type": "WebPage",
   "name": `Meilleur IPTV ${currentYear} — Comparatif des Meilleurs Abonnements IPTV en France`,
   "description": `Comparatif indépendant et classement ${currentYear} des meilleurs services d'abonnement IPTV en France. Stabilité, prix, serveurs et qualité d'image.`,
-  "url": "https://abonnement-iptv.cloud/compare"
+  "url": "https://abonnement-iptv.cloud/compare/"
 };
 ---
 
 <Layout
   title={`Meilleur IPTV ${currentYear} — Comparatif Complet des Services IPTV en France`}
   description={`Quel est le meilleur abonnement IPTV en France en ${currentYear} ? Comparatif des offres, prix, stabilité anti-freeze et avis vérifiés. Guide d'achat complet.`}
-  canonicalURL="https://abonnement-iptv.cloud/compare"
+  canonicalURL="https://abonnement-iptv.cloud/compare/"
   schema={meilleurIptvSchema}
 >
   <StickyHeader />
@@ -175,7 +175,7 @@ const meilleurIptvSchema = {
               </div>
 
               <a
-                href={`/compare/${comp.slug}`}
+                href={`/compare/${comp.slug}/`}
                 class="inline-flex items-center justify-between px-5 py-3.5 rounded-xl bg-[#17192C] hover:bg-[#0055D4] text-white font-bold text-xs transition-colors group"
               >
                 <span>Lire le comparatif complet</span>

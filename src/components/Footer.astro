@@ -18,35 +18,35 @@ const cities = [
 
 const quickLinks = [
   { name: 'Accueil', href: '/' },
-  { name: 'IPTV Premium (4K 60 FPS)', href: '/iptv-premium' },
-  { name: 'Match Center (Scores en Direct)', href: '/livescore' },
-  { name: 'Formule 12 Mois (Bestseller)', href: '/abonnement-iptv-12-mois' },
-  { name: 'French IPTV (Worldwide)', href: '/french-iptv' },
+  { name: 'IPTV Premium (4K 60 FPS)', href: '/iptv-premium/' },
+  { name: 'Match Center (Scores en Direct)', href: '/livescore/' },
+  { name: 'Formule 12 Mois (Bestseller)', href: '/abonnement-iptv-12-mois/' },
+  { name: 'French IPTV (Worldwide)', href: '/french-iptv/' },
   { name: 'Grille Tarifaire', href: '/#pricing' },
-  { name: 'Programme Parrainage', href: '/referral' },
-  { name: 'Contact & Support', href: '/contact' }
+  { name: 'Programme Parrainage', href: '/referral/' },
+  { name: 'Contact & Support', href: '/contact/' }
 ];
 
 const comparisonLinks = [
-  { name: 'Abonnement IPTV vs AcheterIPTVPro', href: '/compare/abonnement-iptv-vs-acheteriptvpro' },
-  { name: 'Abonnement IPTV vs AbonnementsIPTV-Premium', href: '/compare/abonnement-iptv-vs-abonnementsiptv-premium' },
-  { name: 'Abonnement IPTV vs IPTV-PremiumFrance', href: '/compare/abonnement-iptv-vs-iptv-premiumfrance' },
-  { name: 'Abonnement IPTV vs Bouquets TV Traditionnels', href: '/compare/abonnement-iptv-vs-cable-traditionnel' }
+  { name: 'Abonnement IPTV vs AcheterIPTVPro', href: '/compare/abonnement-iptv-vs-acheteriptvpro/' },
+  { name: 'Abonnement IPTV vs AbonnementsIPTV-Premium', href: '/compare/abonnement-iptv-vs-abonnementsiptv-premium/' },
+  { name: 'Abonnement IPTV vs IPTV-PremiumFrance', href: '/compare/abonnement-iptv-vs-iptv-premiumfrance/' },
+  { name: 'Abonnement IPTV vs Bouquets TV Traditionnels', href: '/compare/abonnement-iptv-vs-cable-traditionnel/' }
 ];
 
 const guidesLinks = [
-  { name: 'Comment Regarder la Ligue 1 en Direct 4K', href: '/guides/comment-regarder-la-ligue-1-en-direct' },
-  { name: 'L\'IPTV est-il légal en France ? Ce que dit la loi', href: '/guides/iptv-est-il-legal-en-france' },
-  { name: 'Meilleure application IPTV pour Smart TV', href: '/guides/meilleure-application-iptv-smart-tv-fire-stick' },
-  { name: 'Tous les Guides & Tutoriels', href: '/guides' }
+  { name: 'Comment Regarder la Ligue 1 en Direct 4K', href: '/guides/comment-regarder-la-ligue-1-en-direct/' },
+  { name: 'L\'IPTV est-il légal en France ? Ce que dit la loi', href: '/guides/iptv-est-il-legal-en-france/' },
+  { name: 'Meilleure application IPTV pour Smart TV', href: '/guides/meilleure-application-iptv-smart-tv-fire-stick/' },
+  { name: 'Tous les Guides & Tutoriels', href: '/guides/' }
 ];
 
 const legalLinks = [
-  { name: 'Politique de Confidentialité (RGPD)', href: '/privacy' },
-  { name: 'Conditions Générales de Vente (CGV)', href: '/terms' },
-  { name: 'Politique de Remboursement (24h)', href: '/refund' },
-  { name: 'Notification DMCA & Droits d\'Auteur', href: '/dmca' },
-  { name: 'Mentions Légales & Disclaimer', href: '/disclaimer' }
+  { name: 'Politique de Confidentialité (RGPD)', href: '/privacy/' },
+  { name: 'Conditions Générales de Vente (CGV)', href: '/terms/' },
+  { name: 'Politique de Remboursement (24h)', href: '/refund/' },
+  { name: 'Notification DMCA & Droits d\'Auteur', href: '/dmca/' },
+  { name: 'Mentions Légales & Disclaimer', href: '/disclaimer/' }
 ];
 ---
 
@@ -208,7 +208,7 @@ const legalLinks = [
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
         {cities.map((city) => (
           <a
-            href={`/locations/${city.slug}`}
+            href={`/locations/${city.slug}/`}
             class="p-2.5 rounded-lg bg-[#11121C]/60 hover:bg-[#161826] border border-white/[0.05] hover:border-[#0055D4]/40 transition-colors text-xs text-gray-300 hover:text-white flex flex-col"
           >
             <span class="font-semibold text-white">Abonnement IPTV {city.name}</span>
@@ -224,20 +224,20 @@ const legalLinks = [
   <div class="border-t border-white/[0.06] bg-[#040508] py-8 text-xs text-gray-400">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
       <div>
-        <p>© {currentYear} Abonnement IPTV France (<a href="https://abonnement-iptv.cloud" class="hover:text-white">abonnement-iptv.cloud</a>). Tous droits réservés.</p>
+        <p>© {currentYear} Abonnement IPTV France (<a href="https://abonnement-iptv.cloud/" class="hover:text-white">abonnement-iptv.cloud</a>). Tous droits réservés.</p>
         <p class="text-[11px] text-gray-400 mt-1">
           Avertissement légal : Nous opérons comme fournisseur indépendant d'infrastructures de transmission et de serveurs multimédias. Nous ne stockons ni ne diffusons de contenus propriétaires sur nos serveurs.
         </p>
       </div>
 
       <div class="flex items-center gap-4 text-xs">
-        <a href="/privacy" class="hover:text-white transition-colors">Confidentialité</a>
+        <a href="/privacy/" class="hover:text-white transition-colors">Confidentialité</a>
         <span>•</span>
-        <a href="/terms" class="hover:text-white transition-colors">CGV</a>
+        <a href="/terms/" class="hover:text-white transition-colors">CGV</a>
         <span>•</span>
-        <a href="/refund" class="hover:text-white transition-colors">Remboursement 24h</a>
+        <a href="/refund/" class="hover:text-white transition-colors">Remboursement 24h</a>
         <span>•</span>
-        <a href="/contact" class="hover:text-white transition-colors">Contact</a>
+        <a href="/contact/" class="hover:text-white transition-colors">Contact</a>
       </div>
     </div>
   </div>

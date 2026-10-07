@@ -7,6 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://abonnement-iptv.cloud',
   output: 'static',
+  trailingSlash: 'always',
   adapter: cloudflare({
     imageService: 'compile'
   }),

@@ -191,7 +191,7 @@ const localBusinessSchema = {
   "@type": "LocalBusiness",
   "name": `France IPTV ${city.name} — Service d'Abonnement IPTV Premium`,
   "image": "https://abonnement-iptv.cloud/images/hero-bg.webp",
-  "url": `https://abonnement-iptv.cloud/locations/${city.slug}`,
+  "url": `https://abonnement-iptv.cloud/locations/${city.slug}/`,
   "telephone": "+213550592200",
   "priceRange": "8€ - 55€",
   "description": `Fournisseur d'abonnement IPTV haute performance à ${city.name} (${city.region}). Serveurs locaux fibre 10 Gbps, anti-freeze et support 24/7 en français.`,
@@ -273,7 +273,7 @@ const localFaqs = [
 <Layout
   title={city.metaTitle}
   description={city.metaDescription}
-  canonicalURL={`https://abonnement-iptv.cloud/locations/${city.slug}`}
+  canonicalURL={`https://abonnement-iptv.cloud/locations/${city.slug}/`}
   schema={localBusinessSchema}
 >
   <StickyHeader />

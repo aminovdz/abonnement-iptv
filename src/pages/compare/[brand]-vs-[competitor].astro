@@ -164,7 +164,7 @@ const comparisonSchema = {
       "validFrom": `${currentYear}-01-01`,
       "priceValidUntil": `${currentYear}-12-31`,
       "availability": "https://schema.org/InStock",
-      "url": "https://abonnement-iptv.cloud/abonnement-iptv-12-mois",
+      "url": "https://abonnement-iptv.cloud/abonnement-iptv-12-mois/",
       "shippingDetails": {
         "@type": "OfferShippingDetails",
         "shippingRate": {
@@ -208,7 +208,7 @@ const comparisonSchema = {
 <Layout
   title={comp.title}
   description={comp.metaDescription}
-  canonicalURL={`https://abonnement-iptv.cloud/compare/${comp.brandSlug}-vs-${comp.competitorSlug}`}
+  canonicalURL={`https://abonnement-iptv.cloud/compare/${comp.brandSlug}-vs-${comp.competitorSlug}/`}
   schema={comparisonSchema}
 >
   <StickyHeader />
@@ -226,7 +226,7 @@ const comparisonSchema = {
         <nav class="inline-flex items-center gap-2 text-xs text-gray-400 mb-6" aria-label="Fil d'Ariane">
           <a href="/" class="hover:text-white transition-colors">Accueil</a>
           <ChevronRight class="w-3.5 h-3.5 text-gray-600" />
-          <a href="/compare" class="hover:text-white transition-colors">Comparatifs</a>
+          <a href="/compare/" class="hover:text-white transition-colors">Comparatifs</a>
           <ChevronRight class="w-3.5 h-3.5 text-gray-600" />
           <span class="text-[#60A5FA] font-medium" aria-current="page">{comp.competitorName}</span>
         </nav>

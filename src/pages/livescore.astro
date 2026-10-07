@@ -230,7 +230,7 @@ const matchCenterSchema = {
   "@type": "SportsEvent",
   "name": `Match Center en Direct ${currentYear} — Scores, Calendrier & Retransmissions 4K`,
   "description": "Suivez les scores officiels en direct de Ligue 1, UEFA Champions League et grands championnats européens. Retransmission 4K 60FPS sans coupure sur Abonnement IPTV France.",
-  "url": "https://abonnement-iptv.cloud/livescore",
+  "url": "https://abonnement-iptv.cloud/livescore/",
   "subEvent": allMatches.map((m) => ({
     "@type": "SportsEvent",
     "name": `${m.homeTeam} vs ${m.awayTeam}`,
@@ -245,10 +245,10 @@ const matchCenterSchema = {
 <Layout
   title={`Match Center en Direct ${currentYear} — Scores Ligue 1, Champions League & Retransmission 4K`}
   description="Accédez au Match Center en direct : scores temps réel, résultats officiels de Ligue 1, UEFA Champions League et calendrier des diffusions en streaming 4K 60 FPS sans coupure."
-  canonicalURL="https://abonnement-iptv.cloud/livescore"
+  canonicalURL="https://abonnement-iptv.cloud/livescore/"
   schema={matchCenterSchema}
 >
-  <StickyHeader currentPath="/livescore" />
+  <StickyHeader currentPath="/livescore/" />
 
   <main id="main-content" class="bg-[#090A12] min-h-screen">
     
@@ -488,7 +488,7 @@ const matchCenterSchema = {
         </div>
         <div class="flex flex-col sm:flex-row items-center gap-4 shrink-0 w-full sm:w-auto">
           <a
-            href="/abonnement-iptv-12-mois"
+            href="/abonnement-iptv-12-mois/"
             class="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#0055D4] to-[#2563EB] text-white font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_25px_rgba(0,85,212,0.5)] transition-all"
           >
             Découvrir l'Offre 55 €
